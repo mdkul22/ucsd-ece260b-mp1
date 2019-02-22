@@ -45,10 +45,9 @@ foreach_in_collection cell $cellList {
     }
     #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
     set_user_attribute [get_cells $cell] P_custom [ComputeSensitivity $cellName]
-    puts [ComputeSensitivity $cellName]
 }
 puts "\ndone with first loop\n"
-
+set S_cells []
 add_to_collection $S_cells [ sort_collection -descending [get_cells *] P_custom ]
 set Pmax [ get_attri [ index_collection $S_cells 0 ] P_custom ]
 
@@ -71,8 +70,23 @@ while { [ expr $Pmax > 0.0 ] } {
     size_cell $cellName $libcellName
   }
   else {
-    set fan_in_cells [all_fanin - ]
+    set cellPins [get_pins -of_objects $cellName]
+    set fan_in_gates [all_fanin -to $cellPins -only_cells]
+    set fan_out_gates [all_fanout -from $cellPins -only_cells]
+    set gate_list []
+    add_to_collection $gate_list $fan_in_gates
+    add_to_collection $gate_list $fan_out_gates
+    foreach_in_collection gate $gate_list {
+          set_user_attribute [get_cells $gate] P_custom [ComputeSensitivity $cellName]
+    }
   }
+# Find Pmax by sorting cells and looping again
+add_to_collection $S_cells [ sort_collection -descending [get_cells *] P_custom ]
+set Pmax [ get_attri [ index_collection $S_cells 0 ] P_custom ]
+if (Pmax < 0)
+{
+  break
+}
 }
 
 
