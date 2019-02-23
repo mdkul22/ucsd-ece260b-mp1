@@ -22,7 +22,7 @@ set VtswapCnt 0
 set SizeswapCnt 0
 
 proc CISTA { cellname } {
-return 1  
+return 1
 }
 
 proc computeSensitivity { cellName } {
@@ -63,15 +63,24 @@ foreach_in_collection cell $cellList {
     set cellName [get_attri $cell base_name]
     set libcell [get_lib_cells -of_objects $cellName]
     set libcellName [get_attri $libcell base_name]
-    if {[$libcellName == "ms00f80"]} {
+    if {$libcellName == "ms00f80"} {
         continue
     }
     #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
-    set_user_attribute [get_cells $cell] P_custom [ComputeSensitivity $cellName]
+    set_user_attribute [get_cells $cellName] P_custom [computeSensitivity $cellName]
 }
 puts "\ndone with first loop\n"
 set S_cells []
-add_to_collection $S_cells [ sort_collection -descending [get_cells *] P_custom ]
+set S_cells [ sort_collection -descending [get_cells *] P_custom ]
+foreach_in_collection cell $cellList {
+    set cellName [get_attri $cell base_name]
+    set libcell [get_lib_cells -of_objects $cellName]
+    set libcellName [get_attri $libcell base_name]
+    if {$libcellName == "ms00f80"} {
+      set S_cells [remove_from_collection $cell cellName]
+    }
+    #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
+}
 set Pmax [ get_attri [ index_collection $S_cells 0 ] P_custom ]
 
 while { [ expr $Pmax > 0.0 ] } {
@@ -88,7 +97,7 @@ while { [ expr $Pmax > 0.0 ] } {
   set newlibcellName [ getNextSizeDown $libcellName ]
   size_cell $cellName $newlibcellName
   set time_violation [ CISTA $cellName ]
-  if { time_violation }
+  if { $time_violation }
   {
     size_cell $cellName $libcellName
   }
@@ -100,13 +109,16 @@ while { [ expr $Pmax > 0.0 ] } {
     add_to_collection $gate_list $fan_in_gates
     add_to_collection $gate_list $fan_out_gates
     foreach_in_collection gate $gate_list {
-          set_user_attribute [get_cells $gate] P_custom [ComputeSensitivity $cellName]
+          set_user_attribute [get_cells $gate] P_custom [computeSensitivity $cellName]
     }
   }
 # Find Pmax by sorting cells and looping again
 add_to_collection $S_cells [ sort_collection -descending [get_cells *] P_custom ]
 set Pmax [ get_attri [ index_collection $S_cells 0 ] P_custom ]
-if (Pmax < 0)
+if { expr [$Pmax < 0]} {
+  break
+}
+if { expr [[sizeof_collection $S_cells] == 0]}
 {
   break
 }
