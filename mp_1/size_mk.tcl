@@ -83,26 +83,29 @@ foreach_in_collection cell $cellList {
     #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
 }
 set Pmax [ get_attri [ index_collection $S_cells 0 ] P_custom ]
-
-while {  $Pmax > 0.0 } {
+puts $Pmax
+puts [$S_cells]
+while { [ expr $Pmax > 0.0 ] } {
   # get max value and iterator to get cell from collection
-
+  puts {OOF1}
   set cell [ index_collection $S_cells 0 ]
   set cellName [get_attri $cell base_name]
   set libcell [get_lib_cells -of_objects $cellName]
   set libcellName [get_attri $libcell base_name]
   # removing value Pmax from List
   #set S_cells [remove_from_collection $S_cells $cellName]
-  if {$libcellName == "ms00f80"} {
+  if {[$libcellName == "ms00f80"]} {
       continue
   }
-  set S_cells [ remove_from_collection $S_cells $cellName ]
   set newlibcellName [ getNextSizeDown $libcellName ]
   size_cell $cellName $newlibcellName
   set time_violation [ CISTA $cellName ]
-  if { [expr $time_violation == 1] } {
+  if { $time_violation }
+  {
+    puts {OOF}
     size_cell $cellName $libcellName
-  } else {
+  }
+  else {
     set cellPins [get_pins -of_objects $cellName]
     set fan_in_gates [all_fanin -to $cellPins -only_cells]
     set fan_out_gates [all_fanout -from $cellPins -only_cells]
@@ -114,14 +117,14 @@ while {  $Pmax > 0.0 } {
     }
   }
 # Find Pmax by sorting cells and looping again
-set S_cells [ sort_collection -descending $S_cells P_custom ]
+add_to_collection $S_cells [ sort_collection [get_cells *] P_custom ]
 
 set Pmax [ get_attri [ index_collection $S_cells 0 ] P_custom ]
-if { $Pmax < 0 } {
+if { expr [$Pmax < 0]} {
   break
 }
-set size [sizeof_collection $S_cells]
-if { $size == 0} {
+if { expr [[sizeof_collection $S_cells] == 0]}
+{
   break
 }
 }
