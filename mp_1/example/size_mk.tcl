@@ -21,19 +21,42 @@ set cellList [sort_collection [get_cells *] base_name]
 set VtswapCnt 0
 set SizeswapCnt 0
 
-proc findmax { Plist } {
-  set max 0
-  set count 0
-  foreach i $Plist {
-    if { $i > $max } {
-      set max $i
-      set count [ expr $count + 1 ]
-    }
-  }
-  return [ list $max $count ]
+proc CISTA { cellname } {
+return 1  
 }
-proc ComputeSensitivity { cellName } {
-  return 0.65
+
+proc computeSensitivity { cellName } {
+    #get old info
+    set old_slack [ PtCellSlack $cellName ]
+    set old_leak  [ PtCellLeak  $cellName ]
+
+    #get the current libcellName. this will be the save state
+    set libcell [ get_lib_cells -of_objects $cellName ]
+    set libcellName [ get_attri $libcell base_name ]
+
+    #downsize the cell, first testing if it's not already minimum size
+    #returns zero sensitivity if can't be downsized
+    if { [ getNextSizeDown $libcellName ] == "skip" } {
+       return 0
+    }
+    set newlibcellName [ getNextSizeDown $libcellName ]
+    set min_flag [ size_cell  $cellName $newlibcellName ]
+    if { [ expr $min_flag == 0 ]  } {
+       return 0
+    }
+    size_cell $cellName $newlibcellName
+
+    #create collection of all fan in cells
+    #set fanin [ all_fanin -to $news_size ]
+
+    #get new info
+    set new_slack [ PtCellSlack $cellName ]
+    set new_leak  [ PtCellLeak  $cellName ]
+
+    #restore state
+    size_cell $cellName $libcellName
+
+    return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
 }
 
 foreach_in_collection cell $cellList {
