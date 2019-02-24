@@ -111,21 +111,33 @@ while {  $Pmax > 0.0 } {
   set cellName [get_attri $cell base_name]
   set libcell [get_lib_cells -of_objects $cellName]
   set libcellName [get_attri $libcell base_name]
+  set size [sizeof_collection $S_cells]
+  if { $size == 0} {
+    break
+  }
   # removing value Pmax from List
   #set S_cells [remove_from_collection $S_cells $cellName]
   if {$libcellName == "ms00f80"} {
       continue
   }
-  puts {Completed the initial avoidance}
   set newlibcellName [ getNextSizeDown $libcellName ]
-  size_cell $cellName $newlibcellName
-  update_timing
-  set new_wns [ PtWorstSlack clk ]
-  if { $new_wns < 0 } {
+  if {$newlibcellName == "skip"} {
     size_cell $cellName $libcellName
     set S_cells [ remove_from_collection $S_cells $cellName ]
     continue
   }
+  #check if sizeable, if not remove from list
+  set sizeable [size_cell $cellName $newlibcellName]
+  # doing incremental timing of all cell paths to ensure no faults
+  update_timing
+  # checking if WNS is less than zero or not
+  set new_wns [ PtWorstSlack clk ]
+  if {$new_wns < 0 || $sizeable == 0} {
+    size_cell $cellName $libcellName
+    set S_cells [ remove_from_collection $S_cells $cellName ]
+    continue
+  }
+
   set time_violation [ CISTA $cellName ]
   if {$time_violation == 1} {
     puts {time violated}
@@ -136,12 +148,16 @@ while {  $Pmax > 0.0 } {
     set fan_out_gates [all_fanout -from $cellPins -only_cells]
     set gate_list $fan_in_gates
     add_to_collection $gate_list $fan_out_gates
+    add_to_collection $gate_list $cellName
     foreach_in_collection gate $gate_list {
       	set_user_attribute [get_cells $gate] P_custom [computeSensitivity $gate]
     }
+    set next_sizeable [getNextSizeDown $newlibcellName]
+    if {$next_sizeable == "skip"} {
+      set S_cells [ remove_from_collection $S_cells $cellName ]
+    }
   }
 
-set S_cells [ remove_from_collection $S_cells $cellName ]
 # Find Pmax by sorting cells and looping again
 set S_cells [ sort_collection -descending $S_cells P_custom ]
 
