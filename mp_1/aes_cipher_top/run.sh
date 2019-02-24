@@ -5,5 +5,5 @@ innovus -batch -execute source -files run_eco.tcl
 pt_shell -f eva_pt.tcl
 
 # mailing result files
-tail -7 usb_phy_sizing.rpt | mail -s "Results from the run" mkulkarn@eng.ucsd.edu
-tail -7 usb_phy_sizing.rpt | mail -s "Results from the run" teaves@eng.ucsd.edu
+tail -7 aes_cipher_top_sizing.rpt | mail -s "Results from the run" mkulkarn@eng.ucsd.edu
+tail -7 aes_cipher_top_sizing.rpt | mail -s "Results from the run" teaves@eng.ucsd.edu

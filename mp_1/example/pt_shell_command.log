@@ -1,7 +1,7 @@
 #@ # 
 #@ # Running pt_shell Version K-2015.06-SP3-1 for linux64 -- Dec 11, 2015
-#@ # Date:   Sun Feb 24 01:17:54 2019
-#@ # Run by: teaves@ieng6-ece-02.ucsd.edu
+#@ # Date:   Sun Feb 24 14:06:50 2019
+#@ # Run by: teaves@ieng6-ece-13.ucsd.edu
 #@ 
 
 source /acsnfs3/software/Synopsys-primetime-2015.06-SP3/admin/setup/.synopsys_pt.setup

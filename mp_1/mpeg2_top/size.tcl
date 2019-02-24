@@ -19,6 +19,9 @@ puts $outFp "======================================"
 define_user_attribute -type string -class cell P_Gate
 define_user_attribute -type string -class cell P_Vt
 set cellList [sort_collection [get_cells *] base_name]
+
+puts [ sizeof_collection $cellList ]
+
 set VtswapCnt 0
 set SizeswapCnt 0
 # this checks fan-in and fan-out nodes of the cell and gives back the appropriate result
@@ -129,8 +132,6 @@ puts "\ndone with first loop\n"
 set S_cells []
 set S_cells [ sort_collection -descending [get_cells *] P_Vt ]
 
-puts [sizeof_collection $S_cells]
-
 foreach_in_collection cell $cellList {
     set cellName [get_attri $cell base_name]
     set libcell [get_lib_cells -of_objects $cellName]
@@ -159,7 +160,7 @@ while {  $Pmax > 0.0 } {
   }
   set newlibcellName [ getNextVtDown $libcellName ]
   if {$newlibcellName == "skip"} {
-    size_cell $cellName $libcellName
+    #size_cell $cellName $libcellName
     set S_cells [ remove_from_collection $S_cells $cellName ]
     continue
   }
@@ -238,7 +239,7 @@ while {  $Pmax > 0.0 } {
   }
   set newlibcellName [ getNextSizeDown $libcellName ]
   if {$newlibcellName == "skip"} {
-    size_cell $cellName $libcellName
+    #size_cell $cellName $libcellName
     set S_cells [ remove_from_collection $S_cells $cellName ]
     continue
   }

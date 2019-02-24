@@ -110,6 +110,7 @@ proc computeGateSensitivity { cellName } {
 }
 
 # P_Gate and P_Vt
+set count 0
 foreach_in_collection cell $cellList {
     set cellName [get_attri $cell base_name]
     set libcell [get_lib_cells -of_objects $cellName]
@@ -122,6 +123,8 @@ foreach_in_collection cell $cellList {
     set_user_attribute [get_cells $cellName] P_Gate [computeGateSensitivity $cellName]
     set_user_attribute [get_cells $cellName] P_Vt 0
     set_user_attribute [get_cells $cellName] P_Vt [computeSensitivityVT $cellName]
+    incr count
+    puts "First loop: assigned sensitivity to cell #$count"
 }
 
 puts "\ndone with first loop\n"
@@ -149,6 +152,8 @@ while {  $Pmax > 0.0 } {
   set size [sizeof_collection $S_cells]
   if { $size == 0} {
     break
+  } else {
+    puts "Second loop: $size cells left in collection"
   }
   # removing value Pmax from List
   #set S_cells [remove_from_collection $S_cells $cellName]
@@ -158,7 +163,7 @@ while {  $Pmax > 0.0 } {
   set newlibcellName [ getNextVtDown $libcellName ]
   if {$newlibcellName == "skip"} {
     #size_cell $cellName $libcellName
-    set S_cells [ remove_from_collection $S_cells $cellName ]
+    set S_cells [ remove_from_collection $S_cells $cell ]
     continue
   }
   #check if sizeable, if not remove from list
@@ -169,9 +174,11 @@ while {  $Pmax > 0.0 } {
   set new_wns [ PtWorstSlack clk ]
   if {$new_wns < 0 || $sizeable == 0} {
     size_cell $cellName $libcellName
-    set S_cells [ remove_from_collection $S_cells $cellName ]
+    set S_cells [ remove_from_collection $S_cells $cell ]
     continue
   }
+  #location for incrementing vt swaps
+  incr VtswapCnt
 
   set time_violation [ CISTA $cellName ]
   if {$time_violation == 1} {
@@ -185,7 +192,7 @@ while {  $Pmax > 0.0 } {
     add_to_collection $gate_list $fan_out_gates
     add_to_collection $gate_list $cellName
     foreach_in_collection gate $gate_list {
-      	set_user_attribute [get_cells $gate] P_VT [computeSensitivityVT $gate]
+      	set_user_attribute [get_cells $gate] P_Vt [computeSensitivityVT $gate]
     }
     set next_sizeable [getNextVtDown $newlibcellName]
     if {$next_sizeable == "skip"} {
@@ -194,9 +201,9 @@ while {  $Pmax > 0.0 } {
   }
 
   # Find Pmax by sorting cells and looping again
-  set S_cells [ sort_collection -descending $S_cells P_Gate ]
+  set S_cells [ sort_collection -descending $S_cells P_Vt ]
 
-  set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Gate ]
+  set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
   if { $Pmax < 0 } {
     break
   }
@@ -228,6 +235,8 @@ while {  $Pmax > 0.0 } {
   set size [sizeof_collection $S_cells]
   if { $size == 0} {
     break
+  } else {
+    puts "Third loop: $size cells left in collection"
   }
   # removing value Pmax from List
   #set S_cells [remove_from_collection $S_cells $cellName]
@@ -237,7 +246,7 @@ while {  $Pmax > 0.0 } {
   set newlibcellName [ getNextSizeDown $libcellName ]
   if {$newlibcellName == "skip"} {
     #size_cell $cellName $libcellName
-    set S_cells [ remove_from_collection $S_cells $cellName ]
+    set S_cells [ remove_from_collection $S_cells $cell ]
     continue
   }
   #check if sizeable, if not remove from list
@@ -248,9 +257,11 @@ while {  $Pmax > 0.0 } {
   set new_wns [ PtWorstSlack clk ]
   if {$new_wns < 0 || $sizeable == 0} {
     size_cell $cellName $libcellName
-    set S_cells [ remove_from_collection $S_cells $cellName ]
+    set S_cells [ remove_from_collection $S_cells $cell ]
     continue
   }
+  #incrementing size swaps
+  incr SizeswapCnt
 
   set time_violation [ CISTA $cellName ]
   if {$time_violation == 1} {
