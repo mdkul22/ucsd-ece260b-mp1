@@ -22,6 +22,8 @@ set SizeswapCnt 0
 
 #my attempt at defining the empty list S
 set S [list]
+#testing VT comp sense
+set SVT [list]
 
 #find the argument cell's leakage and slack, save state, downsize, CISTA for slack 
 #of move (checks immediate fan in and fan out), find leakage, compute sense, then revert state
@@ -37,14 +39,14 @@ proc computeSensitivity { cellName } {
     #downsize the cell, first testing if it's not already minimum size
     #returns zero sensitivity if can't be downsized
     if { [ getNextSizeDown $libcellName ] == "skip" } {
-       return 0
+       return [ get_attri [ get_cells $cellName ] P_custom ]
     }
     set newlibcellName [ getNextSizeDown $libcellName ]
     set min_flag [ size_cell  $cellName $newlibcellName ]
     if { [ expr $min_flag == 0 ]  } {
-       return 0
+       return [ get_attri [ get_cells $cellName ] P_custom ]
     } 
-    size_cell $cellName $newlibcellName
+    update_timing
                   
     #create collection of all fan in cells
     #set fanin [ all_fanin -to $news_size ] 
@@ -54,9 +56,40 @@ proc computeSensitivity { cellName } {
     set new_leak  [ PtCellLeak  $cellName ]
 
     #restore state
-    size_cell $cellName $libcellName
+    size_cell $cellName $libcellName 
 
     return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
+}
+
+#compute sensitivity of VT changes
+proc computeSensitivityVT { cellName } {
+   set old_slack [ PtCellSlack $cellName ]
+   set old_leak  [ PtCellLeak  $cellName ]
+
+   set libcell [ get_lib_cells -of_objects $cellName ]
+   set libcellName [ get_attri $libcell base_name ]
+
+   #may need check here if Vt is already max?
+   if { [ getNextVtDown $libcellName ] == "skip" } {
+      return [ get_attri [ get_cells $cellName ] P_custom ]
+   }   
+   #the getnextVT functions are defined such that up and down refer to 
+   #speed, not threshold level.  getNextVtDown actually raises VT, also
+   #it returns skip if already an HVT
+   set newlibcellName [ getNextVtDown $libcellName ] 
+   set max_flag [ size_cell $cellName $newlibcellName ] 
+   if { [ expr $max_flag == 0 ] } {
+      return [ get_attri [ get_cells $cellName ] P_custom ]
+   }
+   update_timing
+
+   set new_slack [ PtCellSlack $cellName ]
+   set new_leak  [ PtCellLeak $cellName  ]
+   
+   #restore state   
+   size_cell $cellName $libcellName
+
+   return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ] 
 }
 
 #takes the set S and finds the maximum value within it, returns the 
@@ -77,7 +110,8 @@ foreach_in_collection cell $cellList {
     
     # appends value returned by conputeSensitivity to set list S
     # #passes input parameter cellname to function... $ char allows reading cellname var
-    lappend S [ computeSensitivity $cellName ]
+    #lappend S [ computeSensitivity $cellName ]
+    lappend SVT [ computeSensitivityVT $cellName ]
     #moving printing to outside loop
     #puts [ computeSensitivity $cellName ] 
     
@@ -113,8 +147,12 @@ set COMMENTED_OUT {
 }
 
 #print each sensitivity in S
-foreach i $S {
-    puts $i
+#foreach i $S {
+#    puts $i
+#}
+#orint SVT sensitivities
+foreach i $SVT {
+   puts $i
 }
 #prints total number of cells
 puts [sizeof $cellList] 

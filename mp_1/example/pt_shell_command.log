@@ -1,6 +1,6 @@
 #@ # 
 #@ # Running pt_shell Version K-2015.06-SP3-1 for linux64 -- Dec 11, 2015
-#@ # Date:   Thu Feb 21 23:19:04 2019
+#@ # Date:   Sat Feb 23 18:45:39 2019
 #@ # Run by: teaves@ieng6-ece-02.ucsd.edu
 #@ 
 
@@ -1445,6 +1445,8 @@ source -echo -verbose run_pt.tcl
 #@ 
 #@ #my attempt at defining the empty list S
 #@ set S [list]
+#@ #testing VT comp sense
+#@ set SVT [list]
 #@ 
 #@ #find the argument cell's leakage and slack, save state, downsize, CISTA for slack 
 #@ #of move (checks immediate fan in and fan out), find leakage, compute sense, then revert state
@@ -1460,12 +1462,12 @@ source -echo -verbose run_pt.tcl
 #@     #downsize the cell, first testing if it's not already minimum size
 #@     #returns zero sensitivity if can't be downsized
 #@     if { [ getNextSizeDown $libcellName ] == "skip" } {
-#@        return 0
+#@        return [ get_attri [ get_cells $cellName ] P_custom ]
 #@     }
 #@     set newlibcellName [ getNextSizeDown $libcellName ]
 #@     set min_flag [ size_cell  $cellName $newlibcellName ]
 #@     if { [ expr $min_flag == 0 ]  } {
-#@        return 0
+#@        return [ get_attri [ get_cells $cellName ] P_custom ]
 #@     } 
 #@     size_cell $cellName $newlibcellName
 #@                   
@@ -1477,9 +1479,39 @@ source -echo -verbose run_pt.tcl
 #@     set new_leak  [ PtCellLeak  $cellName ]
 #@ 
 #@     #restore state
-#@     size_cell $cellName $libcellName
+#@     size_cell $cellName $libcellName 
 #@ 
 #@     return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
+#@ }
+#@ 
+#@ #compute sensitivity of VT changes
+#@ proc computeSensitivityVT { cellName } {
+#@    set old_slack [ PtCellSlack $cellName ]
+#@    set old_leak  [ PtCellLeak  $cellName ]
+#@ 
+#@    set libcell [ get_lib_cells -of_objects $cellName ]
+#@    set libcellName [ get_attri $libcell base_name ]
+#@ 
+#@    #may need check here if Vt is already max?
+#@    if { [ getNextVtDown $libcellName ] == "skip" } {
+#@       return [ get_attri [ get_cells $cellName ] P_custom ]
+#@    }   
+#@    #the getnextVT functions are defined such that up and down refer to 
+#@    #speed, not threshold level.  getNextVtDown actually raises VT, also
+#@    #it returns skip if already an HVT
+#@    set newlibcellName [ getNextVtDown $libcellName ] 
+#@    set max_flag [ size_cell $cellName $newlibcellName ] 
+#@    if { [ expr $max_flag == 0 ] } {
+#@       return [ get_attri [ get_cells $cellName ] P_custom ]
+#@    }
+#@    size_cell $cellName $newlibcellName
+#@ 
+#@    set new_slack [ PtCellSlack $cellName ]
+#@    set new_leak  [ PtCellLeak $cellName  ]
+#@    
+#@    size_cell $cellName $libcellName
+#@ 
+#@    return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ] 
 #@ }
 #@ 
 #@ #takes the set S and finds the maximum value within it, returns the 
@@ -1500,7 +1532,8 @@ source -echo -verbose run_pt.tcl
 #@     
 #@     # appends value returned by conputeSensitivity to set list S
 #@     # #passes input parameter cellname to function... $ char allows reading cellname var
-#@     lappend S [ computeSensitivity $cellName ]
+#@     #lappend S [ computeSensitivity $cellName ]
+#@     lappend SVT [ computeSensitivityVT $cellName ]
 #@     #moving printing to outside loop
 #@     #puts [ computeSensitivity $cellName ] 
 #@     
@@ -1536,10 +1569,14 @@ source -echo -verbose run_pt.tcl
 #@ }
 #@ 
 #@ #print each sensitivity in S
-#@ foreach i $S {
-#@     puts $i
+#@ #foreach i $S {
+#@ #    puts $i
+#@ #}
+#@ #orint SVT sensitivities
+#@ foreach i $SVT {
+#@    puts $i
 #@ }
-#@ 
+#@ #prints total number of cells
 #@ puts [sizeof $cellList] 
 #@ 
 #@ set finalWNS  [ PtWorstSlack clk ]
