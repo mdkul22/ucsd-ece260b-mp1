@@ -67,7 +67,6 @@ proc computeSensitivityVT { cellName } {
    if { [ expr $max_flag == 0 ] } {
       return [ get_attri [ get_cells $cellName ] P_Gate ]
    }
-   update_timing
 
    set new_slack [ PtCellSlack $cellName ]
    set new_leak  [ PtCellLeak $cellName  ]
@@ -97,7 +96,6 @@ proc computeGateSensitivity { cellName } {
     if { [ expr $min_flag == 0 ]  } {
        return [ get_attri [ get_cells $cellName ] P_Gate ]
     }
-    update_timing
 
     #create collection of all fan in cells
     #set fanin [ all_fanin -to $news_size ]
