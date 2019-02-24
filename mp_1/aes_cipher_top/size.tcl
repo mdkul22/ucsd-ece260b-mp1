@@ -109,6 +109,8 @@ proc computeGateSensitivity { cellName } {
     return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
 }
 
+puts [ sizeof_collection $cellList ]
+
 # P_Gate and P_Vt
 foreach_in_collection cell $cellList {
     set cellName [get_attri $cell base_name]
@@ -128,6 +130,8 @@ puts "\ndone with first loop\n"
 
 set S_cells []
 set S_cells [ sort_collection -descending [get_cells *] P_Vt ]
+
+
 
 foreach_in_collection cell $cellList {
     set cellName [get_attri $cell base_name]

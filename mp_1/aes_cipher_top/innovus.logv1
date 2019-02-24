@@ -1,0 +1,85 @@
+[02/23 21:00:48      0] 
+[02/23 21:00:48      0] Cadence Innovus(TM) Implementation System.
+[02/23 21:00:48      0] Copyright 2015 Cadence Design Systems, Inc. All rights reserved worldwide.
+[02/23 21:00:48      0] 
+[02/23 21:00:48      0] Version:	v15.23-s045_1, built Fri Apr 22 12:32:52 PDT 2016
+[02/23 21:00:48      0] Options:	-batch -execute source -files run_eco.tcl 
+[02/23 21:00:48      0] Date:		Sat Feb 23 21:00:48 2019
+[02/23 21:00:48      0] Host:		ieng6-ece-02.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 v2 @ 2.60GHz 20480KB)
+[02/23 21:00:48      0] OS:		CentOS release 6.10 (Final)
+[02/23 21:00:48      0] 
+[02/23 21:00:48      0] License:
+[02/23 21:00:48      0] 		invs	Innovus Implementation System	15.2	checkout succeeded
+[02/23 21:00:48      0] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[02/23 21:01:07      7] @(#)CDS: Innovus v15.23-s045_1 (64bit) 04/22/2016 12:32 (Linux 2.6.18-194.el5)
+[02/23 21:01:07      7] @(#)CDS: NanoRoute 15.23-s045_1 NR160414-1105/15_23-UB (database version 2.30, 317.6.1) {superthreading v1.26}
+[02/23 21:01:07      7] @(#)CDS: AAE 15.23-s014 (64bit) 04/22/2016 (Linux 2.6.18-194.el5)
+[02/23 21:01:07      7] @(#)CDS: CTE 15.23-s022_1 () Apr 22 2016 09:38:45 ( )
+[02/23 21:01:07      7] @(#)CDS: SYNTECH 15.23-s008_1 () Apr 12 2016 21:52:59 ( )
+[02/23 21:01:07      7] @(#)CDS: CPE v15.23-s045
+[02/23 21:01:07      7] @(#)CDS: IQRC/TQRC 15.1.4-s213 (64bit) Tue Feb  9 17:31:28 PST 2016 (Linux 2.6.18-194.el5)
+[02/23 21:01:07      7] @(#)CDS: OA 22.50-p036 Tue Nov  3 09:29:52 2015
+[02/23 21:01:07      7] @(#)CDS: SGN 10.10-p124 (19-Aug-2014) (64 bit executable)
+[02/23 21:01:07      7] @(#)CDS: RCDB 11.7
+[02/23 21:01:07      7] --- Running on ieng6-ece-02.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 v2 @ 2.60GHz 20480KB) ---
+[02/23 21:01:07      7] Create and set the environment variable TMPDIR to /tmp/innovus_temp_16005_ieng6-ece-02.ucsd.edu_teaves_pbQPO7.
+
+[02/23 21:01:08      7] 
+[02/23 21:01:08      7] **INFO:  MMMC transition support version v31-84 
+[02/23 21:01:08      7] 
+[02/23 21:01:08      7] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[02/23 21:01:08      7] <CMD> suppressMessage ENCEXT-2799
+[02/23 21:01:09      8] <CMD> getDrawView
+[02/23 21:01:09      8] <CMD> loadWorkspace -name Physical
+[02/23 21:01:09      8] Executing cmd 'source' ...
+[02/23 21:01:09      8] 
+[02/23 21:01:09      8] Usage: source [-help] <file_name> [-quiet  | -verbose ]
+[02/23 21:01:09      8] 
+[02/23 21:01:09      8] **ERROR: (IMPTCM-46):	Argument "file_name" is required for command "source", either this option is not specified or an option prior to it is not specified correctly.
+[02/23 21:01:09      8] **ERROR: (IMPSYT-7114):	Invalid return code while executing command 'source'. Review the following error in command 'source' then restart.
+[02/23 21:01:09      8] **ERROR: (IMPSYT-6693):	Error message: source:   .
+[02/23 21:01:09      8] Sourcing file "run_eco.tcl" ...
+[02/23 21:01:09      8] <CMD> set init_pwr_net VDD
+[02/23 21:01:09      8] <CMD> set init_gnd_net VSS
+[02/23 21:01:09      8] <CMD> set init_verilog ./usb_phy.v
+[02/23 21:01:09      8] <CMD> set init_design_netlisttype Verilog
+[02/23 21:01:09      8] <CMD> set init_design_settop 1
+[02/23 21:01:09      8] <CMD> set init_top_cell usb_phy
+[02/23 21:01:09      8] <CMD> set init_lef_file /home/linux/ieng6/ee260b/public/data/libraries/techfiles/contest.lef
+[02/23 21:01:09      8] <CMD> create_library_set -name WC_LIB -timing $libworst
+[02/23 21:01:09      8] <CMD> create_library_set -name BC_LIB -timing $libworst
+[02/23 21:01:09      8] <CMD> create_rc_corner -name Cmax -cap_table $captblworst -T 125
+[02/23 21:01:09      8] <CMD> create_rc_corner -name Cmin -cap_table $captblworst -T -40
+[02/23 21:01:09      8] <CMD> create_delay_corner -name WC -library_set WC_LIB -rc_corner Cmax
+[02/23 21:01:09      8] <CMD> create_delay_corner -name BC -library_set BC_LIB -rc_corner Cmin
+[02/23 21:01:09      8] <CMD> create_constraint_mode -name CON -sdc_file [list $sdc]
+[02/23 21:01:09      8] **ERROR: (TCLCMD-989):	cannot open SDC file './usb_phy.sdc' for mode 'CON'
+[02/23 21:01:09      8] **ERROR: (IMPSYT-6692):	Invalid return code while executing 'run_eco.tcl' was returned and script processing was stopped. Review the following error in 'run_eco.tcl' then restart.
+[02/23 21:01:09      8] Error info: run_eco.tcl: 
+[02/23 21:01:09      8]     while executing
+[02/23 21:01:09      8] "create_constraint_mode -name CON -sdc_file [list $sdc]"
+[02/23 21:01:09      8]     (file "run_eco.tcl" line 29)
+[02/23 21:01:09      8]     invoked from within
+[02/23 21:01:09      8] "::se_source_orig run_eco.tcl"
+[02/23 21:01:09      8]     ("uplevel" body line 1)
+[02/23 21:01:09      8]     invoked from within
+[02/23 21:01:09      8] "uplevel [concat ::se_source_orig $args]"
+[02/23 21:01:09      8]     (procedure "source" line 97)
+[02/23 21:01:09      8]     invoked from within
+[02/23 21:01:09      8] "source run_eco.tcl"
+[02/23 21:01:09      8]     (in namespace inscope "::" script line 1)
+[02/23 21:01:09      8]     invoked from within
+[02/23 21:01:09      8] "namespace inscope :: source $fileName".
+[02/23 21:01:09      8] <CMD> win
+[02/23 21:01:09      8] 
+[02/23 21:01:09      8] *** Memory Usage v#1 (Current mem = 437.574M, initial mem = 151.938M) ***
+[02/23 21:01:09      8] 
+[02/23 21:01:09      8] *** Summary of all messages that are not suppressed in this session:
+[02/23 21:01:09      8] Severity  ID               Count  Summary                                  
+[02/23 21:01:09      8] ERROR     IMPSYT-6692          1  Invalid return code while executing '%s'...
+[02/23 21:01:09      8] ERROR     IMPSYT-6693          1  Error message: %s: %s.                   
+[02/23 21:01:09      8] ERROR     IMPSYT-7114          1  Invalid return code while executing comm...
+[02/23 21:01:09      8] ERROR     IMPTCM-46            1  Argument "%s" is required for command "%...
+[02/23 21:01:09      8] *** Message Summary: 0 warning(s), 4 error(s)
+[02/23 21:01:09      8] 
+[02/23 21:01:09      8] --- Ending "Innovus" (totcpu=0:00:08.3, real=0:00:21.0, mem=437.6M) ---

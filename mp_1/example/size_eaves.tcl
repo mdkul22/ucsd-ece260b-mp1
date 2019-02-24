@@ -25,6 +25,96 @@ set S [list]
 #testing VT comp sense
 set SVT [list]
 
+#Mayunk's template CISTA 
+proc CISTA { cellName } {
+   set cellPins [get_pins -of_objects $cellName]
+   set fan_in_gates [all_fanin -to $cellPins -only_cells]
+   set fan_out_gates [all_fanout -from $cellPins -only_cells]
+   # add fanin fanout nodes
+   set gate_list $fan_in_gates
+   add_to_collection $gate_list $fan_out_gates
+   set violation 0
+   foreach_in_collection gate $gate_list {
+       set gate_slack [PtCellSlack gate]
+       if {$gate_slack < 0} {
+         return 1
+       } else {
+         set violation 0
+       }
+   }
+   return violation
+}
+
+proc EISTA_GATE_OUT { cellName } {
+   set cellPins [ get_pins -of_objects $cellName ]
+   set fan_out_cells [ all_fanout -from $cellPins -only_cells ]
+
+   foreach_in_collection fanout_gate $fan_out_cells {
+      #query old sensitivity and find new
+      set P_OLD_GATE [ get_attri [ get_cells $fanout_gate ] P_Gate ]     
+      set P_NEW_GATE [ computeSensitivity $fanout_gate ]
+
+      #if new sense has changed, update it and make recursive call
+      if { [ expr $P_NEW_GATE != $P_OLD_GATE ] } {
+         set_user_attribute [get_cells $fanout_gate ] P_Gate $P_NEW_GATE
+         [ EISTA_GATE_OUT $fanout_gate ]	 
+      } 
+   }
+} 
+
+proc EISTA_VT_OUT { cellName } {
+   set cellPins [ get_pins -of_objects $cellName ]
+   set fan_out_cells [ all_fanout -from $cellPins -only_cells ]
+
+   foreach_in_collection fanout_gate $fan_out_cells {
+      #query old sensitivity and find new
+      set P_OLD_VT [ get_attri [ get_cells $fanout_gate ] P_Vt ]     
+      set P_NEW_VT [ computeSensitivity $fanout_gate ]
+
+      #if new sense has changed, update it and make recursive call
+      if { [ expr $P_NEW_VT != $P_OLD_VT ] } {
+         set_user_attribute [get_cells $fanout_gate ] P_Vt $P_NEW_VT
+         [ EISTA_VT_OUT $fanout_gate ]	 
+      } 
+   }   
+}
+
+proc EISTA_VT_IN { cellName } {
+   set cellPins [ get_pins -of_objects $cellName ]
+   set fan_in_cells [ all_fanin -to $cellPins -only_cells ]
+   
+   foreach_in_collection fanin_gate $fan_in_cells {
+      #query old sensitivity and find new
+      set P_OLD_VT [ get_attri [ get_cells $fanin_gate ] P_Vt ]     
+      set P_NEW_VT [ computeSensitivity $fanin_gate ]
+
+      #if new sense has changed, update it and make recursive call
+      if { [ expr $P_NEW_VT != $P_OLD_VT ] } {
+         set_user_attribute [get_cells $fanin_gate ] P_Vt $P_NEW_VT
+         [ EISTA_VT_IN $fanin_gate ]	 
+      } 
+   }  
+   
+}
+
+proc EISTA_GATE_IN { cellName } {
+   set cellPins [ get_pins -of_objects $cellName ]
+   set fan_in_cells [ all_fanin -to $cellPins -only_cells ]
+   
+   foreach_in_collection fanin_gate $fan_in_cells {
+      #query old sensitivity and find new
+      set P_OLD_GATE [ get_attri [ get_cells $fanin_gate ] P_Gate ]     
+      set P_NEW_GATE [ computeSensitivity $fanin_gate ]
+
+      #if new sense has changed, update it and make recursive call
+      if { [ expr $P_NEW_GATE != $P_OLD_GATE ] } {
+         set_user_attribute [get_cells $fanin_gate ] P_Gate $P_NEW_GATE
+         [ EISTA_GATE_IN $fanin_gate ]	 
+      } 
+   }  
+
+}
+
 #find the argument cell's leakage and slack, save state, downsize, CISTA for slack 
 #of move (checks immediate fan in and fan out), find leakage, compute sense, then revert state
 proc computeSensitivity { cellName } {

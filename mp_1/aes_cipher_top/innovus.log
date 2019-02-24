@@ -1,0 +1,34 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2015 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v15.23-s045_1, built Fri Apr 22 12:32:52 PDT 2016
+Options:	-batch -execute source -files run_eco.tcl 
+Date:		Sat Feb 23 20:55:18 2019
+Host:		ieng6-ece-02.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 v2 @ 2.60GHz 20480KB)
+OS:		CentOS release 6.10 (Final)
+
+License:
+		invs	Innovus Implementation System	15.2	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+
+**INFO:  MMMC transition support version v31-84 
+
+<CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+<CMD> suppressMessage ENCEXT-2799
+<CMD> getDrawView
+<CMD> loadWorkspace -name Physical
+Executing cmd 'source' ...
+
+Usage: source [-help] <file_name> [-quiet  | -verbose ]
+
+**ERROR: (IMPTCM-46):	Argument "file_name" is required for command "source", either this option is not specified or an option prior to it is not specified correctly.
+**ERROR: (IMPSYT-7114):	Invalid return code while executing command 'source'. Review the following error in command 'source' then restart.
+**ERROR: (IMPSYT-6693):	Error message: source:   .
+**ERROR: (IMPSYT-6696):	Initfile (run_eco.tcl) does not exist.
+<CMD> win
+
+*** Memory Usage v#1 (Current mem = 435.902M, initial mem = 151.938M) ***
+*** Message Summary: 0 warning(s), 4 error(s)
+
+--- Ending "Innovus" (totcpu=0:00:17.0, real=0:00:24.0, mem=435.9M) ---

@@ -4,10 +4,10 @@ Final Sum/Max/Number of max capacitance violations: 0 / 0 / 0
 Final Sum/Max/Number of max transition violations: 0 / 0 / 0
 ======================================
 ======================================
-Final slack:	52.162445 ps
-Final leakage:	0.005988 W
+Final slack:	1.107727 ps
+Final leakage:	0.002581 W
 Final Sum/Max/Number of max capacitance violations: 0 / 0 / 0
 Final Sum/Max/Number of max transition violations: 0 / 0 / 0
 #Vt cell swaps:	0
 #Cell size swaps:	0
-Leakage improvment	0.000 %
+Leakage improvment	56.897 %

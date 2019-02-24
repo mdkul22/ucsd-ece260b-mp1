@@ -1,0 +1,65 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2015 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v15.23-s045_1, built Fri Apr 22 12:32:52 PDT 2016
+Options:	-batch -execute source -files run_eco.tcl 
+Date:		Sat Feb 23 21:00:48 2019
+Host:		ieng6-ece-02.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 v2 @ 2.60GHz 20480KB)
+OS:		CentOS release 6.10 (Final)
+
+License:
+		invs	Innovus Implementation System	15.2	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+
+**INFO:  MMMC transition support version v31-84 
+
+<CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+<CMD> suppressMessage ENCEXT-2799
+<CMD> getDrawView
+<CMD> loadWorkspace -name Physical
+Executing cmd 'source' ...
+
+Usage: source [-help] <file_name> [-quiet  | -verbose ]
+
+**ERROR: (IMPTCM-46):	Argument "file_name" is required for command "source", either this option is not specified or an option prior to it is not specified correctly.
+**ERROR: (IMPSYT-7114):	Invalid return code while executing command 'source'. Review the following error in command 'source' then restart.
+**ERROR: (IMPSYT-6693):	Error message: source:   .
+Sourcing file "run_eco.tcl" ...
+<CMD> set init_pwr_net VDD
+<CMD> set init_gnd_net VSS
+<CMD> set init_verilog ./usb_phy.v
+<CMD> set init_design_netlisttype Verilog
+<CMD> set init_design_settop 1
+<CMD> set init_top_cell usb_phy
+<CMD> set init_lef_file /home/linux/ieng6/ee260b/public/data/libraries/techfiles/contest.lef
+<CMD> create_library_set -name WC_LIB -timing $libworst
+<CMD> create_library_set -name BC_LIB -timing $libworst
+<CMD> create_rc_corner -name Cmax -cap_table $captblworst -T 125
+<CMD> create_rc_corner -name Cmin -cap_table $captblworst -T -40
+<CMD> create_delay_corner -name WC -library_set WC_LIB -rc_corner Cmax
+<CMD> create_delay_corner -name BC -library_set BC_LIB -rc_corner Cmin
+<CMD> create_constraint_mode -name CON -sdc_file [list $sdc]
+**ERROR: (TCLCMD-989):	cannot open SDC file './usb_phy.sdc' for mode 'CON'
+**ERROR: (IMPSYT-6692):	Invalid return code while executing 'run_eco.tcl' was returned and script processing was stopped. Review the following error in 'run_eco.tcl' then restart.
+Error info: run_eco.tcl: 
+    while executing
+"create_constraint_mode -name CON -sdc_file [list $sdc]"
+    (file "run_eco.tcl" line 29)
+    invoked from within
+"::se_source_orig run_eco.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel [concat ::se_source_orig $args]"
+    (procedure "source" line 97)
+    invoked from within
+"source run_eco.tcl"
+    (in namespace inscope "::" script line 1)
+    invoked from within
+"namespace inscope :: source $fileName".
+<CMD> win
+
+*** Memory Usage v#1 (Current mem = 437.574M, initial mem = 151.938M) ***
+*** Message Summary: 0 warning(s), 4 error(s)
+
+--- Ending "Innovus" (totcpu=0:00:08.3, real=0:00:21.0, mem=437.6M) ---
