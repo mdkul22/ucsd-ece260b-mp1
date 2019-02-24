@@ -20,9 +20,31 @@ define_user_attribute -type string -class cell P_custom
 set cellList [sort_collection [get_cells *] base_name]
 set VtswapCnt 0
 set SizeswapCnt 0
+# this checks fan-in and fan-out nodes of the cell and gives back the appropriate result
+proc CISTA { cellName } {
+  set cellPins [get_pins -of_objects $cellName]
+  set fan_in_gates [all_fanin -to $cellPins -only_cells]
+  set fan_out_gates [all_fanout -from $cellPins -only_cells]
+  # add fanin fanout nodes
+  set gate_list $fan_in_gates
+  add_to_collection $gate_list $fan_out_gates
+  set violation 0
+  foreach_in_collection gate $gate_list {
+      set gate_slack [PtCellSlack gate]
+      if {$gate_slack < 0} {
+        return 1
+      } else {
+        set violation 0
+      }
+  }
+  return violation
+}
 
-proc CISTA { cellname } {
-return 0
+proc EISTA { cellname } {
+  set cellPins [get_pins -of_objects $cellName]
+  set fan_in_cells [fanin_path $cellName ]
+  set fan_out_cells [fanout_path $cellName]
+
 }
 
 proc computeSensitivity { cellName } {
@@ -44,7 +66,7 @@ proc computeSensitivity { cellName } {
     if { [ expr $min_flag == 0 ]  } {
        return [ get_attri [ get_cells $cellName ] P_custom ]
     }
-    size_cell $cellName $newlibcellName
+    update_timing
 
     #create collection of all fan in cells
     #set fanin [ all_fanin -to $news_size ]
@@ -54,8 +76,7 @@ proc computeSensitivity { cellName } {
     set new_leak  [ PtCellLeak  $cellName ]
 
     #restore state
-    size_cell $cellName $libcellName
-    puts {This cell has a P}
+    set b [ size_cell $cellName $libcellName ]
     return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
 }
 
@@ -86,7 +107,6 @@ set Pmax [ get_attri [ index_collection $S_cells 0 ] P_custom ]
 
 while {  $Pmax > 0.0 } {
   # get max value and iterator to get cell from collection
-
   set cell [ index_collection $S_cells 0 ]
   set cellName [get_attri $cell base_name]
   set libcell [get_lib_cells -of_objects $cellName]
@@ -96,23 +116,32 @@ while {  $Pmax > 0.0 } {
   if {$libcellName == "ms00f80"} {
       continue
   }
-  set S_cells [ remove_from_collection $S_cells $cellName ]
+  puts {Completed the initial avoidance}
   set newlibcellName [ getNextSizeDown $libcellName ]
   size_cell $cellName $newlibcellName
+  update_timing
+  set new_wns [ PtWorstSlack clk ]
+  if { $new_wns < 0 } {
+    size_cell $cellName $libcellName
+    set S_cells [ remove_from_collection $S_cells $cellName ]
+    continue
+  }
   set time_violation [ CISTA $cellName ]
-  if { [expr $time_violation == 1] } {
+  if {$time_violation == 1} {
+    puts {time violated}
     size_cell $cellName $libcellName
   } else {
     set cellPins [get_pins -of_objects $cellName]
     set fan_in_gates [all_fanin -to $cellPins -only_cells]
     set fan_out_gates [all_fanout -from $cellPins -only_cells]
-    set gate_list []
-    add_to_collection $gate_list $fan_in_gates
+    set gate_list $fan_in_gates
     add_to_collection $gate_list $fan_out_gates
     foreach_in_collection gate $gate_list {
-      	set_user_attribute [get_cells $gate] P_custom [computeSensitivity $cellName]
+      	set_user_attribute [get_cells $gate] P_custom [computeSensitivity $gate]
     }
   }
+
+set S_cells [ remove_from_collection $S_cells $cellName ]
 # Find Pmax by sorting cells and looping again
 set S_cells [ sort_collection -descending $S_cells P_custom ]
 
