@@ -117,21 +117,19 @@ foreach_in_collection cell $cellList {
     set libcellName [get_attri $libcell base_name]
     if { [regexp {[a-z][a-z][0-9][0-9]s[0-9][0-9]} $libcellName] } {
       set_user_attribute [get_cells $cellName] P_Vt 0
-      continue
-    }
-    if { [regexp {[a-z][a-z][0-9][0-9]m[0-9][0-9]} $libcellName] } {
-      set_user_attribute [get_cells $cellName] P_Vt 0
+      incr count
       continue
     }
     if {$libcellName == "ms00f80"} {
+        incr count
         continue
     }
     #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
     #set_user_attribute [get_cells $cellName] P_Gate 0
     #set_user_attribute [get_cells $cellName] P_Gate [computeGateSensitivity $cellName]
+    incr count
     set_user_attribute [get_cells $cellName] P_Vt 0
     set_user_attribute [get_cells $cellName] P_Vt [computeSensitivityVT $cellName]
-    incr count
     puts "First loop: assigned sensitivity to cell #$count"
 }
 
@@ -173,15 +171,27 @@ while {  $Pmax > 0.0 } {
     set S_cells [ remove_from_collection $S_cells $cell ]
     continue
   }
-  set newlibcellName [ getNextVtDown $libcellName ]
-  set newlibcellName [ getNextVtDown $newlibcellName ]
+  set newlibcellName1 [ getNextVtDown $libcellName ]
+  set newlibcellName2 [ getNextVtDown $newlibcellName1 ]
   #check if sizeable, if not remove from list
-  set sizeable [size_cell $cellName $newlibcellName ]
+  if { {$newlibcellName2} != "skip"} {
+  set sizeable [size_cell $cellName $newlibcellName2 ]
   # doing incremental timing of all cell paths to ensure no faults
   update_timing
-  # checking if WNS is less than zero or not
   set new_wns [ PtWorstSlack clk ]
-  if {$new_wns < 1.5 || $sizeable == 0} {
+  } else {
+  set sizeable [size_cell $cellName $newlibcellName1 ]
+  # doing incremental timing of all cell paths to ensure no faults
+  update_timing
+  set new_wns [ PtWorstSlack clk ]
+  }
+  if {$new_wns < 1 && {$newlibcellName2} != "skip"} {
+    set sizeable [size_cell $cellName $newlibcellName1 ]
+    update_timing
+    set new_wns [ PtWorstSlack clk ]
+  }
+
+  if {$new_wns < 1 || $sizeable == 0} {
     size_cell $cellName $libcellName
     set S_cells [ remove_from_collection $S_cells $cell ]
     continue
@@ -202,11 +212,22 @@ while {  $Pmax > 0.0 } {
     #foreach_in_collection gate $gate_list {
     #  	set_user_attribute [get_cells $gate] P_Vt [computeSensitivityVT $gate]
     #}
-    set next_sizeable [getNextVtDown $newlibcellName]
     incr VtswapCnt
     set S_cells [ remove_from_collection $S_cells $cellName ]
   }
 
+  if { [regexp {[a-z][a-z][0-9][0-9][smf]08} $libcellName] } {
+      set newlibcellName [string replace $libcellName 5 6 "04"]
+      size_cell $cellName $newlibcellName
+
+      set newWNS [ PtWorstSlack clk ]
+      if { $newWNS < 0.0 } {
+          size_cell $cellName $libcellName
+      } else {
+          incr SizeswapCnt
+          puts $outFp "- cell ${cellName} is swapped to $newlibcellName"
+      }
+    }
   # Find Pmax by sorting cells and looping again
 
   set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
