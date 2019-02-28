@@ -1,0 +1,111 @@
+Initial slack:	50.347900 ps
+Initial leakage:	0.238096 W
+Final Sum/Max/Number of max capacitance violations: 0 / 0 / 0
+Final Sum/Max/Number of max transition violations: 0 / 0 / 0
+======================================
+- cell FE_OFC116_n248167 is swapped to in01f04
+- cell FE_OFC120_n248173 is swapped to in01f04
+- cell FE_OFC124_n248175 is swapped to in01f04
+- cell FE_OFC128_n248355 is swapped to in01f04
+- cell FE_OFC130_n248356 is swapped to in01f04
+- cell FE_OFC132_n248357 is swapped to in01f04
+- cell FE_OFC136_n248363 is swapped to in01f04
+- cell FE_OFC155_n248380 is swapped to in01f04
+- cell FE_OFC157_n248381 is swapped to in01f04
+- cell FE_OFC173_n248405 is swapped to in01f04
+- cell FE_OFC175_n248406 is swapped to in01f04
+- cell FE_OFC177_n248407 is swapped to in01f04
+- cell FE_OFC183_n248414 is swapped to in01f04
+- cell FE_OFC195_n250395 is swapped to in01f04
+- cell FE_OFC200_n250965 is swapped to in01f04
+- cell FE_OFC204_n251530 is swapped to in01s04
+- cell FE_OFC206_n251816 is swapped to in01f04
+- cell FE_OFC208_n252105 is swapped to in01f04
+- cell FE_OFC214_n252483 is swapped to in01s04
+- cell FE_OFC272_n250144 is swapped to in01f04
+- cell FE_OFC276_n250218 is swapped to in01s04
+- cell FE_OFC280_n250324 is swapped to in01f04
+- cell FE_OFC282_n250430 is swapped to in01s04
+- cell FE_OFC290_n250611 is swapped to in01f04
+- cell FE_OFC296_n250789 is swapped to in01f04
+- cell FE_OFC300_n250895 is swapped to in01f04
+- cell FE_OFC302_n251001 is swapped to in01f04
+- cell FE_OFC311_n251175 is swapped to in01f04
+- cell FE_OFC318_n251353 is swapped to in01f04
+- cell FE_OFC322_n251459 is swapped to in01f04
+- cell FE_OFC327_n251600 is swapped to in01f04
+- cell FE_OFC329_n251637 is swapped to in01s04
+- cell FE_OFC331_n251675 is swapped to in01f04
+- cell FE_OFC339_n251923 is swapped to in01f04
+- cell FE_OFC348_n252178 is swapped to in01f04
+- cell FE_OFC350_n252215 is swapped to in01s04
+- cell FE_OFC362_n252748 is swapped to in01s04
+- cell FE_OFC408_n250289 is swapped to in01f04
+- cell FE_OFC410_n250360 is swapped to in01f04
+- cell FE_OFC412_n250576 is swapped to in01f04
+- cell FE_OFC414_n250646 is swapped to in01f04
+- cell FE_OFC416_n250859 is swapped to in01f04
+- cell FE_OFC418_n250930 is swapped to in01f04
+- cell FE_OFC420_n251140 is swapped to in01f04
+- cell FE_OFC426_n251424 is swapped to in01s04
+- cell FE_OFC428_n251494 is swapped to in01f04
+- cell FE_OFC432_n251781 is swapped to in01f04
+- cell FE_OFC434_n251996 is swapped to in01f04
+- cell FE_OFC66_n247531 is swapped to in01f04
+- cell FE_OFC68_n247591 is swapped to in01f04
+- cell FE_OFC70_n248118 is swapped to in01f04
+- cell FE_OFC77_n248121 is swapped to in01f04
+- cell FE_OFC79_n248126 is swapped to in01f04
+- cell FE_OFC88_n248138 is swapped to in01f04
+- cell U261601 is swapped to in01f04
+- cell U261913 is swapped to in01f04
+- cell U261921 is swapped to in01f04
+- cell U261969 is swapped to na02s04
+- cell U262043 is swapped to na02s04
+- cell U262049 is swapped to no02s04
+- cell U262089 is swapped to na02s04
+- cell U262122 is swapped to na02s04
+- cell U262348 is swapped to in01f04
+- cell U262350 is swapped to in01f04
+- cell U262352 is swapped to in01f04
+- cell U262353 is swapped to in01f04
+- cell U262355 is swapped to in01f04
+- cell U262356 is swapped to in01f04
+- cell U262358 is swapped to in01f04
+- cell U262361 is swapped to in01f04
+- cell U262364 is swapped to in01f04
+- cell U262368 is swapped to in01f04
+- cell U262370 is swapped to in01f04
+- cell U262372 is swapped to in01f04
+- cell U262373 is swapped to in01f04
+- cell U262374 is swapped to in01f04
+- cell U262375 is swapped to in01f04
+- cell U262382 is swapped to in01f04
+- cell U262385 is swapped to in01f04
+- cell U262387 is swapped to in01f04
+- cell U262390 is swapped to in01f04
+- cell U262395 is swapped to in01f04
+- cell U262406 is swapped to in01f04
+- cell U262409 is swapped to in01f04
+- cell U262410 is swapped to in01f04
+- cell U262411 is swapped to in01f04
+- cell U262412 is swapped to in01f04
+- cell U262415 is swapped to in01f04
+- cell U262422 is swapped to in01f04
+- cell U262463 is swapped to no02s04
+- cell U262981 is swapped to na03s04
+- cell U263119 is swapped to in01s04
+- cell U263132 is swapped to no02s04
+- cell U265083 is swapped to no04s04
+- cell U265114 is swapped to no02f04
+- cell U265475 is swapped to ao12s04
+- cell U268414 is swapped to ao22s04
+- cell U268434 is swapped to ao22s04
+======================================
+Final slack:	0.749756 ps
+Final leakage:	0.0958455 W
+Final Sum/Max/Number of max capacitance violations: 979.4052 / 32.23675 / 89
+Final Sum/Max/Number of max transition violations: 0 / 0 / 0
+#Vt cell swaps:	1969
+#Cell size swaps:	98
+Leakage improvment	59.745 %

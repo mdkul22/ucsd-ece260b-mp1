@@ -82,34 +82,29 @@ proc computeGateSensitivity { cellName } {
     set old_slack [ PtCellSlack $cellName ]
     set old_leak  [ PtCellLeak  $cellName ]
 
-    #get the current libcellName. this will be the save state
     set libcell [ get_lib_cells -of_objects $cellName ]
     set libcellName [ get_attri $libcell base_name ]
 
-    #downsize the cell, first testing if it's not already minimum size
-    #returns zero sensitivity if can't be downsized
+    # may need check here if Gate is already min?
     if { [ getNextSizeDown $libcellName ] == "skip" } {
-       return [ get_attri [ get_cells $cellName ] P_Gate ]
+       return 0
     }
     set newlibcellName [ getNextSizeDown $libcellName ]
-    set min_flag [ size_cell  $cellName $newlibcellName ]
-    if { [ expr $min_flag == 0 ]  } {
-       return [ get_attri [ get_cells $cellName ] P_Gate ]
+    set max_flag [ size_cell $cellName $newlibcellName ]
+    if { [ expr $max_flag == 0 ] } {
+       return 0
     }
 
-    #create collection of all fan in cells
-    #set fanin [ all_fanin -to $news_size ]
-
-    #get new info
     set new_slack [ PtCellSlack $cellName ]
-    set new_leak  [ PtCellLeak  $cellName ]
+    set new_leak  [ PtCellLeak $cellName  ]
 
     #restore state
-    set b [ size_cell $cellName $libcellName ]
+    size_cell $cellName $libcellName
+
     return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
 }
 
-# P_Gate and P_Vt
+# P_Gate and P_Vt sensitivity calculations
 set count 0
 foreach_in_collection cell $cellList {
     set cellName [get_attri $cell base_name]
@@ -120,16 +115,22 @@ foreach_in_collection cell $cellList {
       incr count
       continue
     }
+    # set minimum to zero
+    if { [regexp {[a-z][a-z][0-9]01[smf][0-9][0-9]} $libcellName] } {
+      set_user_attribute [get_cells $cellName] P_Gate 0
+      incr count
+      continue
+    }
     if {$libcellName == "ms00f80"} {
         incr count
         continue
     }
     #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
-    #set_user_attribute [get_cells $cellName] P_Gate 0
-    #set_user_attribute [get_cells $cellName] P_Gate [computeGateSensitivity $cellName]
-    incr count
+    set_user_attribute [get_cells $cellName] P_Gate 0
+    set_user_attribute [get_cells $cellName] P_Gate [computeGateSensitivity $cellName]
     set_user_attribute [get_cells $cellName] P_Vt 0
     set_user_attribute [get_cells $cellName] P_Vt [computeSensitivityVT $cellName]
+    incr count
     puts "First loop: assigned sensitivity to cell #$count"
 }
 
@@ -138,12 +139,17 @@ puts "\ndone with first loop\n"
 set S_cells []
 set S_cells [ sort_collection -descending [get_cells *] P_Vt ]
 
+set G_cells []
+set G_cells [ sort_collection -descending [get_cells *] P_Gate ]
+
+# remove registers for both the lists
 foreach_in_collection cell $cellList {
     set cellName [get_attri $cell base_name]
     set libcell [get_lib_cells -of_objects $cellName]
     set libcellName [get_attri $libcell base_name]
     if {$libcellName == "ms00f80"} {
       set S_cells [remove_from_collection $S_cells $cell]
+      set G_cells [remove_from_collection $G_cells $cell]
     }
     #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
 }
@@ -226,24 +232,81 @@ while {  $Pmax > 0.0 } {
     break
   }
 }
-foreach_in_collection cell $cellList {
+
+set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
+while {  $Pmax > 0.0 } {
+  # get max value and iterator to get cell from collection
+  set cell [ index_collection $G_cells 0 ]
   set cellName [get_attri $cell base_name]
   set libcell [get_lib_cells -of_objects $cellName]
   set libcellName [get_attri $libcell base_name]
+  set size [sizeof_collection $G_cells]
+  if { $size == 0} {
+    break
+  } else {
+    puts "Second loop: $size cells left in collection"
+  }
+  # removing value Pmax from List
+  #set G_cells [remove_from_collection $G_cells $cellName]
   if {$libcellName == "ms00f80"} {
       continue
   }
-  if { [regexp {[a-z][a-z][0-9][0-9][smf]08} $libcellName] } {
-    set newlibcellName [string replace $libcellName 5 6 "04"]
-    size_cell $cellName $newlibcellName
+  set Pcell [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
+  if {$Pcell == 0} {
+    set G_cells [ remove_from_collection $G_cells $cell ]
+    continue
+  }
+  set newlibcellName1 [ getNextSizeDown $libcellName ]
+  set newlibcellName2 [ getNextSizeDown $newlibcellName1 ]
+  #check if sizeable, if not remove from list
+  if { {$newlibcellName2} != "skip"} {
+  set sizeable [size_cell $cellName $newlibcellName2 ]
+  # doing incremental timing of all cell paths to ensure no faults
+  update_timing
+  set new_wns [ PtWorstSlack clk ]
+  } else {
+  set sizeable [size_cell $cellName $newlibcellName1 ]
+  # doing incremental timing of all cell paths to ensure no faults
+  update_timing
+  set new_wns [ PtWorstSlack clk ]
+  }
+  if {$new_wns < 1 && {$newlibcellName2} != "skip"} {
+    set sizeable [size_cell $cellName $newlibcellName1 ]
+    update_timing
+    set new_wns [ PtWorstSlack clk ]
+  }
 
-    set newWNS [ PtWorstSlack clk ]
-    if { $newWNS < 0.0 } {
-        size_cell $cellName $libcellName
-    } else {
-        incr SizeswapCnt
-        puts $outFp "- cell ${cellName} is swapped to $newlibcellName"
-    }
+  if {$new_wns < 1 || $sizeable == 0} {
+    size_cell $cellName $libcellName
+    set G_cells [ remove_from_collection $G_cells $cell ]
+    continue
+  }
+  #location for incrementing gate swaps
+
+  set time_violation [ CISTA $cellName ]
+  if {$time_violation == 1} {
+    puts {time violated}
+    size_cell $cellName $libcellName
+  } else {
+    #set cellPins [get_pins -of_objects $cellName]
+    #set fan_in_gates [all_fanin -to $cellPins -only_cells]
+    #set fan_out_gates [all_fanout -from $cellPins -only_cells]
+    #set gate_list $fan_in_gates
+    #add_to_collection $gate_list $fan_out_gates
+    #add_to_collection $gate_list $cellName
+    #foreach_in_collection gate $gate_list {
+    #  	set_user_attribute [get_cells $gate] P_Vt [computeSensitivityVT $gate]
+    #}
+    incr SizeswapCnt
+    set G_cells [ remove_from_collection $G_cells $cellName ]
+  }
+  set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
+  if { $Pmax < 0 } {
+    break
+  }
+  set size [sizeof_collection $G_cells]
+  if { $size == 0} {
+    break
   }
 }
 #set S_cells []
