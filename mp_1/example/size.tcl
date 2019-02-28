@@ -215,19 +215,6 @@ while {  $Pmax > 0.0 } {
     incr VtswapCnt
     set S_cells [ remove_from_collection $S_cells $cellName ]
   }
-
-  if { [regexp {[a-z][a-z][0-9][0-9][smf]08} $libcellName] } {
-      set newlibcellName [string replace $libcellName 5 6 "04"]
-      size_cell $cellName $newlibcellName
-
-      set newWNS [ PtWorstSlack clk ]
-      if { $newWNS < 0.0 } {
-          size_cell $cellName $libcellName
-      } else {
-          incr SizeswapCnt
-          puts $outFp "- cell ${cellName} is swapped to $newlibcellName"
-      }
-    }
   # Find Pmax by sorting cells and looping again
 
   set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
@@ -239,7 +226,26 @@ while {  $Pmax > 0.0 } {
     break
   }
 }
+foreach_in_collection cell $cellList {
+  set cellName [get_attri $cell base_name]
+  set libcell [get_lib_cells -of_objects $cellName]
+  set libcellName [get_attri $libcell base_name]
+  if {$libcellName == "ms00f80"} {
+      continue
+  }
+  if { [regexp {[a-z][a-z][0-9][0-9][smf]08} $libcellName] } {
+    set newlibcellName [string replace $libcellName 5 6 "04"]
+    size_cell $cellName $newlibcellName
 
+    set newWNS [ PtWorstSlack clk ]
+    if { $newWNS < 0.0 } {
+        size_cell $cellName $libcellName
+    } else {
+        incr SizeswapCnt
+        puts $outFp "- cell ${cellName} is swapped to $newlibcellName"
+    }
+  }
+}
 #set S_cells []
 #set S_cells [ sort_collection -descending [get_cells *] P_Gate ]
 #foreach_in_collection cell $cellList {
