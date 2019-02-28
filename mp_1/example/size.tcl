@@ -31,7 +31,7 @@ proc CISTA { cellName } {
   add_to_collection $gate_list $fan_out_gates
   set violation 0
   foreach_in_collection gate $gate_list {
-      set gate_slack [PtCellSlack gate]
+      set gate_slack [PtCellSlack $gate]
       if {$gate_slack < 0} {
         return 1
       } else {
@@ -181,7 +181,7 @@ while {  $Pmax > 0.0 } {
   update_timing
   # checking if WNS is less than zero or not
   set new_wns [ PtWorstSlack clk ]
-  if {$new_wns < 2 || $sizeable == 0} {
+  if {$new_wns < 1.5 || $sizeable == 0} {
     size_cell $cellName $libcellName
     set S_cells [ remove_from_collection $S_cells $cell ]
     continue
