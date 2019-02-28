@@ -244,7 +244,7 @@ while {  $Pmax > 0.0 } {
   if { $size == 0} {
     break
   } else {
-    puts "Second loop: $size cells left in collection"
+    puts "This loop: $size cells left in collection"
   }
   # removing value Pmax from List
   #set G_cells [remove_from_collection $G_cells $cellName]
