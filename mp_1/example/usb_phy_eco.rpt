@@ -1,4 +1,4 @@
-(after eco) Final slack :	1.879517 ps
-(after eco) Final leakage :	0.001578 W
-(after eco) Sum/Max/Number of max capacitance violations: 0 / 0 / 0
+(after eco) Final slack :	-342.145752 ps
+(after eco) Final leakage :	0.00408 W
+(after eco) Sum/Max/Number of max capacitance violations: 38.98864 / 10.82119 / 11
 (after eco) Sum/Max/Number of max transition violations: 0 / 0 / 0

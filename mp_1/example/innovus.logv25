@@ -1,0 +1,1300 @@
+[03/01 00:13:27      0] 
+[03/01 00:13:27      0] Cadence Innovus(TM) Implementation System.
+[03/01 00:13:27      0] Copyright 2015 Cadence Design Systems, Inc. All rights reserved worldwide.
+[03/01 00:13:27      0] 
+[03/01 00:13:27      0] Version:	v15.23-s045_1, built Fri Apr 22 12:32:52 PDT 2016
+[03/01 00:13:27      0] Options:	-batch -execute source -files run_eco.tcl 
+[03/01 00:13:27      0] Date:		Fri Mar  1 00:13:27 2019
+[03/01 00:13:27      0] Host:		ieng6-ece-13.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 0 @ 2.00GHz 20480KB)
+[03/01 00:13:27      0] OS:		CentOS release 6.10 (Final)
+[03/01 00:13:27      0] 
+[03/01 00:13:27      0] License:
+[03/01 00:13:27      0] 		invs	Innovus Implementation System	15.2	checkout succeeded
+[03/01 00:13:27      0] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[03/01 00:13:27      0] **WARN: (IMPSYT-1507):	The display is invalid and will start in no window mode
+[03/01 00:13:40     11] @(#)CDS: Innovus v15.23-s045_1 (64bit) 04/22/2016 12:32 (Linux 2.6.18-194.el5)
+[03/01 00:13:40     11] @(#)CDS: NanoRoute 15.23-s045_1 NR160414-1105/15_23-UB (database version 2.30, 317.6.1) {superthreading v1.26}
+[03/01 00:13:40     11] @(#)CDS: AAE 15.23-s014 (64bit) 04/22/2016 (Linux 2.6.18-194.el5)
+[03/01 00:13:40     11] @(#)CDS: CTE 15.23-s022_1 () Apr 22 2016 09:38:45 ( )
+[03/01 00:13:40     11] @(#)CDS: SYNTECH 15.23-s008_1 () Apr 12 2016 21:52:59 ( )
+[03/01 00:13:40     11] @(#)CDS: CPE v15.23-s045
+[03/01 00:13:40     11] @(#)CDS: IQRC/TQRC 15.1.4-s213 (64bit) Tue Feb  9 17:31:28 PST 2016 (Linux 2.6.18-194.el5)
+[03/01 00:13:40     11] @(#)CDS: OA 22.50-p036 Tue Nov  3 09:29:52 2015
+[03/01 00:13:40     11] @(#)CDS: SGN 10.10-p124 (19-Aug-2014) (64 bit executable)
+[03/01 00:13:40     11] @(#)CDS: RCDB 11.7
+[03/01 00:13:40     11] --- Running on ieng6-ece-13.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 0 @ 2.00GHz 20480KB) ---
+[03/01 00:13:40     11] Create and set the environment variable TMPDIR to /tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn.
+
+[03/01 00:13:40     12] 
+[03/01 00:13:40     12] **INFO:  MMMC transition support version v31-84 
+[03/01 00:13:40     12] 
+[03/01 00:13:40     12] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[03/01 00:13:40     12] <CMD> suppressMessage ENCEXT-2799
+[03/01 00:13:41     12] Executing cmd 'source' ...
+[03/01 00:13:41     12] 
+[03/01 00:13:41     12] Usage: source [-help] <file_name> [-quiet  | -verbose ]
+[03/01 00:13:41     12] 
+[03/01 00:13:41     12] **ERROR: (IMPTCM-46):	Argument "file_name" is required for command "source", either this option is not specified or an option prior to it is not specified correctly.
+[03/01 00:13:41     12] **ERROR: (IMPSYT-7114):	Invalid return code while executing command 'source'. Review the following error in command 'source' then restart.
+[03/01 00:13:41     12] **ERROR: (IMPSYT-6693):	Error message: source:   .
+[03/01 00:13:41     12] Sourcing file "run_eco.tcl" ...
+[03/01 00:13:41     12] <CMD> set init_pwr_net VDD
+[03/01 00:13:41     12] <CMD> set init_gnd_net VSS
+[03/01 00:13:41     12] <CMD> set init_verilog ./usb_phy.v
+[03/01 00:13:41     12] <CMD> set init_design_netlisttype Verilog
+[03/01 00:13:41     12] <CMD> set init_design_settop 1
+[03/01 00:13:41     12] <CMD> set init_top_cell usb_phy
+[03/01 00:13:41     12] <CMD> set init_lef_file /home/linux/ieng6/ee260b/public/data/libraries/techfiles/contest.lef
+[03/01 00:13:41     12] <CMD> create_library_set -name WC_LIB -timing $libworst
+[03/01 00:13:41     12] <CMD> create_library_set -name BC_LIB -timing $libworst
+[03/01 00:13:41     12] <CMD> create_rc_corner -name Cmax -cap_table $captblworst -T 125
+[03/01 00:13:41     12] <CMD> create_rc_corner -name Cmin -cap_table $captblworst -T -40
+[03/01 00:13:41     12] <CMD> create_delay_corner -name WC -library_set WC_LIB -rc_corner Cmax
+[03/01 00:13:41     12] <CMD> create_delay_corner -name BC -library_set BC_LIB -rc_corner Cmin
+[03/01 00:13:41     12] <CMD> create_constraint_mode -name CON -sdc_file [list $sdc]
+[03/01 00:13:41     12] <CMD> create_analysis_view -name WC_VIEW -delay_corner WC -constraint_mode CON
+[03/01 00:13:41     12] <CMD> create_analysis_view -name BC_VIEW -delay_corner BC -constraint_mode CON
+[03/01 00:13:41     12] <CMD> init_design -setup WC_VIEW -hold BC_VIEW
+[03/01 00:13:41     12] 
+[03/01 00:13:41     12] Loading LEF file /home/linux/ieng6/ee260b/public/data/libraries/techfiles/contest.lef ...
+[03/01 00:13:41     12] Set DBUPerIGU to M2 pitch 280.
+[03/01 00:13:41     12] 
+[03/01 00:13:41     12] viaInitial starts at Fri Mar  1 00:13:41 2019
+viaInitial ends at Fri Mar  1 00:13:41 2019
+Reading WC_LIB timing library '/home/linux/ieng6/ee260b/public/data/libraries/lib/contest.lib' ...
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s01' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s02' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s03' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s04' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s06' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s08' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s10' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s20' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s40' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s80' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m01' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m02' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m03' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m04' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m06' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m08' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m10' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m20' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m40' is not defined in the library.
+[03/01 00:13:41     12] **WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m80' is not defined in the library.
+[03/01 00:13:41     12] Message <TECHLIB-436> has exceeded the message display limit of '20'. setMessageLimit/set_message_limit sets the limit. unsetMessageLimit/unset_message_limit can be used to reset this.
+[03/01 00:13:41     12] Read 333 cells in library 'contest' 
+[03/01 00:13:41     12] *** End library_loading (cpu=0.00min, mem=0.0M, fe_cpu=0.21min, fe_real=0.23min, fe_mem=410.0M) ***
+[03/01 00:13:41     12] *** Begin netlist parsing (mem=410.0M) ***
+[03/01 00:13:41     12] Created 333 new cells from 1 timing libraries.
+[03/01 00:13:41     12] Reading netlist ...
+[03/01 00:13:41     12] Backslashed names will retain backslash and a trailing blank character.
+[03/01 00:13:41     12] Reading verilog netlist './usb_phy.v'
+[03/01 00:13:41     12] 
+[03/01 00:13:41     12] *** Memory Usage v#1 (Current mem = 410.000M, initial mem = 151.930M) ***
+[03/01 00:13:41     12] *** End netlist parsing (cpu=0:00:00.0, real=0:00:00.0, mem=410.0M) ***
+[03/01 00:13:41     12] Set top cell to usb_phy.
+[03/01 00:13:41     12] Hooked 333 DB cells to tlib cells.
+[03/01 00:13:41     12] ** Removed 2 unused lib cells.
+[03/01 00:13:41     12] Starting recursive module instantiation check.
+[03/01 00:13:41     12] No recursion found.
+[03/01 00:13:41     12] Building hierarchical netlist for Cell usb_phy ...
+[03/01 00:13:41     12] *** Netlist is unique.
+[03/01 00:13:41     12] ** info: there are 333 modules.
+[03/01 00:13:41     12] ** info: there are 442 stdCell insts.
+[03/01 00:13:41     12] 
+[03/01 00:13:41     12] *** Memory Usage v#1 (Current mem = 442.758M, initial mem = 151.930M) ***
+[03/01 00:13:41     12] **WARN: (IMPFP-3961):	The techSite 'pad' has no related cells in LEF/OA library. Cannot make calculations for this site type unless cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+[03/01 00:13:41     12] Type 'man IMPFP-3961' for more detail.
+[03/01 00:13:41     12] **WARN: (IMPFP-3961):	The techSite 'core' has no related cells in LEF/OA library. Cannot make calculations for this site type unless cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+[03/01 00:13:41     12] Type 'man IMPFP-3961' for more detail.
+[03/01 00:13:41     12] Generated pitch 0.84 in M8 is different from 0.8 defined in technology file in preferred direction.
+[03/01 00:13:41     12] Generated pitch 0.84 in M7 is different from 0.8 defined in technology file in preferred direction.
+[03/01 00:13:41     12] Set Default Net Delay as 1000 ps.
+[03/01 00:13:41     12] Set Default Net Load as 0.5 pF. 
+[03/01 00:13:41     12] Set Default Input Pin Transition as 0.1 ps.
+[03/01 00:13:41     13] Initializing multi-corner RC extraction with 2 active RC Corners ...
+[03/01 00:13:41     13] Reading Capacitance Table File /home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable ...
+[03/01 00:13:41     13] **WARN: (IMPEXT-2760):	Layer M9 specified in the cap table is ignored because it is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+[03/01 00:13:41     13] **WARN: (IMPEXT-2771):	Via VIA_8 specified in the cap table is ignored because its top layer, M9, is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+[03/01 00:13:41     13] **WARN: (IMPEXT-2801):	Resistance values are not provided in the Cap Table. Sheet resistance defined in the LEF file will be used.
+[03/01 00:13:41     13] **WARN: (IMPEXT-2710):	Basic Cap table for layer M9 is ignored because the layer is not specified in the technology LEF file.
+[03/01 00:13:41     13] Reading Capacitance Table File /home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable ...
+[03/01 00:13:41     13] **WARN: (IMPEXT-2760):	Layer M9 specified in the cap table is ignored because it is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+[03/01 00:13:41     13] **WARN: (IMPEXT-2771):	Via VIA_8 specified in the cap table is ignored because its top layer, M9, is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+[03/01 00:13:41     13] **WARN: (IMPEXT-2801):	Resistance values are not provided in the Cap Table. Sheet resistance defined in the LEF file will be used.
+[03/01 00:13:41     13] **WARN: (IMPEXT-2710):	Basic Cap table for layer M9 is ignored because the layer is not specified in the technology LEF file.
+[03/01 00:13:41     13] Importing multi-corner RC tables ... 
+[03/01 00:13:41     13] Summary of Active RC-Corners : 
+[03/01 00:13:41     13]  
+[03/01 00:13:41     13]  Analysis View: WC_VIEW
+[03/01 00:13:41     13]     RC-Corner Name        : Cmax
+[03/01 00:13:41     13]     RC-Corner Index       : 0
+[03/01 00:13:41     13]     RC-Corner Temperature : 125 Celsius
+[03/01 00:13:41     13]     RC-Corner Cap Table   : '/home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable'
+[03/01 00:13:41     13]     RC-Corner PreRoute Res Factor         : 1
+[03/01 00:13:41     13]     RC-Corner PreRoute Cap Factor         : 1
+[03/01 00:13:41     13]     RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+[03/01 00:13:41     13]     RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+[03/01 00:13:41     13]     RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+[03/01 00:13:41     13]     RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+[03/01 00:13:41     13]     RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+[03/01 00:13:41     13]     RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+[03/01 00:13:41     13]     RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+[03/01 00:13:41     13]  
+[03/01 00:13:41     13]  Analysis View: BC_VIEW
+[03/01 00:13:41     13]     RC-Corner Name        : Cmin
+[03/01 00:13:41     13]     RC-Corner Index       : 1
+[03/01 00:13:41     13]     RC-Corner Temperature : -40 Celsius
+[03/01 00:13:41     13]     RC-Corner Cap Table   : '/home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable'
+[03/01 00:13:41     13]     RC-Corner PreRoute Res Factor         : 1
+[03/01 00:13:41     13]     RC-Corner PreRoute Cap Factor         : 1
+[03/01 00:13:41     13]     RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+[03/01 00:13:41     13]     RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+[03/01 00:13:41     13]     RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+[03/01 00:13:41     13]     RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+[03/01 00:13:41     13]     RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+[03/01 00:13:41     13]     RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+[03/01 00:13:41     13]     RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+[03/01 00:13:41     13] *Info: initialize multi-corner CTS.
+[03/01 00:13:42     13] Reading timing constraints file './usb_phy.sdc' ...
+[03/01 00:13:42     13] Current (total cpu=0:00:13.3, real=0:00:15.0, peak res=226.7M, current mem=564.2M)
+[03/01 00:13:42     13] **WARN: (TCLNL-330):	set_input_delay on clock root 'clk' is not supported. You should use the -source option to set_clock_latency to provide this offset. You can also use the global timing_allow_input_delay_on_clock_source to allow set_input_delay assertion to have an effect on clock source paths beginning at this clock root. (File ./usb_phy.sdc, Line 44).
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] INFO (CTE): Reading of timing constraints file ./usb_phy.sdc completed, with 1 WARNING
+[03/01 00:13:42     13] WARNING (CTE-25): Line: 9 of File ./usb_phy.sdc : Skipped unsupported command: set_max_area
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] WARNING (CTE-25): Line: 8 of File ./usb_phy.sdc : Skipped unsupported command: set_units
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] Ending "Constraint file reading stats" (total cpu=0:00:00.1, real=0:00:00.0, peak res=243.5M, current mem=576.9M)
+[03/01 00:13:42     13] Current (total cpu=0:00:13.4, real=0:00:15.0, peak res=243.5M, current mem=576.9M)
+[03/01 00:13:42     13] Summary for sequential cells idenfication: 
+[03/01 00:13:42     13] Identified SBFF number: 1
+[03/01 00:13:42     13] Identified MBFF number: 0
+[03/01 00:13:42     13] Not identified SBFF number: 0
+[03/01 00:13:42     13] Not identified MBFF number: 0
+[03/01 00:13:42     13] Number of sequential cells which are not FFs: 0
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] Total number of combinational cells: 330
+[03/01 00:13:42     13] Total number of sequential cells: 1
+[03/01 00:13:42     13] Total number of tristate cells: 0
+[03/01 00:13:42     13] Total number of level shifter cells: 0
+[03/01 00:13:42     13] Total number of power gating cells: 0
+[03/01 00:13:42     13] Total number of isolation cells: 0
+[03/01 00:13:42     13] Total number of power switch cells: 0
+[03/01 00:13:42     13] Total number of pulse generator cells: 0
+[03/01 00:13:42     13] Total number of always on buffers: 0
+[03/01 00:13:42     13] Total number of retention cells: 0
+[03/01 00:13:42     13] List of usable buffers:
+[03/01 00:13:42     13] Total number of usable buffers: 0
+[03/01 00:13:42     13] List of unusable buffers:
+[03/01 00:13:42     13] Total number of unusable buffers: 0
+[03/01 00:13:42     13] List of usable inverters: in01s01 in01s02 in01s03 in01s04 in01s06 in01s08 in01s10 in01s20 in01s40 in01s80 in01m01 in01m02 in01m03 in01m04 in01m06 in01m08 in01m10 in01m20 in01m40 in01m80 in01f01 in01f02 in01f03 in01f04 in01f06 in01f08 in01f10 in01f20 in01f40 in01f80
+[03/01 00:13:42     13] Total number of usable inverters: 30
+[03/01 00:13:42     13] List of unusable inverters:
+[03/01 00:13:42     13] Total number of unusable inverters: 0
+[03/01 00:13:42     13] List of identified usable delay cells:
+[03/01 00:13:42     13] Total number of identified usable delay cells: 0
+[03/01 00:13:42     13] List of identified unusable delay cells:
+[03/01 00:13:42     13] Total number of identified unusable delay cells: 0
+[03/01 00:13:42     13] No delay cells were detected in the set of buffers. Buffers will be used to fix hold violations.
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] *** Summary of all messages that are not suppressed in this session:
+[03/01 00:13:42     13] Severity  ID               Count  Summary                                  
+[03/01 00:13:42     13] WARNING   IMPFP-3961           2  The techSite '%s' has no related cells i...
+[03/01 00:13:42     13] WARNING   IMPEXT-2710          2  Basic Cap table for layer M%d is ignored...
+[03/01 00:13:42     13] WARNING   IMPEXT-2760          2  Layer M%d specified in the cap table is ...
+[03/01 00:13:42     13] WARNING   IMPEXT-2771          2  Via %s specified in the cap table is ign...
+[03/01 00:13:42     13] WARNING   IMPEXT-2801          2  Resistance values are not provided in th...
+[03/01 00:13:42     13] *** Message Summary: 10 warning(s), 0 error(s)
+[03/01 00:13:42     13] 
+[03/01 00:13:42     13] <CMD> set_interactive_constraint_modes {CON}
+[03/01 00:13:42     13] <CMD> setDesignMode -process 65
+[03/01 00:13:42     13] Applying the recommended capacitance filtering threshold values for 65nm process node: total_c_th=0, relative_c_th=1 and coupling_c_th=0.1.
+[03/01 00:13:42     13] 	These values will be used by all post-route extraction engines, including tQuantus, IQRC and Quantus QRC extraction.
+[03/01 00:13:42     13] 	Capacitance filtering mode(-capFilterMode option of the setExtractRCMode) is 'relAndCoup' for all engines.
+[03/01 00:13:42     13] 	The accuracy mode for postRoute effortLevel low extraction will be set to 'high'.
+[03/01 00:13:42     13] 	Default value for EffortLevel(-effortLevel option of the setExtractRCMode) in postRoute extraction mode will be 'medium' if Quantus QRC technology file is specified else 'low'.
+[03/01 00:13:42     13] Updating process node dependent CCOpt properties for the 65nm process node.
+[03/01 00:13:42     13] <CMD> defIn usb_phy.def
+[03/01 00:13:42     13] Reading DEF file 'usb_phy.def', current time is Fri Mar  1 00:13:42 2019 ...
+[03/01 00:13:42     13] --- DIVIDERCHAR '/'
+[03/01 00:13:42     13] --- UnitsPerDBU = 1.0000
+[03/01 00:13:42     13] Generated pitch 0.84 in M8 is different from 0.8 defined in technology file in preferred direction.
+[03/01 00:13:42     13] Generated pitch 0.84 in M7 is different from 0.8 defined in technology file in preferred direction.
+[03/01 00:13:42     13] --- DIEAREA (0 0) (113120 110880)
+[03/01 00:13:42     13] Extracting standard cell pins and blockage ...... 
+[03/01 00:13:42     13] Pin and blockage extraction finished
+[03/01 00:13:42     13] Extracting macro/IO cell pins and blockage ...... 
+[03/01 00:13:42     13] Pin and blockage extraction finished
+[03/01 00:13:42     13] DEF file 'usb_phy.def' is parsed, current time is Fri Mar  1 00:13:42 2019.
+[03/01 00:13:42     13] Updating the floorplan ...
+[03/01 00:13:42     13] <CMD> setAnalysisMode -analysisType onChipVariation -cppr both
+[03/01 00:13:42     13] <CMD> setDelayCalMode -reset
+[03/01 00:13:42     13] <CMD> setDelayCalMode -SIAware true
+[03/01 00:13:42     13] <CMD> setExtractRCMode -coupled true -engine postRoute
+[03/01 00:13:42     13] <CMD> report_timing
+[03/01 00:13:42     13] Starting SI iteration 1 using Infinite Timing Windows
+[03/01 00:13:42     13] #################################################################################
+[03/01 00:13:42     13] # Design Stage: PostRoute
+[03/01 00:13:42     13] # Design Name: usb_phy
+[03/01 00:13:42     13] # Design Mode: 65nm
+[03/01 00:13:42     13] # Analysis Mode: MMMC OCV 
+[03/01 00:13:42     13] # Parasitics Mode: No SPEF/RCDB
+[03/01 00:13:42     13] # Signoff Settings: SI On 
+[03/01 00:13:42     13] #################################################################################
+[03/01 00:13:42     13] **WARN: (IMPEXT-3518):	The lower process node is set (using command 'setDesignMode') but the technology file for TQRC extraction not specified. Therefore, going for postRoute (effortLevel low) extraction instead of recommended extractor 'TQRC' for lower nodes. Use command 'set_analysis_view/update_rc_corner' to specify the technology file for TQRC extraction to take place.
+[03/01 00:13:42     13] Extraction called for design 'usb_phy' of instances=442 and nets=461 using extraction engine 'postRoute' at effort level 'low' .
+[03/01 00:13:42     13] PostRoute (effortLevel low) RC Extraction called for design usb_phy.
+[03/01 00:13:42     13] RC Extraction called in multi-corner(2) mode.
+[03/01 00:13:42     13] **WARN: (IMPEXT-3442):	The version of the capacitance table file being used is obsolete and is no longer recommended. For improved accuracy, generate the capacitance table file using the generateCapTbl command.
+[03/01 00:13:42     13] Process corner(s) are loaded.
+[03/01 00:13:42     13]  Corner: Cmax
+[03/01 00:13:42     13]  Corner: Cmin
+[03/01 00:13:42     13] extractDetailRC Option : -outfile /tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d  -extended
+[03/01 00:13:42     13] RC Mode: PostRoute -effortLevel low [Extended CapTable, LEF Resistances]
+[03/01 00:13:42     13]       RC Corner Indexes            0       1   
+[03/01 00:13:42     13] Capacitance Scaling Factor   : 1.00000 1.00000 
+[03/01 00:13:42     13] Coupling Cap. Scaling Factor : 1.00000 1.00000 
+[03/01 00:13:42     13] Resistance Scaling Factor    : 1.00000 1.00000 
+[03/01 00:13:42     13] Clock Cap. Scaling Factor    : 1.00000 1.00000 
+[03/01 00:13:42     13] Clock Res. Scaling Factor    : 1.00000 1.00000 
+[03/01 00:13:42     13] Shrink Factor                : 1.00000
+[03/01 00:13:42     13] Initializing multi-corner capacitance tables ... 
+[03/01 00:13:42     13] Initializing multi-corner resistance tables ...
+[03/01 00:13:42     13] Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 612.8M)
+[03/01 00:13:42     13] Creating parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for storing RC.
+[03/01 00:13:42     13] Extracted 10.0446% (CPU Time= 0:00:00.0  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 20.0574% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 30.0383% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 40.051% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 50.0638% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 60.0446% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 70.0574% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 80.0383% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 90.051% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Extracted 100% (CPU Time= 0:00:00.1  MEM= 660.2M)
+[03/01 00:13:42     13] Number of Extracted Resistors     : 4688
+[03/01 00:13:42     13] Number of Extracted Ground Cap.   : 4998
+[03/01 00:13:42     13] Number of Extracted Coupling Cap. : 4804
+[03/01 00:13:42     13] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:13:42     13] Filtering XCap in 'relativeAndCoupling' mode using values coupling_c_threshold=0.1fF, relative_c_threshold=1, and total_c_threshold=0fF.
+[03/01 00:13:42     13]  Corner: Cmax
+[03/01 00:13:42     13]  Corner: Cmin
+[03/01 00:13:42     13] Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 635.2M)
+[03/01 00:13:42     13] Creating parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb_Filter.rcdb.d' for storing RC.
+[03/01 00:13:42     13] Closing parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d'. 457 times net's RC data read were performed.
+[03/01 00:13:42     13] Lumped Parasitic Loading Started (total cpu=0:00:00.0, real=0:00:00.0, current mem=643.195M)
+[03/01 00:13:42     13] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:13:42     13] Lumped Parasitic Loading Completed (total cpu=0:00:00.0, real=0:00:00.0, current mem=643.195M)
+[03/01 00:13:42     13] PostRoute (effortLevel low) RC Extraction DONE (CPU Time: 0:00:00.2  Real Time: 0:00:00.0  MEM: 643.195M)
+[03/01 00:13:42     13] Setting infinite Tws ...
+[03/01 00:13:42     13] First Iteration Infinite Tw... 
+[03/01 00:13:42     13] Calculate early delays in OCV mode...
+[03/01 00:13:42     13] Calculate late delays in OCV mode...
+[03/01 00:13:42     13] Topological Sorting (CPU = 0:00:00.0, MEM = 643.2M, InitMEM = 643.2M)
+[03/01 00:13:42     13] Initializing multi-corner capacitance tables ... 
+[03/01 00:13:43     14] Initializing multi-corner resistance tables ...
+[03/01 00:13:44     15] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:13:44     15] RC Database In Completed (CPU Time= 0:00:00.0  Real Time=0:00:00.0  MEM= 771.8M)
+[03/01 00:13:44     15] **WARN: (IMPTS-403):	Delay calculation was forced to extrapolate table data outside of the characterized range. In some cases, extrapolation can reduce the accuracy of the delay calculation. You can enable more detailed reporting of these cases by enabling the command 'setDelayCalMode -reportOutBound true'.
+[03/01 00:13:44     15] Type 'man IMPTS-403' for more detail.
+[03/01 00:13:44     15] AAE_INFO-618: Total number of nets in the design is 461,  100.0 percent of the nets selected for SI analysis
+[03/01 00:13:44     15] End Timing Check Calculation. (CPU Time=0:00:00.0, Real Time=0:00:00.0)
+[03/01 00:13:44     15] End delay calculation. (MEM=808.566 CPU=0:00:00.3 REAL=0:00:00.0)
+[03/01 00:13:44     15] Save waveform /tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/.AAE_eFztUR/.AAE_19921/waveform.data...
+[03/01 00:13:44     15] *** CDM Built up (cpu=0:00:02.4  real=0:00:02.0  mem= 808.6M) ***
+[03/01 00:13:45     16] Loading CTE timing window...(CPU = 0:00:00.0, REAL = 0:00:00.0, MEM = 808.6M)
+[03/01 00:13:45     16] Add other clocks and setupCteToAAEClockMapping during iter 1
+[03/01 00:13:45     16] Loading CTE timing window is completed (CPU = 0:00:00.0, REAL = 0:00:00.0, MEM = 808.6M)
+[03/01 00:13:45     16] Starting SI iteration 2
+[03/01 00:13:45     16] Calculate early delays in OCV mode...
+[03/01 00:13:45     16] Calculate late delays in OCV mode...
+[03/01 00:13:45     16] AAE_INFO-618: Total number of nets in the design is 461,  0.0 percent of the nets selected for SI analysis
+[03/01 00:13:45     16] End delay calculation. (MEM=816.613 CPU=0:00:00.0 REAL=0:00:00.0)
+[03/01 00:13:45     16] *** CDM Built up (cpu=0:00:00.1  real=0:00:00.0  mem= 816.6M) ***
+[03/01 00:13:45     16] <CMD> setEcoMode -batchMode true
+[03/01 00:13:45     16] **WARN: (IMPOPT-6115):	ECO batchmode has been activated. Set setEcoMode -batchMode to false when done with ECO operations.
+[03/01 00:13:45     16] Type 'man IMPOPT-6115' for more detail.
+[03/01 00:13:45     16] **WARN: (IMPOPT-6103):	Timing updates for ECO operations done now on will happen when exiting batchMode. Set setEcoMode -batchMode to false when done with ECO operations
+[03/01 00:13:45     16] <CMD> setEcoMode -refinePlace true
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst FE_DBTC0_i_tx_phy_state_1_ -cell in01f01
+[03/01 00:13:45     16] #spOpts: N=65 
+[03/01 00:13:45     16] Core basic site is core
+[03/01 00:13:45     16] **Info: (IMPSP-307): Design contains fractional 18 cells.
+[03/01 00:13:45     16] Estimated cell power/ground rail width = 0.158 um
+[03/01 00:13:45     16] Layer info - lib-1st H=1, V=2.  Cell-FPin=1. Top-pin=2
+[03/01 00:13:45     16] #################################################################################
+[03/01 00:13:45     16] # Design Stage: PostRoute
+[03/01 00:13:45     16] # Design Name: usb_phy
+[03/01 00:13:45     16] # Design Mode: 65nm
+[03/01 00:13:45     16] # Analysis Mode: MMMC OCV 
+[03/01 00:13:45     16] # Parasitics Mode: SPEF/RCDB
+[03/01 00:13:45     16] # Signoff Settings: SI On 
+[03/01 00:13:45     16] #################################################################################
+[03/01 00:13:45     16] Design State:
+[03/01 00:13:45     16]     #signal nets       :  456
+[03/01 00:13:45     16]     #routed signal nets:  456
+[03/01 00:13:45     16]     #clock nets        :  1
+[03/01 00:13:45     16]     #routed clock nets :  1
+[03/01 00:13:45     16] #################################################################################
+[03/01 00:13:45     16] # Design Stage: PostRoute
+[03/01 00:13:45     16] # Design Name: usb_phy
+[03/01 00:13:45     16] # Design Mode: 65nm
+[03/01 00:13:45     16] # Analysis Mode: MMMC OCV 
+[03/01 00:13:45     16] # Parasitics Mode: SPEF/RCDB
+[03/01 00:13:45     16] # Signoff Settings: SI On 
+[03/01 00:13:45     16] #################################################################################
+[03/01 00:13:45     16] All-RC-Corners-Per-Net-In-Memory is turned ON...
+[03/01 00:13:45     16] Closing parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d'. 457 times net's RC data read were performed.
+[03/01 00:13:45     16] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:13:45     16] RC Database In Completed (CPU Time= 0:00:00.0  Real Time=0:00:00.0  MEM= 893.2M)
+[03/01 00:13:45     16] Resize FE_DBTC0_i_tx_phy_state_1_ (in01f03) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst FE_OFC1_fs_ce -cell in01f01
+[03/01 00:13:45     16] Resize FE_OFC1_fs_ce (in01f04) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U407 -cell no02m01
+[03/01 00:13:45     16] Resize U407 (no02m02) to no02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U411 -cell na03m01
+[03/01 00:13:45     16] Resize U411 (na03m02) to na03m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U413 -cell no02m01
+[03/01 00:13:45     16] Resize U413 (no02m02) to no02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U414 -cell no02f01
+[03/01 00:13:45     16] Resize U414 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U415 -cell no02m01
+[03/01 00:13:45     16] Resize U415 (no02m02) to no02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U417 -cell na02m01
+[03/01 00:13:45     16] Resize U417 (na02m03) to na02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U418 -cell ao12f01
+[03/01 00:13:45     16] Resize U418 (ao12f02) to ao12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U419 -cell in01m01
+[03/01 00:13:45     16] Resize U419 (in01m02) to in01m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U421 -cell no02m01
+[03/01 00:13:45     16] Resize U421 (no02m02) to no02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U422 -cell no04f01
+[03/01 00:13:45     16] Resize U422 (no04f04) to no04f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U423 -cell na02f01
+[03/01 00:13:45     16] Resize U423 (na02f02) to na02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U424 -cell no02f01
+[03/01 00:13:45     16] Resize U424 (no02f04) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U425 -cell no04f01
+[03/01 00:13:45     16] Resize U425 (no04f06) to no04f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U426 -cell no02m01
+[03/01 00:13:45     16] Resize U426 (no02m02) to no02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U428 -cell no03s01
+[03/01 00:13:45     16] Resize U428 (no03s02) to no03s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U429 -cell na02m01
+[03/01 00:13:45     16] Resize U429 (na02m02) to na02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U430 -cell na02m01
+[03/01 00:13:45     16] Resize U430 (na02m02) to na02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U431 -cell na02m01
+[03/01 00:13:45     16] Resize U431 (na02m02) to na02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U432 -cell in01s01
+[03/01 00:13:45     16] Resize U432 (in01s06) to in01s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U433 -cell in01s01
+[03/01 00:13:45     16] Resize U433 (in01s02) to in01s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U434 -cell na02m01
+[03/01 00:13:45     16] Resize U434 (na02m02) to na02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U435 -cell no04f01
+[03/01 00:13:45     16] Resize U435 (no04f02) to no04f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U436 -cell oa12f01
+[03/01 00:13:45     16] Resize U436 (oa12f02) to oa12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U437 -cell na02f01
+[03/01 00:13:45     16] Resize U437 (na02f08) to na02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U438 -cell no02s01
+[03/01 00:13:45     16] Resize U438 (no02s02) to no02s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U439 -cell in01m01
+[03/01 00:13:45     16] Resize U439 (in01m02) to in01m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U440 -cell ao12f01
+[03/01 00:13:45     16] Resize U440 (ao12f02) to ao12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U441 -cell na02f01
+[03/01 00:13:45     16] Resize U441 (na02f02) to na02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U443 -cell no02f01
+[03/01 00:13:45     16] Resize U443 (no02f04) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U444 -cell no02m01
+[03/01 00:13:45     16] Resize U444 (no02m02) to no02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U447 -cell oa12m01
+[03/01 00:13:45     16] Resize U447 (oa12m02) to oa12m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U448 -cell ao12f01
+[03/01 00:13:45     16] Resize U448 (ao12f02) to ao12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U450 -cell in01f01
+[03/01 00:13:45     16] Resize U450 (in01f02) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U451 -cell na03m01
+[03/01 00:13:45     16] Resize U451 (na03m02) to na03m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U452 -cell no03f01
+[03/01 00:13:45     16] Resize U452 (no03f03) to no03f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U455 -cell no02s01
+[03/01 00:13:45     16] Resize U455 (no02s02) to no02s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U456 -cell ao12f01
+[03/01 00:13:45     16] Resize U456 (ao12f02) to ao12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U458 -cell no02f01
+[03/01 00:13:45     16] Resize U458 (no02f03) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U459 -cell na02f01
+[03/01 00:13:45     16] Resize U459 (na02f02) to na02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U462 -cell na02f01
+[03/01 00:13:45     16] Resize U462 (na02f03) to na02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U466 -cell in01f01
+[03/01 00:13:45     16] Resize U466 (in01f02) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U468 -cell na03m01
+[03/01 00:13:45     16] Resize U468 (na03m02) to na03m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U469 -cell na02s01
+[03/01 00:13:45     16] Resize U469 (na02s02) to na02s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U471 -cell oa12m01
+[03/01 00:13:45     16] Resize U471 (oa12m02) to oa12m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U472 -cell ao22f01
+[03/01 00:13:45     16] Resize U472 (ao22f02) to ao22f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U480 -cell no02m01
+[03/01 00:13:45     16] Resize U480 (no02m02) to no02m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U481 -cell ao12f01
+[03/01 00:13:45     16] Resize U481 (ao12f02) to ao12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U482 -cell no04f01
+[03/01 00:13:45     16] Resize U482 (no04f02) to no04f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U483 -cell no02f01
+[03/01 00:13:45     16] Resize U483 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U487 -cell in01f01
+[03/01 00:13:45     16] Resize U487 (in01f02) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U489 -cell oa22f01
+[03/01 00:13:45     16] Resize U489 (oa22f02) to oa22f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U490 -cell no02f01
+[03/01 00:13:45     16] Resize U490 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U491 -cell oa12f01
+[03/01 00:13:45     16] Resize U491 (oa12f02) to oa12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U492 -cell ao12f01
+[03/01 00:13:45     16] Resize U492 (ao12f02) to ao12f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U493 -cell na02s01
+[03/01 00:13:45     16] Resize U493 (na02s02) to na02s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U494 -cell no03s01
+[03/01 00:13:45     16] Resize U494 (no03s02) to no03s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U497 -cell na03s01
+[03/01 00:13:45     16] Resize U497 (na03s02) to na03s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U499 -cell no02s01
+[03/01 00:13:45     16] Resize U499 (no02s02) to no02s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U500 -cell na03f01
+[03/01 00:13:45     16] Resize U500 (na03f02) to na03f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U501 -cell no02f01
+[03/01 00:13:45     16] Resize U501 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U512 -cell na03m01
+[03/01 00:13:45     16] Resize U512 (na03m02) to na03m01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U532 -cell no02f01
+[03/01 00:13:45     16] Resize U532 (no02f04) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U533 -cell in01f01
+[03/01 00:13:45     16] Resize U533 (in01f02) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U535 -cell in01f01
+[03/01 00:13:45     16] Resize U535 (in01f02) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U548 -cell no02s01
+[03/01 00:13:45     16] Resize U548 (no02s02) to no02s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U550 -cell in01s01
+[03/01 00:13:45     16] Resize U550 (in01s02) to in01s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U551 -cell na03f01
+[03/01 00:13:45     16] Resize U551 (na03f02) to na03f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U552 -cell in01f01
+[03/01 00:13:45     16] Resize U552 (in01f02) to in01f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U553 -cell no02f01
+[03/01 00:13:45     16] Resize U553 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U571 -cell no02f01
+[03/01 00:13:45     16] Resize U571 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U628 -cell na02f01
+[03/01 00:13:45     16] Resize U628 (na02f02) to na02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U636 -cell na02s01
+[03/01 00:13:45     16] Resize U636 (na02s02) to na02s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U641 -cell no03s01
+[03/01 00:13:45     16] Resize U641 (no03s02) to no03s01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U667 -cell no02f01
+[03/01 00:13:45     16] Resize U667 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> ecoChangeCell -inst U724 -cell no02f01
+[03/01 00:13:45     16] Resize U724 (no02f02) to no02f01.
+[03/01 00:13:45     16] <CMD> setEcoMode -batchMode false
+[03/01 00:13:45     16] #spOpts: N=65 mergeVia=F 
+[03/01 00:13:45     16] Core basic site is core
+[03/01 00:13:45     16] **Info: (IMPSP-307): Design contains fractional 18 cells.
+[03/01 00:13:45     16] Layer info - lib-1st H=1, V=2.  Cell-FPin=1. Top-pin=2
+[03/01 00:13:45     16] *** Starting refinePlace (0:00:16.4 mem=893.2M) ***
+[03/01 00:13:45     16] Total net bbox length = 2.541e+03 (1.195e+03 1.347e+03) (ext = 4.821e+02)
+[03/01 00:13:45     16] Starting refinePlace ...
+[03/01 00:13:45     16] Move report: placeLevelShifters moves 0 insts, mean move: 0.00 um, max move: 0.00 um
+[03/01 00:13:45     16] default core: bins with density >  0.75 = 11.1 % ( 1 / 9 )
+[03/01 00:13:45     16] Density distribution unevenness ratio = 4.993%
+[03/01 00:13:45     16]   Spread Effort: high, post-route mode, useDDP on.
+[03/01 00:13:45     16] [CPU] RefinePlace/preRPlace (cpu=0:00:00.0, real=0:00:00.0, mem=893.2MB) @(0:00:16.4 - 0:00:16.4).
+[03/01 00:13:45     16] Move report: preRPlace moves 1 insts, mean move: 0.07 um, max move: 0.07 um
+[03/01 00:13:45     16] 	Max move on inst (U494): (41.23, 13.86) --> (41.30, 13.86)
+[03/01 00:13:45     16] 	Length: 9 sites, height: 1 rows, site name: core, cell type: no03s01
+[03/01 00:13:45     16] wireLenOptFixPriorityInst 0 inst fixed
+[03/01 00:13:45     16] Move report: legalization moves 0 insts, mean move: 0.00 um, max move: 0.00 um
+[03/01 00:13:45     16] [CPU] RefinePlace/Legalization (cpu=0:00:00.0, real=0:00:00.0, mem=893.2MB) @(0:00:16.4 - 0:00:16.4).
+[03/01 00:13:45     16] Move report: Detail placement moves 1 insts, mean move: 0.07 um, max move: 0.07 um
+[03/01 00:13:45     16] 	Max move on inst (U494): (41.23, 13.86) --> (41.30, 13.86)
+[03/01 00:13:45     16] 	Runtime: CPU: 0:00:00.0 REAL: 0:00:00.0 MEM: 893.2MB
+[03/01 00:13:45     16] Statistics of distance of Instance movement in refine placement:
+[03/01 00:13:45     16]   maximum (X+Y) =         0.07 um
+[03/01 00:13:45     16]   inst (U494) with max move: (41.23, 13.86) -> (41.3, 13.86)
+[03/01 00:13:45     16]   mean    (X+Y) =         0.07 um
+[03/01 00:13:45     16] Summary Report:
+[03/01 00:13:45     16] Instances move: 1 (out of 442 movable)
+[03/01 00:13:45     16] Mean displacement: 0.07 um
+[03/01 00:13:45     16] Max displacement: 0.07 um (Instance: U494) (41.23, 13.86) -> (41.3, 13.86)
+[03/01 00:13:45     16] 	Length: 9 sites, height: 1 rows, site name: core, cell type: no03s01
+[03/01 00:13:45     16] Total instances moved : 1
+[03/01 00:13:45     16] Total net bbox length = 2.541e+03 (1.195e+03 1.347e+03) (ext = 4.821e+02)
+[03/01 00:13:45     16] Runtime: CPU: 0:00:00.0 REAL: 0:00:00.0 MEM: 893.2MB
+[03/01 00:13:45     16] [CPU] RefinePlace/total (cpu=0:00:00.0, real=0:00:00.0, mem=893.2MB) @(0:00:16.4 - 0:00:16.4).
+[03/01 00:13:45     16] *** Finished refinePlace (0:00:16.4 mem=893.2M) ***
+[03/01 00:13:45     16] #################################################################################
+[03/01 00:13:45     16] # Design Stage: PostRoute
+[03/01 00:13:45     16] # Design Name: usb_phy
+[03/01 00:13:45     16] # Design Mode: 65nm
+[03/01 00:13:45     16] # Analysis Mode: MMMC OCV 
+[03/01 00:13:45     16] # Parasitics Mode: SPEF/RCDB
+[03/01 00:13:45     16] # Signoff Settings: SI On 
+[03/01 00:13:45     16] #################################################################################
+[03/01 00:13:45     16] <CMD> routeDesign
+[03/01 00:13:45     16] #routeDesign: cpu time = 00:00:00, elapsed time = 00:00:00, memory = 690.79 (MB), peak = 690.79 (MB)
+[03/01 00:13:45     16] #**INFO: setDesignMode -flowEffort standard
+[03/01 00:13:45     16] #**INFO: multi-cut via swapping  will be performed after routing.
+[03/01 00:13:45     16] #**INFO: All auto set options tuned by routeDesign will be restored to their original settings on command completion.
+[03/01 00:13:45     16] #**INFO: auto set of routeReserveSpaceForMultiCut to true
+[03/01 00:13:45     16] #**INFO: auto set of routeConcurrentMinimizeViaCountEffort to high
+[03/01 00:13:45     16] #spOpts: N=65 
+[03/01 00:13:45     16] Core basic site is core
+[03/01 00:13:45     16] **Info: (IMPSP-307): Design contains fractional 18 cells.
+[03/01 00:13:45     16] Layer info - lib-1st H=1, V=2.  Cell-FPin=1. Top-pin=2
+[03/01 00:13:45     16] Begin checking placement ... (start mem=893.2M, init mem=893.2M)
+[03/01 00:13:45     16] *info: Placed = 442           
+[03/01 00:13:45     16] *info: Unplaced = 0           
+[03/01 00:13:45     16] Placement Density:64.41%(827/1284)
+[03/01 00:13:45     16] Finished checkPlace (cpu: total=0:00:00.0, vio checks=0:00:00.0; mem=893.2M)
+[03/01 00:13:45     16] #**INFO: auto set of routeWithTimingDriven to true
+[03/01 00:13:45     16] #**INFO: auto set of routeWithSiDriven to true
+[03/01 00:13:45     16] 
+[03/01 00:13:45     16] changeUseClockNetStatus Option :  -noFixedNetWires 
+[03/01 00:13:45     16] *** Changed status on (0) nets in Clock.
+[03/01 00:13:45     16] *** End changeUseClockNetStatus (cpu=0:00:00.0, real=0:00:00.0, mem=893.2M) ***
+[03/01 00:13:45     16] 
+[03/01 00:13:45     16] globalDetailRoute
+[03/01 00:13:45     16] 
+[03/01 00:13:45     16] #setNanoRouteMode -routeConcurrentMinimizeViaCountEffort "high"
+[03/01 00:13:45     16] #setNanoRouteMode -routeReserveSpaceForMultiCut true
+[03/01 00:13:45     16] #setNanoRouteMode -routeWithSiDriven true
+[03/01 00:13:45     16] #setNanoRouteMode -routeWithTimingDriven true
+[03/01 00:13:45     16] #Start globalDetailRoute on Fri Mar  1 00:13:45 2019
+[03/01 00:13:45     16] #
+[03/01 00:13:45     16] Closing parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d'. 320 times net's RC data read were performed.
+[03/01 00:13:45     16] #Generating timing data, please wait...
+[03/01 00:13:45     16] #457 total nets, 457 already routed, 457 will ignore in trialRoute
+[03/01 00:13:45     16] **WARN: (IMPEXT-3442):	The version of the capacitance table file being used is obsolete and is no longer recommended. For improved accuracy, generate the capacitance table file using the generateCapTbl command.
+[03/01 00:13:46     17] #Dump tif for version 2.1
+[03/01 00:13:46     17] End Timing Check Calculation. (CPU Time=0:00:00.0, Real Time=0:00:00.0)
+[03/01 00:13:46     17] End delay calculation. (MEM=874.512 CPU=0:00:00.1 REAL=0:00:00.0)
+[03/01 00:13:46     17] **WARN: (IMPEXT-3493):	The design extraction status has been reset by the 'setExtractRCMode' command. The parasitic data can be regenerated either by extracting the design using the extractRC command or by loading the SPEF or RCDB file(s). To prevent resetting of the extraction status, avoid changing extraction modes.
+[03/01 00:13:46     17] #Generating timing data took: cpu time = 00:00:01, elapsed time = 00:00:01, memory = 661.46 (MB), peak = 691.07 (MB)
+[03/01 00:13:46     17] #Done generating timing data.
+[03/01 00:13:46     17] ### Net info: total nets: 461
+[03/01 00:13:46     17] ### Net info: dirty nets: 457
+[03/01 00:13:46     17] ### Net info: marked as disconnected nets: 0
+[03/01 00:13:47     18] ### Net info: fully routed nets: 0
+[03/01 00:13:47     18] ### Net info: trivial (single pin) nets: 0
+[03/01 00:13:47     18] ### Net info: unrouted nets: 4
+[03/01 00:13:47     18] ### Net info: re-extraction nets: 457
+[03/01 00:13:47     18] ### Net info: ignored nets: 0
+[03/01 00:13:47     18] ### Net info: skip routing nets: 0
+[03/01 00:13:47     18] #Start reading timing information from file .timing_file_19921.tif.gz ...
+[03/01 00:13:47     18] #Read in timing information for 33 ports, 442 instances from timing file .timing_file_19921.tif.gz.
+[03/01 00:13:47     18] #NanoRoute Version 15.23-s045_1 NR160414-1105/15_23-UB
+[03/01 00:13:47     18] #Start routing data preparation.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M1 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M2 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M1 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M2 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M2 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M3 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M2 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M3 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M3 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M4 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M3 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M4 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M4 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M5 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M4 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M5 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M5 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M6 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M5 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M6 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M6 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M7 is not specified for width 0.400.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M6 is not specified for width 0.070.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M7 is not specified for width 0.400.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M7 is not specified for width 0.400.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M8 is not specified for width 0.400.
+[03/01 00:13:47     18] #WARNING (NRDB-2077) The below via enclosure for LAYER M7 is not specified for width 0.400.
+[03/01 00:13:47     18] #WARNING (NRDB-2078) The above via enclosure for LAYER M8 is not specified for width 0.400.
+[03/01 00:13:47     18] #Minimum voltage of a net in the design = 0.000.
+[03/01 00:13:47     18] #Maximum voltage of a net in the design = 0.700.
+[03/01 00:13:47     18] #Voltage range [0.000 - 0.000] has 2 nets.
+[03/01 00:13:47     18] #Voltage range [0.000 - 0.700] has 458 nets.
+[03/01 00:13:47     18] #Voltage range [0.700 - 0.700] has 1 net.
+[03/01 00:13:47     18] # M1           H   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+[03/01 00:13:47     18] # M2           V   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+[03/01 00:13:47     18] # M3           H   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+[03/01 00:13:47     18] # M4           V   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+[03/01 00:13:47     18] # M5           H   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+[03/01 00:13:47     18] # M6           V   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+[03/01 00:13:47     18] # M7           H   Track-Pitch = 0.840    Line-2-Via Pitch = 0.800
+[03/01 00:13:47     18] # M8           V   Track-Pitch = 0.840    Line-2-Via Pitch = 0.800
+[03/01 00:13:47     18] #Regenerating Ggrids automatically.
+[03/01 00:13:47     18] #Auto generating G-grids with size=15 tracks, using layer M2's pitch = 0.140.
+[03/01 00:13:47     18] #Using automatically generated G-grids.
+[03/01 00:13:47     18] #Done routing data preparation.
+[03/01 00:13:47     18] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 673.37 (MB), peak = 696.55 (MB)
+[03/01 00:13:47     18] #Merging special wires...
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 41.770 14.540 ) on M1 for NET FE_DBTN0_i_tx_phy_state_1_. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 37.495 15.750 ) on M1 for NET FE_DBTN0_i_tx_phy_state_1_. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 39.755 17.060 ) on M1 for NET FE_DBTN0_i_tx_phy_state_1_. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 43.395 17.060 ) on M1 for NET FE_DBTN0_i_tx_phy_state_1_. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 26.355 37.175 ) on M1 for NET FE_OFN1_fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 37.010 17.060 ) on M1 for NET FE_OFN1_fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 24.365 34.700 ) on M1 for NET FE_OFN1_fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 18.890 22.055 ) on M1 for NET FE_OFN1_fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 23.275 19.530 ) on M1 for NET LineState_o[0]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 24.420 18.265 ) on M1 for NET LineState_o[0]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 23.610 19.580 ) on M1 for NET LineState_o[1]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN c at ( 24.760 18.220 ) on M1 for NET LineState_o[1]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN c at ( 19.580 22.100 ) on M1 for NET RxActive_o. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 24.885 33.385 ) on M1 for NET fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN d at ( 36.985 15.745 ) on M1 for NET fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 25.795 19.535 ) on M1 for NET fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 22.135 33.385 ) on M1 for NET fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN o at ( 12.515 28.345 ) on M1 for NET i_rx_phy_N20. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 22.135 38.425 ) on M1 for NET i_rx_phy_bit_cnt[1]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 23.535 38.425 ) on M1 for NET i_rx_phy_bit_cnt[2]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+[03/01 00:13:47     18] #WARNING (EMS-27) Message (NRDB-1005) has exceeded the current message display limit of 20.
+[03/01 00:13:47     18] #To increase the message display limit, refer to the product command reference manual.
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Connectivity extraction summary:
+[03/01 00:13:47     18] #457 routed nets are extracted.
+[03/01 00:13:47     18] #    135 (29.28%) extracted nets are partially routed.
+[03/01 00:13:47     18] #4 nets are fixed|skipped|trivial (not extracted).
+[03/01 00:13:47     18] #Total number of nets = 461.
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Number of eco nets is 135
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Start data preparation...
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Data preparation is done on Fri Mar  1 00:13:47 2019
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Analyzing routing resource...
+[03/01 00:13:47     18] #Routing resource analysis is done on Fri Mar  1 00:13:47 2019
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #  Resource Analysis:
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #               Routing  #Avail      #Track     #Total     %Gcell
+[03/01 00:13:47     18] #  Layer      Direction   Track     Blocked      Gcell    Blocked
+[03/01 00:13:47     18] #  --------------------------------------------------------------
+[03/01 00:13:47     18] #  Metal 1        H         395           0         702     0.00%
+[03/01 00:13:47     18] #  Metal 2        V         404           0         702     0.00%
+[03/01 00:13:47     18] #  Metal 3        H         395           0         702     0.00%
+[03/01 00:13:47     18] #  Metal 4        V         404           0         702     0.00%
+[03/01 00:13:47     18] #  Metal 5        H         395           0         702     0.00%
+[03/01 00:13:47     18] #  Metal 6        V         404           0         702     0.00%
+[03/01 00:13:47     18] #  Metal 7        H          65           0         702     0.00%
+[03/01 00:13:47     18] #  Metal 8        V          66           0         702     0.00%
+[03/01 00:13:47     18] #  --------------------------------------------------------------
+[03/01 00:13:47     18] #  Total                   2528       0.00%  5616     0.00%
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 674.51 (MB), peak = 696.55 (MB)
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #start global routing iteration 1...
+[03/01 00:13:47     18] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 676.72 (MB), peak = 696.55 (MB)
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #start global routing iteration 2...
+[03/01 00:13:47     18] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 676.25 (MB), peak = 696.55 (MB)
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Total number of trivial nets (e.g. < 2 pins) = 4 (skipped).
+[03/01 00:13:47     18] #Total number of routable nets = 457.
+[03/01 00:13:47     18] #Total number of nets in the design = 461.
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #135 routable nets have only global wires.
+[03/01 00:13:47     18] #322 routable nets have only detail routed wires.
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Routed nets constraints summary:
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #        Rules   Unconstrained  
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #      Default             135  
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #        Total             135  
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Routing constraints summary of the whole design:
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #        Rules   Unconstrained  
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #      Default             457  
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #        Total             457  
+[03/01 00:13:47     18] #-----------------------------
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #  Congestion Analysis: (blocked Gcells are excluded)
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #                 OverCon          
+[03/01 00:13:47     18] #                  #Gcell    %Gcell
+[03/01 00:13:47     18] #     Layer           (1)   OverCon
+[03/01 00:13:47     18] #  --------------------------------
+[03/01 00:13:47     18] #   Metal 1      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #   Metal 2      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #   Metal 3      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #   Metal 4      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #   Metal 5      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #   Metal 6      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #   Metal 7      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #   Metal 8      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #  --------------------------------
+[03/01 00:13:47     18] #     Total      0(0.00%)   (0.00%)
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #  The worst congested Gcell overcon (routing demand over resource in number of tracks) = 1
+[03/01 00:13:47     18] #  Overflow after GR: 0.00% H + 0.00% V
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Complete Global Routing.
+[03/01 00:13:47     18] #Total wire length = 3020 um.
+[03/01 00:13:47     18] #Total half perimeter of net bounding box = 2817 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M1 = 842 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M2 = 1371 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M3 = 727 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M4 = 63 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M5 = 17 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M6 = 0 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M7 = 0 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M8 = 0 um.
+[03/01 00:13:47     18] #Total number of vias = 1422
+[03/01 00:13:47     18] #Total number of multi-cut vias = 1353 ( 95.1%)
+[03/01 00:13:47     18] #Total number of single cut vias = 69 (  4.9%)
+[03/01 00:13:47     18] #Up-Via Summary (total 1422):
+[03/01 00:13:47     18] #                   single-cut          multi-cut      Total
+[03/01 00:13:47     18] #-----------------------------------------------------------
+[03/01 00:13:47     18] #  Metal 1          45 (  4.3%)       994 ( 95.7%)       1039
+[03/01 00:13:47     18] #  Metal 2          24 (  6.6%)       339 ( 93.4%)        363
+[03/01 00:13:47     18] #  Metal 3           0 (  0.0%)        16 (100.0%)         16
+[03/01 00:13:47     18] #  Metal 4           0 (  0.0%)         4 (100.0%)          4
+[03/01 00:13:47     18] #-----------------------------------------------------------
+[03/01 00:13:47     18] #                   69 (  4.9%)      1353 ( 95.1%)       1422 
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Max overcon = 0 track.
+[03/01 00:13:47     18] #Total overcon = 0.00%.
+[03/01 00:13:47     18] #Worst layer Gcell overcon rate = 0.00%.
+[03/01 00:13:47     18] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 676.31 (MB), peak = 696.55 (MB)
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 675.76 (MB), peak = 696.55 (MB)
+[03/01 00:13:47     18] #Start Track Assignment.
+[03/01 00:13:47     18] #Done with 14 horizontal wires in 1 hboxes and 8 vertical wires in 1 hboxes.
+[03/01 00:13:47     18] #Done with 0 horizontal wires in 1 hboxes and 0 vertical wires in 1 hboxes.
+[03/01 00:13:47     18] #Complete Track Assignment.
+[03/01 00:13:47     18] #Total wire length = 3034 um.
+[03/01 00:13:47     18] #Total half perimeter of net bounding box = 2817 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M1 = 846 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M2 = 1376 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M3 = 732 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M4 = 63 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M5 = 17 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M6 = 0 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M7 = 0 um.
+[03/01 00:13:47     18] #Total wire length on LAYER M8 = 0 um.
+[03/01 00:13:47     18] #Total number of vias = 1418
+[03/01 00:13:47     18] #Total number of multi-cut vias = 1353 ( 95.4%)
+[03/01 00:13:47     18] #Total number of single cut vias = 65 (  4.6%)
+[03/01 00:13:47     18] #Up-Via Summary (total 1418):
+[03/01 00:13:47     18] #                   single-cut          multi-cut      Total
+[03/01 00:13:47     18] #-----------------------------------------------------------
+[03/01 00:13:47     18] #  Metal 1          44 (  4.2%)       994 ( 95.8%)       1038
+[03/01 00:13:47     18] #  Metal 2          21 (  5.8%)       339 ( 94.2%)        360
+[03/01 00:13:47     18] #  Metal 3           0 (  0.0%)        16 (100.0%)         16
+[03/01 00:13:47     18] #  Metal 4           0 (  0.0%)         4 (100.0%)          4
+[03/01 00:13:47     18] #-----------------------------------------------------------
+[03/01 00:13:47     18] #                   65 (  4.6%)      1353 ( 95.4%)       1418 
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 677.44 (MB), peak = 696.55 (MB)
+[03/01 00:13:47     18] #
+[03/01 00:13:47     18] #Cpu time = 00:00:00
+[03/01 00:13:47     18] #Elapsed time = 00:00:00
+[03/01 00:13:47     18] #Increased memory = 16.10 (MB)
+[03/01 00:13:47     18] #Total memory = 677.44 (MB)
+[03/01 00:13:47     18] #Peak memory = 696.55 (MB)
+[03/01 00:13:49     20] #routeSiEffort set to high
+[03/01 00:13:49     20] #
+[03/01 00:13:49     20] #Start Detail Routing..
+[03/01 00:13:49     20] #start initial detail routing ...
+[03/01 00:13:51     22] #    number of violations = 14
+[03/01 00:13:51     22] #
+[03/01 00:13:51     22] #    By Layer and Type :
+[03/01 00:13:51     22] #	         MetSpc   Totals
+[03/01 00:13:51     22] #	M1           14       14
+[03/01 00:13:51     22] #	Totals       14       14
+[03/01 00:13:51     22] #77 out of 442 instances need to be verified(marked ipoed).
+[03/01 00:13:51     22] #34.9% of the total area is being checked for drcs
+[03/01 00:13:51     22] #34.9% of the total area was checked
+[03/01 00:13:51     22] #    number of violations = 14
+[03/01 00:13:51     22] #
+[03/01 00:13:51     22] #    By Layer and Type :
+[03/01 00:13:51     22] #	         MetSpc   Totals
+[03/01 00:13:51     22] #	M1           14       14
+[03/01 00:13:51     22] #	Totals       14       14
+[03/01 00:13:51     22] #cpu time = 00:00:02, elapsed time = 00:00:02, memory = 741.07 (MB), peak = 741.07 (MB)
+[03/01 00:13:51     22] #start 1st optimization iteration ...
+[03/01 00:13:52     22] #    number of violations = 6
+[03/01 00:13:52     22] #
+[03/01 00:13:52     22] #    By Layer and Type :
+[03/01 00:13:52     22] #	         MetSpc   Totals
+[03/01 00:13:52     22] #	M1            6        6
+[03/01 00:13:52     22] #	Totals        6        6
+[03/01 00:13:52     22] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 740.70 (MB), peak = 741.12 (MB)
+[03/01 00:13:52     22] #start 2nd optimization iteration ...
+[03/01 00:13:52     23] #    number of violations = 7
+[03/01 00:13:52     23] #
+[03/01 00:13:52     23] #    By Layer and Type :
+[03/01 00:13:52     23] #	         MetSpc   Totals
+[03/01 00:13:52     23] #	M1            7        7
+[03/01 00:13:52     23] #	Totals        7        7
+[03/01 00:13:52     23] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 740.42 (MB), peak = 741.12 (MB)
+[03/01 00:13:52     23] #start 3rd optimization iteration ...
+[03/01 00:13:52     23] #    number of violations = 3
+[03/01 00:13:52     23] #
+[03/01 00:13:52     23] #    By Layer and Type :
+[03/01 00:13:52     23] #	         MetSpc   Totals
+[03/01 00:13:52     23] #	M1            3        3
+[03/01 00:13:52     23] #	Totals        3        3
+[03/01 00:13:52     23] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 740.26 (MB), peak = 741.12 (MB)
+[03/01 00:13:52     23] #start 4th optimization iteration ...
+[03/01 00:13:52     23] #    number of violations = 5
+[03/01 00:13:52     23] #
+[03/01 00:13:52     23] #    By Layer and Type :
+[03/01 00:13:52     23] #	         MetSpc   Totals
+[03/01 00:13:52     23] #	M1            5        5
+[03/01 00:13:52     23] #	Totals        5        5
+[03/01 00:13:52     23] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 740.09 (MB), peak = 741.12 (MB)
+[03/01 00:13:52     23] #start 5th optimization iteration ...
+[03/01 00:13:52     23] #    number of violations = 5
+[03/01 00:13:52     23] #
+[03/01 00:13:52     23] #    By Layer and Type :
+[03/01 00:13:52     23] #	         MetSpc   Totals
+[03/01 00:13:52     23] #	M1            5        5
+[03/01 00:13:52     23] #	Totals        5        5
+[03/01 00:13:52     23] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 739.91 (MB), peak = 741.12 (MB)
+[03/01 00:13:52     23] #start 6th optimization iteration ...
+[03/01 00:13:52     23] #    number of violations = 6
+[03/01 00:13:52     23] #
+[03/01 00:13:52     23] #    By Layer and Type :
+[03/01 00:13:52     23] #	         MetSpc   Totals
+[03/01 00:13:52     23] #	M1            6        6
+[03/01 00:13:52     23] #	Totals        6        6
+[03/01 00:13:52     23] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 704.51 (MB), peak = 741.12 (MB)
+[03/01 00:13:52     23] #start 7th optimization iteration ...
+[03/01 00:13:53     23] #    number of violations = 4
+[03/01 00:13:53     23] #
+[03/01 00:13:53     23] #    By Layer and Type :
+[03/01 00:13:53     23] #	         MetSpc   Totals
+[03/01 00:13:53     23] #	M1            4        4
+[03/01 00:13:53     23] #	Totals        4        4
+[03/01 00:13:53     23] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 714.00 (MB), peak = 741.12 (MB)
+[03/01 00:13:53     23] #start 8th optimization iteration ...
+[03/01 00:13:53     23] #    number of violations = 4
+[03/01 00:13:53     23] #
+[03/01 00:13:53     23] #    By Layer and Type :
+[03/01 00:13:53     23] #	         MetSpc   Totals
+[03/01 00:13:53     23] #	M1            4        4
+[03/01 00:13:53     23] #	Totals        4        4
+[03/01 00:13:53     23] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 714.00 (MB), peak = 741.12 (MB)
+[03/01 00:13:53     23] #start 9th optimization iteration ...
+[03/01 00:13:53     24] #    number of violations = 3
+[03/01 00:13:53     24] #
+[03/01 00:13:53     24] #    By Layer and Type :
+[03/01 00:13:53     24] #	         MetSpc   Totals
+[03/01 00:13:53     24] #	M1            3        3
+[03/01 00:13:53     24] #	Totals        3        3
+[03/01 00:13:53     24] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 714.00 (MB), peak = 741.12 (MB)
+[03/01 00:13:53     24] #start 10th optimization iteration ...
+[03/01 00:13:53     24] #    number of violations = 4
+[03/01 00:13:53     24] #
+[03/01 00:13:53     24] #    By Layer and Type :
+[03/01 00:13:53     24] #	         MetSpc   Totals
+[03/01 00:13:53     24] #	M1            4        4
+[03/01 00:13:53     24] #	Totals        4        4
+[03/01 00:13:53     24] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 714.00 (MB), peak = 741.12 (MB)
+[03/01 00:13:53     24] #start 11th optimization iteration ...
+[03/01 00:13:53     24] #    number of violations = 3
+[03/01 00:13:53     24] #
+[03/01 00:13:53     24] #    By Layer and Type :
+[03/01 00:13:53     24] #	         MetSpc   Totals
+[03/01 00:13:53     24] #	M1            3        3
+[03/01 00:13:53     24] #	Totals        3        3
+[03/01 00:13:53     24] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 731.09 (MB), peak = 741.12 (MB)
+[03/01 00:13:53     24] #start 12th optimization iteration ...
+[03/01 00:13:54     24] #    number of violations = 4
+[03/01 00:13:54     24] #
+[03/01 00:13:54     24] #    By Layer and Type :
+[03/01 00:13:54     24] #	         MetSpc   Totals
+[03/01 00:13:54     24] #	M1            4        4
+[03/01 00:13:54     24] #	Totals        4        4
+[03/01 00:13:54     24] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 732.71 (MB), peak = 741.12 (MB)
+[03/01 00:13:54     24] #Complete Detail Routing.
+[03/01 00:13:54     24] #Total wire length = 3055 um.
+[03/01 00:13:54     24] #Total half perimeter of net bounding box = 2817 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M1 = 924 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M2 = 1344 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M3 = 676 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M4 = 94 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M5 = 17 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M6 = 0 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M7 = 0 um.
+[03/01 00:13:54     24] #Total wire length on LAYER M8 = 0 um.
+[03/01 00:13:54     24] #Total number of vias = 1422
+[03/01 00:13:54     24] #Total number of multi-cut vias = 810 ( 57.0%)
+[03/01 00:13:54     24] #Total number of single cut vias = 612 ( 43.0%)
+[03/01 00:13:54     24] #Up-Via Summary (total 1422):
+[03/01 00:13:54     24] #                   single-cut          multi-cut      Total
+[03/01 00:13:54     24] #-----------------------------------------------------------
+[03/01 00:13:54     24] #  Metal 1         423 ( 40.1%)       632 ( 59.9%)       1055
+[03/01 00:13:54     24] #  Metal 2         178 ( 52.4%)       162 ( 47.6%)        340
+[03/01 00:13:54     24] #  Metal 3          11 ( 47.8%)        12 ( 52.2%)         23
+[03/01 00:13:54     24] #  Metal 4           0 (  0.0%)         4 (100.0%)          4
+[03/01 00:13:54     24] #-----------------------------------------------------------
+[03/01 00:13:54     24] #                  612 ( 43.0%)       810 ( 57.0%)       1422 
+[03/01 00:13:54     24] #
+[03/01 00:13:54     24] #Total number of DRC violations = 4
+[03/01 00:13:54     24] #Total number of violations on LAYER M1 = 4
+[03/01 00:13:54     24] #Total number of violations on LAYER M2 = 0
+[03/01 00:13:54     24] #Total number of violations on LAYER M3 = 0
+[03/01 00:13:54     24] #Total number of violations on LAYER M4 = 0
+[03/01 00:13:54     24] #Total number of violations on LAYER M5 = 0
+[03/01 00:13:54     24] #Total number of violations on LAYER M6 = 0
+[03/01 00:13:54     24] #Total number of violations on LAYER M7 = 0
+[03/01 00:13:54     24] #Total number of violations on LAYER M8 = 0
+[03/01 00:13:54     24] #Cpu time = 00:00:06
+[03/01 00:13:54     24] #Elapsed time = 00:00:06
+[03/01 00:13:54     24] #Increased memory = 5.67 (MB)
+[03/01 00:13:54     24] #Total memory = 683.12 (MB)
+[03/01 00:13:54     24] #Peak memory = 741.12 (MB)
+[03/01 00:13:54     24] #
+[03/01 00:13:54     24] #Start Post Routing Optimization.
+[03/01 00:13:54     24] #start 1st post routing optimization iteration ...
+[03/01 00:13:55     26] #    number of DRC violations = 4
+[03/01 00:13:55     26] #
+[03/01 00:13:55     26] #    By Layer and Type :
+[03/01 00:13:55     26] #	         MetSpc   Totals
+[03/01 00:13:55     26] #	M1            4        4
+[03/01 00:13:55     26] #	Totals        4        4
+[03/01 00:13:55     26] #cpu time = 00:00:02, elapsed time = 00:00:02, memory = 684.70 (MB), peak = 741.12 (MB)
+[03/01 00:13:55     26] #Complete Post Routing Optimization.
+[03/01 00:13:55     26] #Cpu time = 00:00:02
+[03/01 00:13:55     26] #Elapsed time = 00:00:02
+[03/01 00:13:55     26] #Increased memory = 1.58 (MB)
+[03/01 00:13:55     26] #Total memory = 684.70 (MB)
+[03/01 00:13:55     26] #Peak memory = 741.12 (MB)
+[03/01 00:13:55     26] #Total wire length = 3055 um.
+[03/01 00:13:55     26] #Total half perimeter of net bounding box = 2817 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M1 = 924 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M2 = 1344 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M3 = 676 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M4 = 94 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M5 = 17 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M6 = 0 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M7 = 0 um.
+[03/01 00:13:55     26] #Total wire length on LAYER M8 = 0 um.
+[03/01 00:13:55     26] #Total number of vias = 1422
+[03/01 00:13:55     26] #Total number of multi-cut vias = 810 ( 57.0%)
+[03/01 00:13:55     26] #Total number of single cut vias = 612 ( 43.0%)
+[03/01 00:13:55     26] #Up-Via Summary (total 1422):
+[03/01 00:13:55     26] #                   single-cut          multi-cut      Total
+[03/01 00:13:55     26] #-----------------------------------------------------------
+[03/01 00:13:55     26] #  Metal 1         423 ( 40.1%)       632 ( 59.9%)       1055
+[03/01 00:13:55     26] #  Metal 2         178 ( 52.4%)       162 ( 47.6%)        340
+[03/01 00:13:55     26] #  Metal 3          11 ( 47.8%)        12 ( 52.2%)         23
+[03/01 00:13:55     26] #  Metal 4           0 (  0.0%)         4 (100.0%)          4
+[03/01 00:13:55     26] #-----------------------------------------------------------
+[03/01 00:13:55     26] #                  612 ( 43.0%)       810 ( 57.0%)       1422 
+[03/01 00:13:55     26] #
+[03/01 00:13:55     26] #Total number of DRC violations = 4
+[03/01 00:13:55     26] #Total number of violations on LAYER M1 = 4
+[03/01 00:13:55     26] #Total number of violations on LAYER M2 = 0
+[03/01 00:13:55     26] #Total number of violations on LAYER M3 = 0
+[03/01 00:13:55     26] #Total number of violations on LAYER M4 = 0
+[03/01 00:13:55     26] #Total number of violations on LAYER M5 = 0
+[03/01 00:13:55     26] #Total number of violations on LAYER M6 = 0
+[03/01 00:13:55     26] #Total number of violations on LAYER M7 = 0
+[03/01 00:13:55     26] #Total number of violations on LAYER M8 = 0
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #Start Post Route wire spreading..
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #Start data preparation for wire spreading...
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #Data preparation is done on Fri Mar  1 00:13:57 2019
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 683.98 (MB), peak = 741.12 (MB)
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #Start Post Route Wire Spread.
+[03/01 00:13:57     28] #Done with 16 horizontal wires in 1 hboxes and 45 vertical wires in 1 hboxes.
+[03/01 00:13:57     28] #Complete Post Route Wire Spread.
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #Total wire length = 3068 um.
+[03/01 00:13:57     28] #Total half perimeter of net bounding box = 2817 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M1 = 924 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M2 = 1353 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M3 = 679 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M4 = 94 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M5 = 17 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M6 = 0 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M7 = 0 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M8 = 0 um.
+[03/01 00:13:57     28] #Total number of vias = 1422
+[03/01 00:13:57     28] #Total number of multi-cut vias = 810 ( 57.0%)
+[03/01 00:13:57     28] #Total number of single cut vias = 612 ( 43.0%)
+[03/01 00:13:57     28] #Up-Via Summary (total 1422):
+[03/01 00:13:57     28] #                   single-cut          multi-cut      Total
+[03/01 00:13:57     28] #-----------------------------------------------------------
+[03/01 00:13:57     28] #  Metal 1         423 ( 40.1%)       632 ( 59.9%)       1055
+[03/01 00:13:57     28] #  Metal 2         178 ( 52.4%)       162 ( 47.6%)        340
+[03/01 00:13:57     28] #  Metal 3          11 ( 47.8%)        12 ( 52.2%)         23
+[03/01 00:13:57     28] #  Metal 4           0 (  0.0%)         4 (100.0%)          4
+[03/01 00:13:57     28] #-----------------------------------------------------------
+[03/01 00:13:57     28] #                  612 ( 43.0%)       810 ( 57.0%)       1422 
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 684.32 (MB), peak = 741.12 (MB)
+[03/01 00:13:57     28] #
+[03/01 00:13:57     28] #Post Route wire spread is done.
+[03/01 00:13:57     28] #Total wire length = 3068 um.
+[03/01 00:13:57     28] #Total half perimeter of net bounding box = 2817 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M1 = 924 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M2 = 1353 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M3 = 679 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M4 = 94 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M5 = 17 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M6 = 0 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M7 = 0 um.
+[03/01 00:13:57     28] #Total wire length on LAYER M8 = 0 um.
+[03/01 00:13:57     28] #Total number of vias = 1422
+[03/01 00:13:57     28] #Total number of multi-cut vias = 810 ( 57.0%)
+[03/01 00:13:57     28] #Total number of single cut vias = 612 ( 43.0%)
+[03/01 00:13:57     28] #Up-Via Summary (total 1422):
+[03/01 00:13:57     28] #                   single-cut          multi-cut      Total
+[03/01 00:13:57     28] #-----------------------------------------------------------
+[03/01 00:13:57     28] #  Metal 1         423 ( 40.1%)       632 ( 59.9%)       1055
+[03/01 00:13:57     28] #  Metal 2         178 ( 52.4%)       162 ( 47.6%)        340
+[03/01 00:13:57     28] #  Metal 3          11 ( 47.8%)        12 ( 52.2%)         23
+[03/01 00:13:57     28] #  Metal 4           0 (  0.0%)         4 (100.0%)          4
+[03/01 00:13:57     28] #-----------------------------------------------------------
+[03/01 00:13:57     28] #                  612 ( 43.0%)       810 ( 57.0%)       1422 
+[03/01 00:13:57     28] #
+[03/01 00:13:59     30] #
+[03/01 00:13:59     30] #Start DRC checking..
+[03/01 00:13:59     30] #    number of violations = 4
+[03/01 00:13:59     30] #
+[03/01 00:13:59     30] #    By Layer and Type :
+[03/01 00:13:59     30] #	         MetSpc   Totals
+[03/01 00:13:59     30] #	M1            4        4
+[03/01 00:13:59     30] #	Totals        4        4
+[03/01 00:13:59     30] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 710.62 (MB), peak = 741.12 (MB)
+[03/01 00:13:59     30] #CELL_VIEW usb_phy,init has 4 DRC violations
+[03/01 00:13:59     30] #Total number of DRC violations = 4
+[03/01 00:13:59     30] #Total number of violations on LAYER M1 = 4
+[03/01 00:13:59     30] #Total number of violations on LAYER M2 = 0
+[03/01 00:13:59     30] #Total number of violations on LAYER M3 = 0
+[03/01 00:13:59     30] #Total number of violations on LAYER M4 = 0
+[03/01 00:13:59     30] #Total number of violations on LAYER M5 = 0
+[03/01 00:13:59     30] #Total number of violations on LAYER M6 = 0
+[03/01 00:13:59     30] #Total number of violations on LAYER M7 = 0
+[03/01 00:13:59     30] #Total number of violations on LAYER M8 = 0
+[03/01 00:14:01     32] #
+[03/01 00:14:01     32] #Start Post Route via swapping..
+[03/01 00:14:01     32] #    number of violations = 4
+[03/01 00:14:01     32] #
+[03/01 00:14:01     32] #    By Layer and Type :
+[03/01 00:14:01     32] #	         MetSpc   Totals
+[03/01 00:14:01     32] #	M1            4        4
+[03/01 00:14:01     32] #	Totals        4        4
+[03/01 00:14:01     32] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 684.29 (MB), peak = 741.12 (MB)
+[03/01 00:14:01     32] #    number of violations = 4
+[03/01 00:14:01     32] #
+[03/01 00:14:01     32] #    By Layer and Type :
+[03/01 00:14:01     32] #	         MetSpc   Totals
+[03/01 00:14:01     32] #	M1            4        4
+[03/01 00:14:01     32] #	Totals        4        4
+[03/01 00:14:01     32] #cpu time = 00:00:00, elapsed time = 00:00:00, memory = 689.86 (MB), peak = 741.12 (MB)
+[03/01 00:14:01     32] #CELL_VIEW usb_phy,init has 4 DRC violations
+[03/01 00:14:01     32] #Total number of DRC violations = 4
+[03/01 00:14:01     32] #Total number of violations on LAYER M1 = 4
+[03/01 00:14:01     32] #Total number of violations on LAYER M2 = 0
+[03/01 00:14:01     32] #Total number of violations on LAYER M3 = 0
+[03/01 00:14:01     32] #Total number of violations on LAYER M4 = 0
+[03/01 00:14:01     32] #Total number of violations on LAYER M5 = 0
+[03/01 00:14:01     32] #Total number of violations on LAYER M6 = 0
+[03/01 00:14:01     32] #Total number of violations on LAYER M7 = 0
+[03/01 00:14:01     32] #Total number of violations on LAYER M8 = 0
+[03/01 00:14:01     32] #Post Route via swapping is done.
+[03/01 00:14:01     32] #Total wire length = 3068 um.
+[03/01 00:14:01     32] #Total half perimeter of net bounding box = 2817 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M1 = 924 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M2 = 1353 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M3 = 679 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M4 = 94 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M5 = 17 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M6 = 0 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M7 = 0 um.
+[03/01 00:14:01     32] #Total wire length on LAYER M8 = 0 um.
+[03/01 00:14:01     32] #Total number of vias = 1422
+[03/01 00:14:01     32] #Total number of multi-cut vias = 1411 ( 99.2%)
+[03/01 00:14:01     32] #Total number of single cut vias = 11 (  0.8%)
+[03/01 00:14:01     32] #Up-Via Summary (total 1422):
+[03/01 00:14:01     32] #                   single-cut          multi-cut      Total
+[03/01 00:14:01     32] #-----------------------------------------------------------
+[03/01 00:14:01     32] #  Metal 1          11 (  1.0%)      1044 ( 99.0%)       1055
+[03/01 00:14:01     32] #  Metal 2           0 (  0.0%)       340 (100.0%)        340
+[03/01 00:14:01     32] #  Metal 3           0 (  0.0%)        23 (100.0%)         23
+[03/01 00:14:01     32] #  Metal 4           0 (  0.0%)         4 (100.0%)          4
+[03/01 00:14:01     32] #-----------------------------------------------------------
+[03/01 00:14:01     32] #                   11 (  0.8%)      1411 ( 99.2%)       1422 
+[03/01 00:14:01     32] #
+[03/01 00:14:01     32] #detailRoute Statistics:
+[03/01 00:14:01     32] #Cpu time = 00:00:14
+[03/01 00:14:01     32] #Elapsed time = 00:00:14
+[03/01 00:14:01     32] #Increased memory = 6.46 (MB)
+[03/01 00:14:01     32] #Total memory = 683.90 (MB)
+[03/01 00:14:01     32] #Peak memory = 741.12 (MB)
+[03/01 00:14:01     32] #
+[03/01 00:14:01     32] #globalDetailRoute statistics:
+[03/01 00:14:01     32] #Cpu time = 00:00:16
+[03/01 00:14:01     32] #Elapsed time = 00:00:16
+[03/01 00:14:01     32] #Increased memory = -13.86 (MB)
+[03/01 00:14:01     32] #Total memory = 677.18 (MB)
+[03/01 00:14:01     32] #Peak memory = 741.12 (MB)
+[03/01 00:14:01     32] #Number of warnings = 49
+[03/01 00:14:01     32] #Total number of warnings = 49
+[03/01 00:14:01     32] #Number of fails = 0
+[03/01 00:14:01     32] #Total number of fails = 0
+[03/01 00:14:01     32] #Complete globalDetailRoute on Fri Mar  1 00:14:01 2019
+[03/01 00:14:01     32] #
+[03/01 00:14:01     32] #routeDesign: cpu time = 00:00:16, elapsed time = 00:00:16, memory = 677.20 (MB), peak = 741.12 (MB)
+[03/01 00:14:01     32] 
+[03/01 00:14:01     32] *** Summary of all messages that are not suppressed in this session:
+[03/01 00:14:01     32] Severity  ID               Count  Summary                                  
+[03/01 00:14:01     32] WARNING   IMPEXT-3442          1  The version of the capacitance table fil...
+[03/01 00:14:01     32] WARNING   IMPEXT-3493          1  The design extraction status has been re...
+[03/01 00:14:01     32] *** Message Summary: 2 warning(s), 0 error(s)
+[03/01 00:14:01     32] 
+[03/01 00:14:01     32] <CMD> report_timing
+[03/01 00:14:01     32] Starting SI iteration 1 using Infinite Timing Windows
+[03/01 00:14:01     32] #################################################################################
+[03/01 00:14:01     32] # Design Stage: PostRoute
+[03/01 00:14:01     32] # Design Name: usb_phy
+[03/01 00:14:01     32] # Design Mode: 65nm
+[03/01 00:14:01     32] # Analysis Mode: MMMC OCV 
+[03/01 00:14:01     32] # Parasitics Mode: No SPEF/RCDB
+[03/01 00:14:01     32] # Signoff Settings: SI On 
+[03/01 00:14:01     32] #################################################################################
+[03/01 00:14:01     32] **WARN: (IMPEXT-3518):	The lower process node is set (using command 'setDesignMode') but the technology file for TQRC extraction not specified. Therefore, going for postRoute (effortLevel low) extraction instead of recommended extractor 'TQRC' for lower nodes. Use command 'set_analysis_view/update_rc_corner' to specify the technology file for TQRC extraction to take place.
+[03/01 00:14:01     32] Extraction called for design 'usb_phy' of instances=442 and nets=461 using extraction engine 'postRoute' at effort level 'low' .
+[03/01 00:14:01     32] PostRoute (effortLevel low) RC Extraction called for design usb_phy.
+[03/01 00:14:01     32] RC Extraction called in multi-corner(2) mode.
+[03/01 00:14:01     32] **WARN: (IMPEXT-3442):	The version of the capacitance table file being used is obsolete and is no longer recommended. For improved accuracy, generate the capacitance table file using the generateCapTbl command.
+[03/01 00:14:01     32] Process corner(s) are loaded.
+[03/01 00:14:01     32]  Corner: Cmax
+[03/01 00:14:01     32]  Corner: Cmin
+[03/01 00:14:01     32] extractDetailRC Option : -outfile /tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d -maxResLength 200  -extended
+[03/01 00:14:01     32] RC Mode: PostRoute -effortLevel low [Extended CapTable, LEF Resistances]
+[03/01 00:14:01     32]       RC Corner Indexes            0       1   
+[03/01 00:14:01     32] Capacitance Scaling Factor   : 1.00000 1.00000 
+[03/01 00:14:01     32] Coupling Cap. Scaling Factor : 1.00000 1.00000 
+[03/01 00:14:01     32] Resistance Scaling Factor    : 1.00000 1.00000 
+[03/01 00:14:01     32] Clock Cap. Scaling Factor    : 1.00000 1.00000 
+[03/01 00:14:01     32] Clock Res. Scaling Factor    : 1.00000 1.00000 
+[03/01 00:14:01     32] Shrink Factor                : 1.00000
+[03/01 00:14:01     32] Initializing multi-corner capacitance tables ... 
+[03/01 00:14:02     32] Initializing multi-corner resistance tables ...
+[03/01 00:14:02     32] Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 821.1M)
+[03/01 00:14:02     32] Creating parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for storing RC.
+[03/01 00:14:02     32] Extracted 10.0493% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 20.037% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 30.0555% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 40.0432% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 50.0617% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 60.0493% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 70.037% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 80.0555% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 90.0432% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Extracted 100% (CPU Time= 0:00:00.1  MEM= 883.1M)
+[03/01 00:14:02     32] Number of Extracted Resistors     : 4807
+[03/01 00:14:02     32] Number of Extracted Ground Cap.   : 5124
+[03/01 00:14:02     32] Number of Extracted Coupling Cap. : 5144
+[03/01 00:14:02     32] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:14:02     32] Filtering XCap in 'relativeAndCoupling' mode using values coupling_c_threshold=0.1fF, relative_c_threshold=1, and total_c_threshold=0fF.
+[03/01 00:14:02     32]  Corner: Cmax
+[03/01 00:14:02     32]  Corner: Cmin
+[03/01 00:14:02     32] Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 857.1M)
+[03/01 00:14:02     32] Creating parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb_Filter.rcdb.d' for storing RC.
+[03/01 00:14:02     32] Closing parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d'. 457 times net's RC data read were performed.
+[03/01 00:14:02     32] Lumped Parasitic Loading Started (total cpu=0:00:00.0, real=0:00:00.0, current mem=865.105M)
+[03/01 00:14:02     32] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:14:02     32] Lumped Parasitic Loading Completed (total cpu=0:00:00.0, real=0:00:00.0, current mem=865.105M)
+[03/01 00:14:02     32] PostRoute (effortLevel low) RC Extraction DONE (CPU Time: 0:00:00.2  Real Time: 0:00:01.0  MEM: 865.105M)
+[03/01 00:14:02     32] Setting infinite Tws ...
+[03/01 00:14:02     32] First Iteration Infinite Tw... 
+[03/01 00:14:02     32] Calculate early delays in OCV mode...
+[03/01 00:14:02     32] Calculate late delays in OCV mode...
+[03/01 00:14:02     32] Topological Sorting (CPU = 0:00:00.0, MEM = 865.1M, InitMEM = 865.1M)
+[03/01 00:14:02     32] Initializing multi-corner capacitance tables ... 
+[03/01 00:14:03     33] Initializing multi-corner resistance tables ...
+[03/01 00:14:03     33] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:14:03     33] RC Database In Completed (CPU Time= 0:00:00.0  Real Time=0:00:00.0  MEM= 881.3M)
+[03/01 00:14:03     33] AAE_INFO-618: Total number of nets in the design is 461,  100.0 percent of the nets selected for SI analysis
+[03/01 00:14:03     33] End Timing Check Calculation. (CPU Time=0:00:00.0, Real Time=0:00:00.0)
+[03/01 00:14:03     33] End delay calculation. (MEM=918.023 CPU=0:00:00.2 REAL=0:00:00.0)
+[03/01 00:14:03     33] Save waveform /tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/.AAE_eFztUR/.AAE_19921/waveform.data...
+[03/01 00:14:03     33] *** CDM Built up (cpu=0:00:01.2  real=0:00:02.0  mem= 918.0M) ***
+[03/01 00:14:03     33] Loading CTE timing window...(CPU = 0:00:00.0, REAL = 0:00:00.0, MEM = 918.0M)
+[03/01 00:14:03     33] Add other clocks and setupCteToAAEClockMapping during iter 1
+[03/01 00:14:03     33] Loading CTE timing window is completed (CPU = 0:00:00.0, REAL = 0:00:00.0, MEM = 918.0M)
+[03/01 00:14:03     33] Starting SI iteration 2
+[03/01 00:14:03     34] Calculate early delays in OCV mode...
+[03/01 00:14:03     34] Calculate late delays in OCV mode...
+[03/01 00:14:03     34] AAE_INFO-618: Total number of nets in the design is 461,  1.7 percent of the nets selected for SI analysis
+[03/01 00:14:03     34] End delay calculation. (MEM=926.07 CPU=0:00:00.0 REAL=0:00:00.0)
+[03/01 00:14:03     34] *** CDM Built up (cpu=0:00:00.1  real=0:00:00.0  mem= 926.1M) ***
+[03/01 00:14:03     34] <CMD> saveNetlist usb_phy_eco.v
+[03/01 00:14:03     34] Writing Netlist "usb_phy_eco.v" ...
+[03/01 00:14:03     34] <CMD> rcOut -excNetFile excNet.rpt -spef usb_phy_eco.spef
+[03/01 00:14:03     34] Opening parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d' for reading.
+[03/01 00:14:03     34] Dumping Spef file.....
+[03/01 00:14:03     34] RC Out has the following PVT Info:
+[03/01 00:14:03     34]    RC:Cmax
+[03/01 00:14:03     34] Printing D_NET...
+[03/01 00:14:03     34] RC Out from RCDB Completed (CPU Time= 0:00:00.0  MEM= 926.1M)
+[03/01 00:14:03     34] Closing parasitic data file '/tmp/innovus_temp_19921_ieng6-ece-13.ucsd.edu_teaves_otqtnn/usb_phy_19921_RHB0wV.rcdb.d'. 457 times net's RC data read were performed.
+[03/01 00:14:03     34] <CMD> defOut -routing usb_phy_eco.def
+[03/01 00:14:03     34] Writing DEF file 'usb_phy_eco.def', current time is Fri Mar  1 00:14:03 2019 ...
+[03/01 00:14:03     34] unitPerMicron=2000, dbgMicronPerDBU=0.000500, unitPerDBU=1.000000
+[03/01 00:14:03     34] DEF file 'usb_phy_eco.def' is written, current time is Fri Mar  1 00:14:03 2019 ...
+[03/01 00:14:03     34] 
+[03/01 00:14:03     34] *** Memory Usage v#1 (Current mem = 854.359M, initial mem = 151.930M) ***
+[03/01 00:14:03     34] 
+[03/01 00:14:03     34] *** Summary of all messages that are not suppressed in this session:
+[03/01 00:14:03     34] Severity  ID               Count  Summary                                  
+[03/01 00:14:03     34] WARNING   IMPFP-3961           2  The techSite '%s' has no related cells i...
+[03/01 00:14:03     34] WARNING   IMPTS-403            1  Delay calculation was forced to extrapol...
+[03/01 00:14:03     34] WARNING   IMPEXT-2710          2  Basic Cap table for layer M%d is ignored...
+[03/01 00:14:03     34] WARNING   IMPEXT-2760          2  Layer M%d specified in the cap table is ...
+[03/01 00:14:03     34] WARNING   IMPEXT-2771          2  Via %s specified in the cap table is ign...
+[03/01 00:14:03     34] WARNING   IMPEXT-2801          2  Resistance values are not provided in th...
+[03/01 00:14:03     34] WARNING   IMPEXT-3442          3  The version of the capacitance table fil...
+[03/01 00:14:03     34] WARNING   IMPEXT-3493          1  The design extraction status has been re...
+[03/01 00:14:03     34] WARNING   IMPEXT-3518          2  The lower process node is set (using com...
+[03/01 00:14:03     34] ERROR     IMPSYT-6693          1  Error message: %s: %s.                   
+[03/01 00:14:03     34] ERROR     IMPSYT-7114          1  Invalid return code while executing comm...
+[03/01 00:14:03     34] WARNING   IMPOPT-6103          1  Timing updates for ECO operations done n...
+[03/01 00:14:03     34] WARNING   IMPOPT-6115          1  ECO batchmode has been activated. Set se...
+[03/01 00:14:03     34] ERROR     IMPTCM-46            1  Argument "%s" is required for command "%...
+[03/01 00:14:03     34] *** Message Summary: 19 warning(s), 3 error(s)
+[03/01 00:14:03     34] 
+[03/01 00:14:03     34] --- Ending "Innovus" (totcpu=0:00:34.2, real=0:00:36.0, mem=854.4M) ---

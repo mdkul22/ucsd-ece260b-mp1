@@ -1,0 +1,14 @@
+[03/01 00:11:18      0] 
+[03/01 00:11:18      0] Cadence Innovus(TM) Implementation System.
+[03/01 00:11:18      0] Copyright 2015 Cadence Design Systems, Inc. All rights reserved worldwide.
+[03/01 00:11:18      0] 
+[03/01 00:11:18      0] Version:	v15.23-s045_1, built Fri Apr 22 12:32:52 PDT 2016
+[03/01 00:11:18      0] Options:	-batch -execute source -files run_eco.tcl 
+[03/01 00:11:18      0] Date:		Fri Mar  1 00:11:18 2019
+[03/01 00:11:18      0] Host:		ieng6-ece-13.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 0 @ 2.00GHz 20480KB)
+[03/01 00:11:18      0] OS:		CentOS release 6.10 (Final)
+[03/01 00:11:18      0] 
+[03/01 00:11:18      0] License:
+[03/01 00:11:18      0] 		invs	Innovus Implementation System	15.2	checkout succeeded
+[03/01 00:11:18      0] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[03/01 00:11:18      0] **WARN: (IMPSYT-1507):	The display is invalid and will start in no window mode
