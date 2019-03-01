@@ -1,0 +1,930 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2015 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v15.23-s045_1, built Fri Apr 22 12:32:52 PDT 2016
+Options:	-batch -execute source -files run_eco.tcl 
+Date:		Thu Feb 28 21:41:14 2019
+Host:		ieng6-ece-13.ucsd.edu (x86_64 w/Linux 2.6.32-696.30.1.el6.x86_64) (4cores*8cpus*Intel(R) Xeon(R) CPU E5-2650 0 @ 2.00GHz 20480KB)
+OS:		CentOS release 6.10 (Final)
+
+License:
+		invs	Innovus Implementation System	15.2	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+**WARN: (IMPSYT-1507):	The display is invalid and will start in no window mode
+
+**INFO:  MMMC transition support version v31-84 
+
+<CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+<CMD> suppressMessage ENCEXT-2799
+Executing cmd 'source' ...
+
+Usage: source [-help] <file_name> [-quiet  | -verbose ]
+
+**ERROR: (IMPTCM-46):	Argument "file_name" is required for command "source", either this option is not specified or an option prior to it is not specified correctly.
+**ERROR: (IMPSYT-7114):	Invalid return code while executing command 'source'. Review the following error in command 'source' then restart.
+**ERROR: (IMPSYT-6693):	Error message: source:   .
+Sourcing file "run_eco.tcl" ...
+<CMD> set init_pwr_net VDD
+<CMD> set init_gnd_net VSS
+<CMD> set init_verilog ./usb_phy.v
+<CMD> set init_design_netlisttype Verilog
+<CMD> set init_design_settop 1
+<CMD> set init_top_cell usb_phy
+<CMD> set init_lef_file /home/linux/ieng6/ee260b/public/data/libraries/techfiles/contest.lef
+<CMD> create_library_set -name WC_LIB -timing $libworst
+<CMD> create_library_set -name BC_LIB -timing $libworst
+<CMD> create_rc_corner -name Cmax -cap_table $captblworst -T 125
+<CMD> create_rc_corner -name Cmin -cap_table $captblworst -T -40
+<CMD> create_delay_corner -name WC -library_set WC_LIB -rc_corner Cmax
+<CMD> create_delay_corner -name BC -library_set BC_LIB -rc_corner Cmin
+<CMD> create_constraint_mode -name CON -sdc_file [list $sdc]
+<CMD> create_analysis_view -name WC_VIEW -delay_corner WC -constraint_mode CON
+<CMD> create_analysis_view -name BC_VIEW -delay_corner BC -constraint_mode CON
+<CMD> init_design -setup WC_VIEW -hold BC_VIEW
+
+Loading LEF file /home/linux/ieng6/ee260b/public/data/libraries/techfiles/contest.lef ...
+Set DBUPerIGU to M2 pitch 280.
+
+viaInitial starts at Thu Feb 28 21:41:24 2019
+viaInitial ends at Thu Feb 28 21:41:24 2019
+Reading WC_LIB timing library '/home/linux/ieng6/ee260b/public/data/libraries/lib/contest.lib' ...
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s01' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s02' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s03' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s04' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s06' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s08' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s10' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s20' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s40' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01s80' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m01' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m02' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m03' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m04' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m06' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m08' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m10' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m20' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m40' is not defined in the library.
+**WARN: (TECHLIB-436):	Attribute 'max_fanout' on 'output/inout' pin 'o' of cell 'in01m80' is not defined in the library.
+Message <TECHLIB-436> has exceeded the message display limit of '20'. setMessageLimit/set_message_limit sets the limit. unsetMessageLimit/unset_message_limit can be used to reset this.
+Read 333 cells in library 'contest' 
+*** End library_loading (cpu=0.00min, mem=0.0M, fe_cpu=0.13min, fe_real=0.17min, fe_mem=411.2M) ***
+*** Begin netlist parsing (mem=411.2M) ***
+Created 333 new cells from 1 timing libraries.
+Reading netlist ...
+Backslashed names will retain backslash and a trailing blank character.
+Reading verilog netlist './usb_phy.v'
+
+*** Memory Usage v#1 (Current mem = 411.156M, initial mem = 151.930M) ***
+*** End netlist parsing (cpu=0:00:00.0, real=0:00:00.0, mem=411.2M) ***
+Set top cell to usb_phy.
+Hooked 333 DB cells to tlib cells.
+** Removed 2 unused lib cells.
+Starting recursive module instantiation check.
+No recursion found.
+Building hierarchical netlist for Cell usb_phy ...
+*** Netlist is unique.
+** info: there are 333 modules.
+** info: there are 442 stdCell insts.
+
+*** Memory Usage v#1 (Current mem = 442.914M, initial mem = 151.930M) ***
+**WARN: (IMPFP-3961):	The techSite 'pad' has no related cells in LEF/OA library. Cannot make calculations for this site type unless cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+Type 'man IMPFP-3961' for more detail.
+**WARN: (IMPFP-3961):	The techSite 'core' has no related cells in LEF/OA library. Cannot make calculations for this site type unless cell models of this type exist in the LEF/OA library. If the SITE is not used by the library you can ignore this warning or remove the SITE definition from the LEF/OA to avoid this message.
+Type 'man IMPFP-3961' for more detail.
+Generated pitch 0.84 in M8 is different from 0.8 defined in technology file in preferred direction.
+Generated pitch 0.84 in M7 is different from 0.8 defined in technology file in preferred direction.
+Set Default Net Delay as 1000 ps.
+Set Default Net Load as 0.5 pF. 
+Set Default Input Pin Transition as 0.1 ps.
+WC_VIEW BC_VIEW
+Initializing multi-corner RC extraction with 2 active RC Corners ...
+Reading Capacitance Table File /home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable ...
+**WARN: (IMPEXT-2760):	Layer M9 specified in the cap table is ignored because it is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+**WARN: (IMPEXT-2771):	Via VIA_8 specified in the cap table is ignored because its top layer, M9, is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+**WARN: (IMPEXT-2801):	Resistance values are not provided in the Cap Table. Sheet resistance defined in the LEF file will be used.
+**WARN: (IMPEXT-2710):	Basic Cap table for layer M9 is ignored because the layer is not specified in the technology LEF file.
+Reading Capacitance Table File /home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable ...
+**WARN: (IMPEXT-2760):	Layer M9 specified in the cap table is ignored because it is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+**WARN: (IMPEXT-2771):	Via VIA_8 specified in the cap table is ignored because its top layer, M9, is greater than the maximum number of layers, 8, specified in the technology LEF file. Check the cap table for the invalid layer specification.
+**WARN: (IMPEXT-2801):	Resistance values are not provided in the Cap Table. Sheet resistance defined in the LEF file will be used.
+**WARN: (IMPEXT-2710):	Basic Cap table for layer M9 is ignored because the layer is not specified in the technology LEF file.
+Importing multi-corner RC tables ... 
+Summary of Active RC-Corners : 
+ 
+ Analysis View: WC_VIEW
+    RC-Corner Name        : Cmax
+    RC-Corner Index       : 0
+    RC-Corner Temperature : 125 Celsius
+    RC-Corner Cap Table   : '/home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable'
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+ 
+ Analysis View: BC_VIEW
+    RC-Corner Name        : Cmin
+    RC-Corner Index       : 1
+    RC-Corner Temperature : -40 Celsius
+    RC-Corner Cap Table   : '/home/linux/ieng6/ee260b/public/data/libraries/techfiles/cln65g+_1p08m+alrdl_top2_cworst.captable'
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+*Info: initialize multi-corner CTS.
+Reading timing constraints file './usb_phy.sdc' ...
+Current (total cpu=0:00:08.4, real=0:00:10.0, peak res=223.5M, current mem=564.1M)
+**WARN: (TCLNL-330):	set_input_delay on clock root 'clk' is not supported. You should use the -source option to set_clock_latency to provide this offset. You can also use the global timing_allow_input_delay_on_clock_source to allow set_input_delay assertion to have an effect on clock source paths beginning at this clock root. (File ./usb_phy.sdc, Line 44).
+
+INFO (CTE): Reading of timing constraints file ./usb_phy.sdc completed, with 1 WARNING
+WARNING (CTE-25): Line: 9 of File ./usb_phy.sdc : Skipped unsupported command: set_max_area
+
+
+WARNING (CTE-25): Line: 8 of File ./usb_phy.sdc : Skipped unsupported command: set_units
+
+
+Ending "Constraint file reading stats" (total cpu=0:00:00.1, real=0:00:00.0, peak res=240.4M, current mem=576.9M)
+Current (total cpu=0:00:08.4, real=0:00:10.0, peak res=240.4M, current mem=576.9M)
+Total number of combinational cells: 330
+Total number of sequential cells: 1
+Total number of tristate cells: 0
+Total number of level shifter cells: 0
+Total number of power gating cells: 0
+Total number of isolation cells: 0
+Total number of power switch cells: 0
+Total number of pulse generator cells: 0
+Total number of always on buffers: 0
+Total number of retention cells: 0
+List of usable buffers:
+Total number of usable buffers: 0
+List of unusable buffers:
+Total number of unusable buffers: 0
+List of usable inverters: in01s01 in01s02 in01s03 in01s04 in01s06 in01s08 in01s10 in01s20 in01s40 in01s80 in01m01 in01m02 in01m03 in01m04 in01m06 in01m08 in01m10 in01m20 in01m40 in01m80 in01f01 in01f02 in01f03 in01f04 in01f06 in01f08 in01f10 in01f20 in01f40 in01f80
+Total number of usable inverters: 30
+List of unusable inverters:
+Total number of unusable inverters: 0
+List of identified usable delay cells:
+Total number of identified usable delay cells: 0
+List of identified unusable delay cells:
+Total number of identified unusable delay cells: 0
+No delay cells were detected in the set of buffers. Buffers will be used to fix hold violations.
+
+*** Summary of all messages that are not suppressed in this session:
+Severity  ID               Count  Summary                                  
+WARNING   IMPFP-3961           2  The techSite '%s' has no related cells i...
+WARNING   IMPEXT-2710          2  Basic Cap table for layer M%d is ignored...
+WARNING   IMPEXT-2760          2  Layer M%d specified in the cap table is ...
+WARNING   IMPEXT-2771          2  Via %s specified in the cap table is ign...
+WARNING   IMPEXT-2801          2  Resistance values are not provided in th...
+*** Message Summary: 10 warning(s), 0 error(s)
+
+<CMD> set_interactive_constraint_modes {CON}
+<CMD> setDesignMode -process 65
+Applying the recommended capacitance filtering threshold values for 65nm process node: total_c_th=0, relative_c_th=1 and coupling_c_th=0.1.
+	These values will be used by all post-route extraction engines, including tQuantus, IQRC and Quantus QRC extraction.
+	Capacitance filtering mode(-capFilterMode option of the setExtractRCMode) is 'relAndCoup' for all engines.
+	The accuracy mode for postRoute effortLevel low extraction will be set to 'high'.
+	Default value for EffortLevel(-effortLevel option of the setExtractRCMode) in postRoute extraction mode will be 'medium' if Quantus QRC technology file is specified else 'low'.
+Updating process node dependent CCOpt properties for the 65nm process node.
+<CMD> defIn usb_phy.def
+Reading DEF file 'usb_phy.def', current time is Thu Feb 28 21:41:24 2019 ...
+--- DIVIDERCHAR '/'
+--- UnitsPerDBU = 1.0000
+Generated pitch 0.84 in M8 is different from 0.8 defined in technology file in preferred direction.
+Generated pitch 0.84 in M7 is different from 0.8 defined in technology file in preferred direction.
+--- DIEAREA (0 0) (113120 110880)
+Extracting standard cell pins and blockage ...... 
+Pin and blockage extraction finished
+Extracting macro/IO cell pins and blockage ...... 
+Pin and blockage extraction finished
+DEF file 'usb_phy.def' is parsed, current time is Thu Feb 28 21:41:25 2019.
+Updating the floorplan ...
+<CMD> setAnalysisMode -analysisType onChipVariation -cppr both
+<CMD> setDelayCalMode -reset
+<CMD> setDelayCalMode -SIAware true
+<CMD> setExtractRCMode -coupled true -engine postRoute
+<CMD> report_timing
+Starting SI iteration 1 using Infinite Timing Windows
+#################################################################################
+# Design Stage: PostRoute
+# Design Name: usb_phy
+# Design Mode: 65nm
+# Analysis Mode: MMMC OCV 
+# Parasitics Mode: No SPEF/RCDB
+# Signoff Settings: SI On 
+#################################################################################
+**WARN: (IMPEXT-3518):	The lower process node is set (using command 'setDesignMode') but the technology file for TQRC extraction not specified. Therefore, going for postRoute (effortLevel low) extraction instead of recommended extractor 'TQRC' for lower nodes. Use command 'set_analysis_view/update_rc_corner' to specify the technology file for TQRC extraction to take place.
+Extraction called for design 'usb_phy' of instances=442 and nets=461 using extraction engine 'postRoute' at effort level 'low' .
+PostRoute (effortLevel low) RC Extraction called for design usb_phy.
+RC Extraction called in multi-corner(2) mode.
+**WARN: (IMPEXT-3442):	The version of the capacitance table file being used is obsolete and is no longer recommended. For improved accuracy, generate the capacitance table file using the generateCapTbl command.
+Process corner(s) are loaded.
+ Corner: Cmax
+ Corner: Cmin
+extractDetailRC Option : -outfile /tmp/innovus_temp_8826_ieng6-ece-13.ucsd.edu_teaves_guufr7/usb_phy_8826_Xcmkw5.rcdb.d  -extended
+RC Mode: PostRoute -effortLevel low [Extended CapTable, LEF Resistances]
+      RC Corner Indexes            0       1   
+Capacitance Scaling Factor   : 1.00000 1.00000 
+Coupling Cap. Scaling Factor : 1.00000 1.00000 
+Resistance Scaling Factor    : 1.00000 1.00000 
+Clock Cap. Scaling Factor    : 1.00000 1.00000 
+Clock Res. Scaling Factor    : 1.00000 1.00000 
+Shrink Factor                : 1.00000
+Initializing multi-corner capacitance tables ... 
+Initializing multi-corner resistance tables ...
+Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 612.7M)
+Extracted 10.0446% (CPU Time= 0:00:00.0  MEM= 660.1M)
+Extracted 20.0574% (CPU Time= 0:00:00.0  MEM= 660.1M)
+Extracted 30.0383% (CPU Time= 0:00:00.0  MEM= 660.1M)
+Extracted 40.051% (CPU Time= 0:00:00.0  MEM= 660.1M)
+Extracted 50.0638% (CPU Time= 0:00:00.0  MEM= 660.1M)
+Extracted 60.0446% (CPU Time= 0:00:00.1  MEM= 660.1M)
+Extracted 70.0574% (CPU Time= 0:00:00.1  MEM= 660.1M)
+Extracted 80.0383% (CPU Time= 0:00:00.1  MEM= 660.1M)
+Extracted 90.051% (CPU Time= 0:00:00.1  MEM= 660.1M)
+Extracted 100% (CPU Time= 0:00:00.1  MEM= 660.1M)
+Number of Extracted Resistors     : 4688
+Number of Extracted Ground Cap.   : 4998
+Number of Extracted Coupling Cap. : 4804
+Filtering XCap in 'relativeAndCoupling' mode using values coupling_c_threshold=0.1fF, relative_c_threshold=1, and total_c_threshold=0fF.
+ Corner: Cmax
+ Corner: Cmin
+Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 638.1M)
+PostRoute (effortLevel low) RC Extraction DONE (CPU Time: 0:00:00.1  Real Time: 0:00:00.0  MEM: 646.133M)
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Initializing multi-corner capacitance tables ... 
+Initializing multi-corner resistance tables ...
+**WARN: (IMPTS-403):	Delay calculation was forced to extrapolate table data outside of the characterized range. In some cases, extrapolation can reduce the accuracy of the delay calculation. You can enable more detailed reporting of these cases by enabling the command 'setDelayCalMode -reportOutBound true'.
+Type 'man IMPTS-403' for more detail.
+AAE_INFO-618: Total number of nets in the design is 461,  100.0 percent of the nets selected for SI analysis
+End delay calculation. (MEM=808.504 CPU=0:00:00.1 REAL=0:00:00.0)
+Save waveform /tmp/innovus_temp_8826_ieng6-ece-13.ucsd.edu_teaves_guufr7/.AAE_kvh9Ji/.AAE_8826/waveform.data...
+*** CDM Built up (cpu=0:00:01.2  real=0:00:01.0  mem= 808.5M) ***
+Add other clocks and setupCteToAAEClockMapping during iter 1
+Starting SI iteration 2
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+AAE_INFO-618: Total number of nets in the design is 461,  0.0 percent of the nets selected for SI analysis
+End delay calculation. (MEM=816.551 CPU=0:00:00.0 REAL=0:00:00.0)
+*** CDM Built up (cpu=0:00:00.0  real=0:00:00.0  mem= 816.6M) ***
+Path 1: MET Setup Check with Pin i_tx_phy_state_reg_1_/ck 
+Endpoint:   i_tx_phy_state_reg_1_/d   (v) checked with  leading edge of 'clk'
+Beginpoint: i_tx_phy_sft_done_r_reg/o (^) triggered by  leading edge of 'clk'
+Path Groups: {clk}
+Analysis View: WC_VIEW
+Other End Arrival Time          0.000
+- Setup                         0.000
++ Phase Shift                 350.000
++ CPPR Adjustment               0.000
+= Required Time               350.000
+- Arrival Time                299.500
+= Slack Time                   50.500
+     Clock Rise Edge                 0.000
+     + Clock Network Latency (Ideal) 0.000
+     = Beginpoint Arrival Time       0.000
+     +-------------------------------------------------------------------------------+ 
+     |        Instance         |     Arc     |  Cell   |  Delay | Arrival | Required | 
+     |                         |             |         |        |  Time   |   Time   | 
+     |-------------------------+-------------+---------+--------+---------+----------| 
+     | i_tx_phy_sft_done_r_reg | ck ^        |         |        |   0.000 |   50.500 | 
+     | i_tx_phy_sft_done_r_reg | ck ^ -> o ^ | ms00f80 | 16.100 |  16.100 |   66.600 | 
+     | U433                    | a ^ -> o v  | in01s02 | 14.200 |  30.300 |   80.800 | 
+     | U429                    | a v -> o ^  | na02m02 | 35.700 |  66.000 |  116.500 | 
+     | U426                    | b ^ -> o v  | no02m02 | 33.100 |  99.100 |  149.600 | 
+     | U497                    | a v -> o ^  | na03s02 | 29.500 | 128.600 |  179.100 | 
+     | U500                    | b ^ -> o v  | na03f02 | 38.800 | 167.400 |  217.900 | 
+     | U501                    | a v -> o ^  | no02f02 | 28.800 | 196.200 |  246.700 | 
+     | U482                    | b ^ -> o v  | no04f02 | 25.500 | 221.700 |  272.200 | 
+     | U481                    | a v -> o ^  | ao12f02 | 28.300 | 250.000 |  300.500 | 
+     | U457                    | a ^ -> o v  | oa12f01 | 49.500 | 299.500 |  350.000 | 
+     | i_tx_phy_state_reg_1_   | d v         | ms00f80 |  0.000 | 299.500 |  350.000 | 
+     +-------------------------------------------------------------------------------+ 
+
+<CMD> setEcoMode -batchMode true
+**WARN: (IMPOPT-6115):	ECO batchmode has been activated. Set setEcoMode -batchMode to false when done with ECO operations.
+Type 'man IMPOPT-6115' for more detail.
+**WARN: (IMPOPT-6103):	Timing updates for ECO operations done now on will happen when exiting batchMode. Set setEcoMode -batchMode to false when done with ECO operations
+<CMD> setEcoMode -refinePlace true
+<CMD> ecoChangeCell -inst U417 -cell na02m02
+**Info: (IMPSP-307): Design contains fractional 18 cells.
+Estimated cell power/ground rail width = 0.158 um
+#################################################################################
+# Design Stage: PostRoute
+# Design Name: usb_phy
+# Design Mode: 65nm
+# Analysis Mode: MMMC OCV 
+# Parasitics Mode: SPEF/RCDB
+# Signoff Settings: SI On 
+#################################################################################
+Design State:
+    #signal nets       :  456
+    #routed signal nets:  456
+    #clock nets        :  1
+    #routed clock nets :  1
+#################################################################################
+# Design Stage: PostRoute
+# Design Name: usb_phy
+# Design Mode: 65nm
+# Analysis Mode: MMMC OCV 
+# Parasitics Mode: SPEF/RCDB
+# Signoff Settings: SI On 
+#################################################################################
+All-RC-Corners-Per-Net-In-Memory is turned ON...
+Resize U417 (na02m03) to na02m02.
+<CMD> ecoChangeCell -inst U425 -cell no04f04
+Resize U425 (no04f06) to no04f04.
+<CMD> ecoChangeCell -inst U452 -cell no03f02
+Resize U452 (no03f03) to no03f02.
+<CMD> ecoChangeCell -inst U458 -cell no02f02
+Resize U458 (no02f03) to no02f02.
+<CMD> ecoChangeCell -inst U462 -cell na02f02
+Resize U462 (na02f03) to na02f02.
+<CMD> ecoChangeCell -inst U437 -cell na02f04
+Resize U437 (na02f08) to na02f04.
+<CMD> ecoChangeCell -inst U422 -cell no04f02
+Resize U422 (no04f04) to no04f02.
+<CMD> ecoChangeCell -inst U424 -cell no02f02
+Resize U424 (no02f04) to no02f02.
+<CMD> ecoChangeCell -inst U443 -cell no02f02
+Resize U443 (no02f04) to no02f02.
+<CMD> ecoChangeCell -inst U532 -cell no02f02
+Resize U532 (no02f04) to no02f02.
+<CMD> setEcoMode -batchMode false
+**Info: (IMPSP-307): Design contains fractional 18 cells.
+*** Starting refinePlace (0:00:10.0 mem=893.1M) ***
+Total net bbox length = 2.531e+03 (1.184e+03 1.346e+03) (ext = 4.823e+02)
+Density distribution unevenness ratio = 5.487%
+Move report: Detail placement moves 1 insts, mean move: 0.07 um, max move: 0.07 um
+	Max move on inst (U452): (28.98, 37.80) --> (29.05, 37.80)
+	Runtime: CPU: 0:00:00.0 REAL: 0:00:00.0 MEM: 893.1MB
+Summary Report:
+Instances move: 1 (out of 442 movable)
+Mean displacement: 0.07 um
+Max displacement: 0.07 um (Instance: U452) (28.98, 37.8) -> (29.05, 37.8)
+	Length: 14 sites, height: 1 rows, site name: core, cell type: no03f02
+Total net bbox length = 2.531e+03 (1.184e+03 1.346e+03) (ext = 4.823e+02)
+Runtime: CPU: 0:00:00.0 REAL: 0:00:00.0 MEM: 893.1MB
+*** Finished refinePlace (0:00:10.0 mem=893.1M) ***
+#################################################################################
+# Design Stage: PostRoute
+# Design Name: usb_phy
+# Design Mode: 65nm
+# Analysis Mode: MMMC OCV 
+# Parasitics Mode: SPEF/RCDB
+# Signoff Settings: SI On 
+#################################################################################
+<CMD> routeDesign
+#routeDesign: cpu time = 00:00:00, elapsed time = 00:00:00, memory = 685.92 (MB), peak = 687.91 (MB)
+#**INFO: setDesignMode -flowEffort standard
+#**INFO: multi-cut via swapping  will be performed after routing.
+#**INFO: All auto set options tuned by routeDesign will be restored to their original settings on command completion.
+#**INFO: auto set of routeReserveSpaceForMultiCut to true
+#**INFO: auto set of routeConcurrentMinimizeViaCountEffort to high
+**Info: (IMPSP-307): Design contains fractional 18 cells.
+Begin checking placement ... (start mem=893.1M, init mem=893.1M)
+*info: Placed = 442           
+*info: Unplaced = 0           
+Placement Density:68.57%(881/1284)
+Finished checkPlace (cpu: total=0:00:00.0, vio checks=0:00:00.0; mem=893.1M)
+#**INFO: auto set of routeWithTimingDriven to true
+#**INFO: auto set of routeWithSiDriven to true
+
+changeUseClockNetStatus Option :  -noFixedNetWires 
+*** Changed status on (0) nets in Clock.
+*** End changeUseClockNetStatus (cpu=0:00:00.0, real=0:00:00.0, mem=893.1M) ***
+
+globalDetailRoute
+
+#setNanoRouteMode -routeConcurrentMinimizeViaCountEffort "high"
+#setNanoRouteMode -routeReserveSpaceForMultiCut true
+#setNanoRouteMode -routeWithSiDriven true
+#setNanoRouteMode -routeWithTimingDriven true
+#Start globalDetailRoute on Thu Feb 28 21:41:26 2019
+#
+#Generating timing data, please wait...
+#457 total nets, 457 already routed, 457 will ignore in trialRoute
+**WARN: (IMPEXT-3442):	The version of the capacitance table file being used is obsolete and is no longer recommended. For improved accuracy, generate the capacitance table file using the generateCapTbl command.
+#Dump tif for version 2.1
+End delay calculation. (MEM=874.121 CPU=0:00:00.1 REAL=0:00:00.0)
+**WARN: (IMPEXT-3493):	The design extraction status has been reset by the 'setExtractRCMode' command. The parasitic data can be regenerated either by extracting the design using the extractRC command or by loading the SPEF or RCDB file(s). To prevent resetting of the extraction status, avoid changing extraction modes.
+#Generating timing data took: cpu time = 00:00:01, elapsed time = 00:00:01, memory = 659.70 (MB), peak = 687.91 (MB)
+#Done generating timing data.
+#Start reading timing information from file .timing_file_8826.tif.gz ...
+#Read in timing information for 33 ports, 442 instances from timing file .timing_file_8826.tif.gz.
+#NanoRoute Version 15.23-s045_1 NR160414-1105/15_23-UB
+#Start routing data preparation.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M1 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M2 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M1 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M2 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M2 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M3 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M2 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M3 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M3 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M4 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M3 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M4 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M4 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M5 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M4 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M5 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M5 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M6 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M5 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M6 is not specified for width 0.070.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M6 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M7 is not specified for width 0.400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M6 is not specified for width 0.070.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M7 is not specified for width 0.400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M7 is not specified for width 0.400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M8 is not specified for width 0.400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER M7 is not specified for width 0.400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER M8 is not specified for width 0.400.
+#Minimum voltage of a net in the design = 0.000.
+#Maximum voltage of a net in the design = 0.700.
+#Voltage range [0.000 - 0.000] has 2 nets.
+#Voltage range [0.000 - 0.700] has 458 nets.
+#Voltage range [0.700 - 0.700] has 1 net.
+# M1           H   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+# M2           V   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+# M3           H   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+# M4           V   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+# M5           H   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+# M6           V   Track-Pitch = 0.140    Line-2-Via Pitch = 0.140
+# M7           H   Track-Pitch = 0.840    Line-2-Via Pitch = 0.800
+# M8           V   Track-Pitch = 0.840    Line-2-Via Pitch = 0.800
+#Regenerating Ggrids automatically.
+#Auto generating G-grids with size=15 tracks, using layer M2's pitch = 0.140.
+#Using automatically generated G-grids.
+#Done routing data preparation.
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 670.36 (MB), peak = 693.72 (MB)
+#Merging special wires...
+#WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 24.510 34.700 ) on M1 for NET FE_OFN1_fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 19.085 22.055 ) on M1 for NET FE_OFN1_fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 25.490 18.265 ) on M1 for NET LineState_o[0]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN c at ( 26.420 18.220 ) on M1 for NET LineState_o[1]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN c at ( 20.120 22.100 ) on M1 for NET RxActive_o. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 24.955 33.385 ) on M1 for NET fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 26.645 19.535 ) on M1 for NET fs_ce. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 20.540 27.095 ) on M1 for NET i_rx_phy_rxdn_s. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 20.290 27.140 ) on M1 for NET i_rx_phy_rxdp_s. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN d at ( 20.590 22.100 ) on M1 for NET i_rx_phy_se0_s. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 28.715 39.695 ) on M1 for NET i_rx_phy_shift_en. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 30.270 38.430 ) on M1 for NET i_tx_phy_one_cnt[0]. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 24.255 34.655 ) on M1 for NET n408. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN o at ( 24.815 34.655 ) on M1 for NET n456. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 30.340 29.615 ) on M1 for NET n471. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN a at ( 30.090 29.660 ) on M1 for NET n472. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN o at ( 29.780 29.615 ) on M1 for NET n524. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN o at ( 29.015 39.695 ) on M1 for NET n537. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN b at ( 29.795 38.380 ) on M1 for NET n576. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (NRDB-1005) Cannot establish connection to PIN o at ( 32.935 29.615 ) on M1 for NET n581. The NET is considered partially routed. Visually verify wiring at the specified location as the wire/via origin may not touch the PIN. This NET will be rerouted with same or different wiring.
+#WARNING (EMS-27) Message (NRDB-1005) has exceeded the current message display limit of 20.
+#To increase the message display limit, refer to the product command reference manual.
+#
+#Connectivity extraction summary:
+#457 routed nets are extracted.
+#    24 (5.21%) extracted nets are partially routed.
+#4 nets are fixed|skipped|trivial (not extracted).
+#Total number of nets = 461.
+#
+#Number of eco nets is 24
+#
+#Start data preparation...
+#
+#Data preparation is done on Thu Feb 28 21:41:27 2019
+#
+#Analyzing routing resource...
+#Routing resource analysis is done on Thu Feb 28 21:41:27 2019
+#
+#  Resource Analysis:
+#
+#               Routing  #Avail      #Track     #Total     %Gcell
+#  Layer      Direction   Track     Blocked      Gcell    Blocked
+#  --------------------------------------------------------------
+#  Metal 1        H         395           0         702     0.00%
+#  Metal 2        V         404           0         702     0.00%
+#  Metal 3        H         395           0         702     0.00%
+#  Metal 4        V         404           0         702     0.00%
+#  Metal 5        H         395           0         702     0.00%
+#  Metal 6        V         404           0         702     0.00%
+#  Metal 7        H          65           0         702     0.00%
+#  Metal 8        V          66           0         702     0.00%
+#  --------------------------------------------------------------
+#  Total                   2528       0.00%  5616     0.00%
+#
+#
+#
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 671.50 (MB), peak = 693.72 (MB)
+#
+#start global routing iteration 1...
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 673.33 (MB), peak = 693.72 (MB)
+#
+#start global routing iteration 2...
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 672.69 (MB), peak = 693.72 (MB)
+#
+#
+#Total number of trivial nets (e.g. < 2 pins) = 4 (skipped).
+#Total number of routable nets = 457.
+#Total number of nets in the design = 461.
+#
+#24 routable nets have only global wires.
+#433 routable nets have only detail routed wires.
+#
+#Routed nets constraints summary:
+#-----------------------------
+#        Rules   Unconstrained  
+#-----------------------------
+#      Default              24  
+#-----------------------------
+#        Total              24  
+#-----------------------------
+#
+#Routing constraints summary of the whole design:
+#-----------------------------
+#        Rules   Unconstrained  
+#-----------------------------
+#      Default             457  
+#-----------------------------
+#        Total             457  
+#-----------------------------
+#
+#
+#  Congestion Analysis: (blocked Gcells are excluded)
+#
+#                 OverCon          
+#                  #Gcell    %Gcell
+#     Layer           (1)   OverCon
+#  --------------------------------
+#   Metal 1      0(0.00%)   (0.00%)
+#   Metal 2      0(0.00%)   (0.00%)
+#   Metal 3      0(0.00%)   (0.00%)
+#   Metal 4      0(0.00%)   (0.00%)
+#   Metal 5      0(0.00%)   (0.00%)
+#   Metal 6      0(0.00%)   (0.00%)
+#   Metal 7      0(0.00%)   (0.00%)
+#   Metal 8      0(0.00%)   (0.00%)
+#  --------------------------------
+#     Total      0(0.00%)   (0.00%)
+#
+#  The worst congested Gcell overcon (routing demand over resource in number of tracks) = 1
+#  Overflow after GR: 0.00% H + 0.00% V
+#
+#Complete Global Routing.
+#Total wire length = 3038 um.
+#Total half perimeter of net bounding box = 2812 um.
+#Total wire length on LAYER M1 = 882 um.
+#Total wire length on LAYER M2 = 1368 um.
+#Total wire length on LAYER M3 = 708 um.
+#Total wire length on LAYER M4 = 63 um.
+#Total wire length on LAYER M5 = 17 um.
+#Total wire length on LAYER M6 = 0 um.
+#Total wire length on LAYER M7 = 0 um.
+#Total wire length on LAYER M8 = 0 um.
+#Total number of vias = 1409
+#Total number of multi-cut vias = 1384 ( 98.2%)
+#Total number of single cut vias = 25 (  1.8%)
+#Up-Via Summary (total 1409):
+#                   single-cut          multi-cut      Total
+#-----------------------------------------------------------
+#  Metal 1          17 (  1.6%)      1020 ( 98.4%)       1037
+#  Metal 2           8 (  2.3%)       344 ( 97.7%)        352
+#  Metal 3           0 (  0.0%)        16 (100.0%)         16
+#  Metal 4           0 (  0.0%)         4 (100.0%)          4
+#-----------------------------------------------------------
+#                   25 (  1.8%)      1384 ( 98.2%)       1409 
+#
+#Max overcon = 0 track.
+#Total overcon = 0.00%.
+#Worst layer Gcell overcon rate = 0.00%.
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 672.75 (MB), peak = 693.72 (MB)
+#
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 672.20 (MB), peak = 693.72 (MB)
+#Start Track Assignment.
+#Done with 4 horizontal wires in 1 hboxes and 2 vertical wires in 1 hboxes.
+#Done with 0 horizontal wires in 1 hboxes and 0 vertical wires in 1 hboxes.
+#Complete Track Assignment.
+#Total wire length = 3041 um.
+#Total half perimeter of net bounding box = 2812 um.
+#Total wire length on LAYER M1 = 882 um.
+#Total wire length on LAYER M2 = 1368 um.
+#Total wire length on LAYER M3 = 710 um.
+#Total wire length on LAYER M4 = 63 um.
+#Total wire length on LAYER M5 = 17 um.
+#Total wire length on LAYER M6 = 0 um.
+#Total wire length on LAYER M7 = 0 um.
+#Total wire length on LAYER M8 = 0 um.
+#Total number of vias = 1408
+#Total number of multi-cut vias = 1384 ( 98.3%)
+#Total number of single cut vias = 24 (  1.7%)
+#Up-Via Summary (total 1408):
+#                   single-cut          multi-cut      Total
+#-----------------------------------------------------------
+#  Metal 1          17 (  1.6%)      1020 ( 98.4%)       1037
+#  Metal 2           7 (  2.0%)       344 ( 98.0%)        351
+#  Metal 3           0 (  0.0%)        16 (100.0%)         16
+#  Metal 4           0 (  0.0%)         4 (100.0%)          4
+#-----------------------------------------------------------
+#                   24 (  1.7%)      1384 ( 98.3%)       1408 
+#
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 673.79 (MB), peak = 693.72 (MB)
+#
+#Cpu time = 00:00:00
+#Elapsed time = 00:00:00
+#Increased memory = 15.73 (MB)
+#Total memory = 673.79 (MB)
+#Peak memory = 693.72 (MB)
+#routeSiEffort set to high
+#
+#Start Detail Routing..
+#start initial detail routing ...
+#    number of violations = 0
+#11 out of 442 instances need to be verified(marked ipoed).
+#11.8% of the total area is being checked for drcs
+#11.8% of the total area was checked
+#    number of violations = 0
+#cpu time = 00:00:01, elapsed time = 00:00:01, memory = 737.67 (MB), peak = 739.70 (MB)
+#start 1st optimization iteration ...
+#    number of violations = 0
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 737.68 (MB), peak = 739.70 (MB)
+#Complete Detail Routing.
+#Total wire length = 3042 um.
+#Total half perimeter of net bounding box = 2812 um.
+#Total wire length on LAYER M1 = 903 um.
+#Total wire length on LAYER M2 = 1370 um.
+#Total wire length on LAYER M3 = 693 um.
+#Total wire length on LAYER M4 = 58 um.
+#Total wire length on LAYER M5 = 17 um.
+#Total wire length on LAYER M6 = 0 um.
+#Total wire length on LAYER M7 = 0 um.
+#Total wire length on LAYER M8 = 0 um.
+#Total number of vias = 1410
+#Total number of multi-cut vias = 1267 ( 89.9%)
+#Total number of single cut vias = 143 ( 10.1%)
+#Up-Via Summary (total 1410):
+#                   single-cut          multi-cut      Total
+#-----------------------------------------------------------
+#  Metal 1          98 (  9.4%)       945 ( 90.6%)       1043
+#  Metal 2          43 ( 12.4%)       305 ( 87.6%)        348
+#  Metal 3           2 ( 13.3%)        13 ( 86.7%)         15
+#  Metal 4           0 (  0.0%)         4 (100.0%)          4
+#-----------------------------------------------------------
+#                  143 ( 10.1%)      1267 ( 89.9%)       1410 
+#
+#Total number of DRC violations = 0
+#Cpu time = 00:00:02
+#Elapsed time = 00:00:02
+#Increased memory = 5.01 (MB)
+#Total memory = 678.81 (MB)
+#Peak memory = 739.70 (MB)
+#
+#Start Post Route wire spreading..
+#
+#Start data preparation for wire spreading...
+#
+#Data preparation is done on Thu Feb 28 21:41:31 2019
+#
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 680.57 (MB), peak = 739.70 (MB)
+#
+#Start Post Route Wire Spread.
+#Done with 10 horizontal wires in 1 hboxes and 21 vertical wires in 1 hboxes.
+#Complete Post Route Wire Spread.
+#
+#Total wire length = 3050 um.
+#Total half perimeter of net bounding box = 2812 um.
+#Total wire length on LAYER M1 = 903 um.
+#Total wire length on LAYER M2 = 1375 um.
+#Total wire length on LAYER M3 = 696 um.
+#Total wire length on LAYER M4 = 58 um.
+#Total wire length on LAYER M5 = 17 um.
+#Total wire length on LAYER M6 = 0 um.
+#Total wire length on LAYER M7 = 0 um.
+#Total wire length on LAYER M8 = 0 um.
+#Total number of vias = 1410
+#Total number of multi-cut vias = 1267 ( 89.9%)
+#Total number of single cut vias = 143 ( 10.1%)
+#Up-Via Summary (total 1410):
+#                   single-cut          multi-cut      Total
+#-----------------------------------------------------------
+#  Metal 1          98 (  9.4%)       945 ( 90.6%)       1043
+#  Metal 2          43 ( 12.4%)       305 ( 87.6%)        348
+#  Metal 3           2 ( 13.3%)        13 ( 86.7%)         15
+#  Metal 4           0 (  0.0%)         4 (100.0%)          4
+#-----------------------------------------------------------
+#                  143 ( 10.1%)      1267 ( 89.9%)       1410 
+#
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 681.58 (MB), peak = 739.70 (MB)
+#
+#Post Route wire spread is done.
+#Total wire length = 3050 um.
+#Total half perimeter of net bounding box = 2812 um.
+#Total wire length on LAYER M1 = 903 um.
+#Total wire length on LAYER M2 = 1375 um.
+#Total wire length on LAYER M3 = 696 um.
+#Total wire length on LAYER M4 = 58 um.
+#Total wire length on LAYER M5 = 17 um.
+#Total wire length on LAYER M6 = 0 um.
+#Total wire length on LAYER M7 = 0 um.
+#Total wire length on LAYER M8 = 0 um.
+#Total number of vias = 1410
+#Total number of multi-cut vias = 1267 ( 89.9%)
+#Total number of single cut vias = 143 ( 10.1%)
+#Up-Via Summary (total 1410):
+#                   single-cut          multi-cut      Total
+#-----------------------------------------------------------
+#  Metal 1          98 (  9.4%)       945 ( 90.6%)       1043
+#  Metal 2          43 ( 12.4%)       305 ( 87.6%)        348
+#  Metal 3           2 ( 13.3%)        13 ( 86.7%)         15
+#  Metal 4           0 (  0.0%)         4 (100.0%)          4
+#-----------------------------------------------------------
+#                  143 ( 10.1%)      1267 ( 89.9%)       1410 
+#
+#
+#Start DRC checking..
+#    number of violations = 0
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 707.48 (MB), peak = 739.70 (MB)
+#CELL_VIEW usb_phy,init has no DRC violation.
+#Total number of DRC violations = 0
+#
+#Start Post Route via swapping..
+#    number of violations = 0
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 682.48 (MB), peak = 739.70 (MB)
+#    number of violations = 0
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 682.48 (MB), peak = 739.70 (MB)
+#CELL_VIEW usb_phy,init has no DRC violation.
+#Total number of DRC violations = 0
+#Post Route via swapping is done.
+#Total wire length = 3050 um.
+#Total half perimeter of net bounding box = 2812 um.
+#Total wire length on LAYER M1 = 903 um.
+#Total wire length on LAYER M2 = 1375 um.
+#Total wire length on LAYER M3 = 696 um.
+#Total wire length on LAYER M4 = 58 um.
+#Total wire length on LAYER M5 = 17 um.
+#Total wire length on LAYER M6 = 0 um.
+#Total wire length on LAYER M7 = 0 um.
+#Total wire length on LAYER M8 = 0 um.
+#Total number of vias = 1410
+#Total number of multi-cut vias = 1400 ( 99.3%)
+#Total number of single cut vias = 10 (  0.7%)
+#Up-Via Summary (total 1410):
+#                   single-cut          multi-cut      Total
+#-----------------------------------------------------------
+#  Metal 1          10 (  1.0%)      1033 ( 99.0%)       1043
+#  Metal 2           0 (  0.0%)       348 (100.0%)        348
+#  Metal 3           0 (  0.0%)        15 (100.0%)         15
+#  Metal 4           0 (  0.0%)         4 (100.0%)          4
+#-----------------------------------------------------------
+#                   10 (  0.7%)      1400 ( 99.3%)       1410 
+#
+#detailRoute Statistics:
+#Cpu time = 00:00:06
+#Elapsed time = 00:00:06
+#Increased memory = 6.96 (MB)
+#Total memory = 680.75 (MB)
+#Peak memory = 739.70 (MB)
+#
+#globalDetailRoute statistics:
+#Cpu time = 00:00:07
+#Elapsed time = 00:00:07
+#Increased memory = -13.49 (MB)
+#Total memory = 672.78 (MB)
+#Peak memory = 739.70 (MB)
+#Number of warnings = 49
+#Total number of warnings = 49
+#Number of fails = 0
+#Total number of fails = 0
+#Complete globalDetailRoute on Thu Feb 28 21:41:34 2019
+#
+#routeDesign: cpu time = 00:00:07, elapsed time = 00:00:07, memory = 672.79 (MB), peak = 739.70 (MB)
+
+*** Summary of all messages that are not suppressed in this session:
+Severity  ID               Count  Summary                                  
+WARNING   IMPEXT-3442          1  The version of the capacitance table fil...
+WARNING   IMPEXT-3493          1  The design extraction status has been re...
+*** Message Summary: 2 warning(s), 0 error(s)
+
+<CMD> report_timing
+Starting SI iteration 1 using Infinite Timing Windows
+#################################################################################
+# Design Stage: PostRoute
+# Design Name: usb_phy
+# Design Mode: 65nm
+# Analysis Mode: MMMC OCV 
+# Parasitics Mode: No SPEF/RCDB
+# Signoff Settings: SI On 
+#################################################################################
+**WARN: (IMPEXT-3518):	The lower process node is set (using command 'setDesignMode') but the technology file for TQRC extraction not specified. Therefore, going for postRoute (effortLevel low) extraction instead of recommended extractor 'TQRC' for lower nodes. Use command 'set_analysis_view/update_rc_corner' to specify the technology file for TQRC extraction to take place.
+Extraction called for design 'usb_phy' of instances=442 and nets=461 using extraction engine 'postRoute' at effort level 'low' .
+PostRoute (effortLevel low) RC Extraction called for design usb_phy.
+RC Extraction called in multi-corner(2) mode.
+**WARN: (IMPEXT-3442):	The version of the capacitance table file being used is obsolete and is no longer recommended. For improved accuracy, generate the capacitance table file using the generateCapTbl command.
+Process corner(s) are loaded.
+ Corner: Cmax
+ Corner: Cmin
+extractDetailRC Option : -outfile /tmp/innovus_temp_8826_ieng6-ece-13.ucsd.edu_teaves_guufr7/usb_phy_8826_Xcmkw5.rcdb.d -maxResLength 200  -extended
+RC Mode: PostRoute -effortLevel low [Extended CapTable, LEF Resistances]
+      RC Corner Indexes            0       1   
+Capacitance Scaling Factor   : 1.00000 1.00000 
+Coupling Cap. Scaling Factor : 1.00000 1.00000 
+Resistance Scaling Factor    : 1.00000 1.00000 
+Clock Cap. Scaling Factor    : 1.00000 1.00000 
+Clock Res. Scaling Factor    : 1.00000 1.00000 
+Shrink Factor                : 1.00000
+Initializing multi-corner capacitance tables ... 
+Initializing multi-corner resistance tables ...
+Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 821.3M)
+Extracted 10.0378% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 20.0441% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 30.0503% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 40.0566% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 50.0629% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 60.0378% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 70.0441% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 80.0503% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 90.0566% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Extracted 100% (CPU Time= 0:00:00.1  MEM= 883.3M)
+Number of Extracted Resistors     : 4735
+Number of Extracted Ground Cap.   : 5045
+Number of Extracted Coupling Cap. : 5004
+Filtering XCap in 'relativeAndCoupling' mode using values coupling_c_threshold=0.1fF, relative_c_threshold=1, and total_c_threshold=0fF.
+ Corner: Cmax
+ Corner: Cmin
+Checking LVS Completed (CPU Time= 0:00:00.0  MEM= 853.3M)
+PostRoute (effortLevel low) RC Extraction DONE (CPU Time: 0:00:00.1  Real Time: 0:00:00.0  MEM: 865.285M)
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Initializing multi-corner capacitance tables ... 
+Initializing multi-corner resistance tables ...
+AAE_INFO-618: Total number of nets in the design is 461,  100.0 percent of the nets selected for SI analysis
+End delay calculation. (MEM=918.203 CPU=0:00:00.1 REAL=0:00:00.0)
+Save waveform /tmp/innovus_temp_8826_ieng6-ece-13.ucsd.edu_teaves_guufr7/.AAE_kvh9Ji/.AAE_8826/waveform.data...
+*** CDM Built up (cpu=0:00:00.8  real=0:00:01.0  mem= 918.2M) ***
+Add other clocks and setupCteToAAEClockMapping during iter 1
+Starting SI iteration 2
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+AAE_INFO-618: Total number of nets in the design is 461,  0.2 percent of the nets selected for SI analysis
+End delay calculation. (MEM=926.25 CPU=0:00:00.0 REAL=0:00:00.0)
+*** CDM Built up (cpu=0:00:00.0  real=0:00:00.0  mem= 926.2M) ***
+Path 1: MET Setup Check with Pin i_rx_phy_fs_state_reg_2_/ck 
+Endpoint:   i_rx_phy_fs_state_reg_2_/d (v) checked with  leading edge of 'clk'
+Beginpoint: i_rx_phy_rxdn_s_reg/o      (^) triggered by  leading edge of 'clk'
+Path Groups: {clk}
+Analysis View: WC_VIEW
+Other End Arrival Time          0.000
+- Setup                         0.000
++ Phase Shift                 350.000
++ CPPR Adjustment               0.000
+= Required Time               350.000
+- Arrival Time                349.400
+= Slack Time                    0.600
+     Clock Rise Edge                 0.000
+     + Clock Network Latency (Ideal) 0.000
+     = Beginpoint Arrival Time       0.000
+     +--------------------------------------------------------------------------------+ 
+     |         Instance         |     Arc     |  Cell   |  Delay | Arrival | Required | 
+     |                          |             |         |        |  Time   |   Time   | 
+     |--------------------------+-------------+---------+--------+---------+----------| 
+     | i_rx_phy_rxdn_s_reg      | ck ^        |         |        |   0.000 |    0.600 | 
+     | i_rx_phy_rxdn_s_reg      | ck ^ -> o ^ | ms00f80 | 16.200 |  16.200 |   16.800 | 
+     | U424                     | b ^ -> o v  | no02f02 | 54.700 |  70.900 |   71.500 | 
+     | U422                     | b v -> o ^  | no04f02 | 85.600 | 156.500 |  157.100 | 
+     | U447                     | c ^ -> o v  | oa12m02 | 63.800 | 220.300 |  220.900 | 
+     | U409                     | a v -> o ^  | ao12f01 | 67.600 | 287.900 |  288.500 | 
+     | U694                     | d ^ -> o v  | oa22f01 | 61.500 | 349.400 |  350.000 | 
+     | i_rx_phy_fs_state_reg_2_ | d v         | ms00f80 |  0.000 | 349.400 |  350.000 | 
+     +--------------------------------------------------------------------------------+ 
+
+<CMD> saveNetlist usb_phy_eco.v
+Writing Netlist "usb_phy_eco.v" ...
+<CMD> rcOut -excNetFile excNet.rpt -spef usb_phy_eco.spef
+Dumping Spef file.....
+RC Out has the following PVT Info:
+   RC:Cmax
+Printing D_NET...
+RC Out from RCDB Completed (CPU Time= 0:00:00.0  MEM= 926.3M)
+<CMD> defOut -routing usb_phy_eco.def
+Writing DEF file 'usb_phy_eco.def', current time is Thu Feb 28 21:41:35 2019 ...
+unitPerMicron=2000, dbgMicronPerDBU=0.000500, unitPerDBU=1.000000
+DEF file 'usb_phy_eco.def' is written, current time is Thu Feb 28 21:41:35 2019 ...
+
+*** Memory Usage v#1 (Current mem = 853.703M, initial mem = 151.930M) ***
+*** Message Summary: 19 warning(s), 3 error(s)
+
+--- Ending "Innovus" (totcpu=0:00:18.4, real=0:00:21.0, mem=853.7M) ---

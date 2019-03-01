@@ -49,7 +49,15 @@ return 0
 }
 # calculates Vt Sensitivity
 proc computeSensitivityVT { cellName } {
-   set old_slack [ PtCellSlack $cellName ]
+   set cellPins [ get_pins -of_objects $cellName ]
+   set pout [ all_fanout -from $cellPins ]
+   set old_paths [ get_timing_paths -through $pout ]
+   set old_pns 0
+   foreach_in_collection path $old_paths {
+      set old_pns [ expr $old_pns + [ get_attri $path slack ] ]
+   }
+
+   #set old_slack [ PtCellSlack $cellName ]
    set old_leak  [ PtCellLeak  $cellName ]
 
    set libcell [ get_lib_cells -of_objects $cellName ]
@@ -67,19 +75,35 @@ proc computeSensitivityVT { cellName } {
    if { [ expr $max_flag == 0 ] } {
       return 0
    }
-
-   set new_slack [ PtCellSlack $cellName ]
+  
+   set cellPins [ get_pins -of_objects $newlibcellName ]
+   set pout [ all_fanout -from $cellPins ] 
+   set new_paths [ get_timing_paths -through $pout ]
+   set new_pns 0
+   foreach_in_collection path $new_paths {
+      set new_pns [ expr $new_pns + [ get_attri $path slack ] ]
+   }
+   #set new_slack [ PtCellSlack $cellName ]
    set new_leak  [ PtCellLeak $cellName  ]
 
    #restore state
    size_cell $cellName $libcellName
 
-   return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
+   set sense [ expr ($old_leak - $new_leak)/($old_pns - $new_pns) ]
+   puts "Computed Vt sensitivity $sense"
+   return $sense
 }
 # calculates gate sensitivity
 proc computeGateSensitivity { cellName } {
-    #get old info
-    set old_slack [ PtCellSlack $cellName ]
+    set cellPins [ get_pins -of_objects $cellName ]
+    set pout [ all_fanout -from $cellPins ]
+    set old_paths [ get_timing_paths -through $pout ]
+    set old_pns 0
+    foreach_in_collection path $old_paths {
+       set old_pns [ expr $old_pns + [ get_attri $path slack ] ]
+    }   
+    
+    #set old_slack [ PtCellSlack $cellName ]
     set old_leak  [ PtCellLeak  $cellName ]
 
     set libcell [ get_lib_cells -of_objects $cellName ]
@@ -93,15 +117,24 @@ proc computeGateSensitivity { cellName } {
     set max_flag [ size_cell $cellName $newlibcellName ]
     if { [ expr $max_flag == 0 ] } {
        return 0
+    } 
+    
+    set cellPins [ get_pins -of_objects $newlibcellName ]
+    set pout [ all_fanout -from $cellPins ] 
+    set new_paths [ get_timing_paths -through $pout ]
+    set new_pns 0
+    foreach_in_collection path $new_paths {
+       set new_pns [ expr $new_pns + [ get_attri $path slack ] ]
     }
-
-    set new_slack [ PtCellSlack $cellName ]
+    #set new_slack [ PtCellSlack $cellName ]
     set new_leak  [ PtCellLeak $cellName  ]
 
     #restore state
     size_cell $cellName $libcellName
 
-    return [ expr ($old_leak - $new_leak)/($old_slack - $new_slack) ]
+    set sense [ expr ($old_leak - $new_leak)/($old_pns - $new_pns) ]
+    puts "Computed Sizing sensitivity $sense"
+    return $sense
 }
 
 # P_Gate and P_Vt sensitivity calculations

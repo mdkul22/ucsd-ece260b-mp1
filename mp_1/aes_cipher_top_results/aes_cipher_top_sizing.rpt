@@ -1,0 +1,13 @@
+Initial slack:	82.375061 ps
+Initial leakage:	0.613198 W
+Final Sum/Max/Number of max capacitance violations: 0 / 0 / 0
+Final Sum/Max/Number of max transition violations: 0 / 0 / 0
+======================================
+======================================
+Final slack:	1.483154 ps
+Final leakage:	0.366156 W
+Final Sum/Max/Number of max capacitance violations: 1.34849 / 0.83739 / 4
+Final Sum/Max/Number of max transition violations: 0 / 0 / 0
+#Vt cell swaps:	4944
+#Cell size swaps:	0
+Leakage improvment	40.287 %
