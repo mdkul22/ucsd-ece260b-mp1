@@ -22,30 +22,35 @@ set cellList [sort_collection [get_cells *] base_name]
 set VtswapCnt 0
 set SizeswapCnt 0
 # this checks fan-in and fan-out nodes of the cell and gives back the appropriate result
-proc CISTA { cellName } {
-  set cellPins [get_pins -of_objects $cellName]
-  set fan_in_gates [all_fanin -to $cellPins -only_cells]
-  set fan_out_gates [all_fanout -from $cellPins -only_cells]
-  # add fanin fanout nodes
-  set gate_list $fan_in_gates
-  add_to_collection $gate_list $fan_out_gates
-  set violation 0
-  foreach_in_collection gate $gate_list {
-      set gate_slack [PtCellSlack $gate]
-      if {$gate_slack < 0} {
-        return 1
-      } else {
-        set violation 0
+proc GetCapVPins { } {
+
+  global sh_product_version
+  global sh_dev_null
+  global pt_tmp_dir
+  global report_default_significant_digits
+  global synopsys_program_name
+
+  redirect $pt_tmp_dir/tmp.[pid] {report_constraint -all_violators -nosplit -significant_digits 5 -max_capacitance}
+
+  set REPORT_FILE [open $pt_tmp_dir/tmp.[pid] r]
+  set drc_list ""
+  set cost 0.0
+  set count 0
+  set max_cost 0
+
+  set capVioPins ""
+  while {[gets $REPORT_FILE line] >= 0} {
+    switch -regexp $line {
+      {(^.*\/[a-zA-Z]) .* +\(VIOLATED)} {
+          regexp {(^.*\/[a-zA-Z]) .* +\(VIOLATED)} $line full pin
+              lappend capVioPins $pin
+              continue
       }
+    }
   }
-  return violation
-}
-# needs work
-proc EISTA { cellname } {
-  set cellPins [get_pins -of_objects $cellName]
-  set fan_in_cells [fanin_path $cellName ]
-  set fan_out_cells [fanout_path $cellName]
-return 0
+
+  close $REPORT_FILE
+    return $capVioPins
 }
 # calculates Vt Sensitivity
 proc computeSensitivityVT { cellName } {
@@ -75,9 +80,9 @@ proc computeSensitivityVT { cellName } {
    if { [ expr $max_flag == 0 ] } {
       return 0
    }
-  
+
    set cellPins [ get_pins -of_objects $newlibcellName ]
-   set pout [ all_fanout -from $cellPins ] 
+   set pout [ all_fanout -from $cellPins ]
    set new_paths [ get_timing_paths -through $pout ]
    set new_pns 0
    foreach_in_collection path $new_paths {
@@ -101,8 +106,8 @@ proc computeGateSensitivity { cellName } {
     set old_pns 0
     foreach_in_collection path $old_paths {
        set old_pns [ expr $old_pns + [ get_attri $path slack ] ]
-    }   
-    
+    }
+
     #set old_slack [ PtCellSlack $cellName ]
     set old_leak  [ PtCellLeak  $cellName ]
 
@@ -117,10 +122,10 @@ proc computeGateSensitivity { cellName } {
     set max_flag [ size_cell $cellName $newlibcellName ]
     if { [ expr $max_flag == 0 ] } {
        return 0
-    } 
-    
+    }
+
     set cellPins [ get_pins -of_objects $newlibcellName ]
-    set pout [ all_fanout -from $cellPins ] 
+    set pout [ all_fanout -from $cellPins ]
     set new_paths [ get_timing_paths -through $pout ]
     set new_pns 0
     foreach_in_collection path $new_paths {
@@ -223,12 +228,6 @@ while {  $Pmax > 0.0 } {
     continue
   }
   #location for incrementing vt swaps
-
-  set time_violation [ CISTA $cellName ]
-  if {$time_violation == 1} {
-    puts {time violated}
-    size_cell $cellName $libcellName
-  } else {
     #set cellPins [get_pins -of_objects $cellName]
     #set fan_in_gates [all_fanin -to $cellPins -only_cells]
     #set fan_out_gates [all_fanout -from $cellPins -only_cells]
@@ -240,7 +239,6 @@ while {  $Pmax > 0.0 } {
     #}
     incr VtswapCnt
     set S_cells [ remove_from_collection $S_cells $cell]
-  }
   # Find Pmax by sorting cells and looping again
 
   set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
@@ -315,14 +313,6 @@ while {  $Pmax > 0.0 } {
   }
   #location for incrementing gate swaps
 
-  set time_violation [ CISTA $cellName ]
-  if {$time_violation == 1} {
-    puts {time violated}
-    size_cell $cellName $libcellName
-  } else {
-    set cellPins [get_pins -of_objects $cellName]
-    set fan_in_gates [all_fanin -to $cellPins -only_cells]
-    set fan_out_gates [all_fanout -from $cellPins -only_cells]
     #set gate_list $fan_in_gates
     #add_to_collection $gate_list $fan_out_gates
     #add_to_collection $gate_list $cellName
@@ -331,7 +321,6 @@ while {  $Pmax > 0.0 } {
     #}
     incr SizeswapCnt
     set G_cells [ remove_from_collection $G_cells $cell ]
-  }
   set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
   if { $Pmax < 0 } {
     break
