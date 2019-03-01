@@ -326,6 +326,44 @@ while {  $Pmax > 0.0 } {
     break
   }
 }
+
+set val [ PtGetCapVio ]
+set vioPins [GetCapVPins]
+set violations [llength $vioPins]
+
+foreach pin $vioPins {
+  set source_cell [get_cells -of_objects [get_pins $pin]]
+  set fan_out_gates [all_fanout -from [get_pins $pin] -only_cells]
+  foreach_in_collection fcell $fan_out_gates {
+    set cellName [get_attri $fcell base_name]
+    set libcell [get_lib_cells -of_objects $cellName]
+    set libcellName [get_attri $libcell base_name]
+
+    set newlibcellName [getNextSizeDown $libcellName]
+    if {$newlibcellName != "skip"} {
+      size_cell $cellName $newlibcellName
+      update_timing
+      set wns [PtWorstSlack clk]
+      if {$wns<0} {
+        size_cell $cellName $libcellName
+        continue
+      }
+    }
+  }
+  set val [ PtGetCapVio ]
+  set check_pins [ GetCapVPins ]
+  set no_of_pins [ llength $check_pins ]
+  if { $no_of_pins < $vioPins } {
+    set vioPins $no_of_pins
+  } else {
+  set source_cell [get_cells -of_objects [get_pins $pin]]
+  set cellName [get_attri $source_cell base_name]
+  set libcell [get_lib_cells -of_objects $cellName]
+  set libcellName [get_attri $libcell base_name]
+  set newlibcellName [getNextSizeUp $libcellName]
+  size_cell $cellName $newlibcellName
+  }
+}
 #set S_cells []
 #set S_cells [ sort_collection -descending [get_cells *] P_Gate ]
 #foreach_in_collection cell $cellList {
