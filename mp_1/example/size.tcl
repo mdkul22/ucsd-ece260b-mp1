@@ -287,9 +287,9 @@ while {  $Pmax > 0.0 } {
     puts {time violated}
     size_cell $cellName $libcellName
   } else {
-    #set cellPins [get_pins -of_objects $cellName]
-    #set fan_in_gates [all_fanin -to $cellPins -only_cells]
-    #set fan_out_gates [all_fanout -from $cellPins -only_cells]
+    set cellPins [get_pins -of_objects $cellName]
+    set fan_in_gates [all_fanin -to $cellPins -only_cells]
+    set fan_out_gates [all_fanout -from $cellPins -only_cells]
     #set gate_list $fan_in_gates
     #add_to_collection $gate_list $fan_out_gates
     #add_to_collection $gate_list $cellName
