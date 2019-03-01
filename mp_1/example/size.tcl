@@ -335,6 +335,9 @@ foreach pin $vioPins {
   set source_cell [get_cells -of_objects [get_pins $pin]]
   set fan_out_gates [all_fanout -from [get_pins $pin] -only_cells]
   foreach_in_collection fcell $fan_out_gates {
+    if {$libcellName == "ms00f80"} {
+        continue
+    }
     set cellName [get_attri $fcell base_name]
     set libcell [get_lib_cells -of_objects $cellName]
     set libcellName [get_attri $libcell base_name]
