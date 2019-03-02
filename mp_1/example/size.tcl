@@ -200,7 +200,7 @@ while {  $Pmax > 0.0 } {
   set Pcell [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
   if {$Pcell == 0} {
     set S_cells [ remove_from_collection $S_cells $cell ]
-    set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
+    set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
     continue
   }
   set newlibcellName1 [ getNextVtDown $libcellName ]
@@ -226,7 +226,7 @@ while {  $Pmax > 0.0 } {
   if {$new_wns < 1 || $sizeable == 0} {
     size_cell $cellName $libcellName
     set S_cells [ remove_from_collection $S_cells $cell ]
-    set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
+    set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
     continue
   }
   set val [ PtGetCapVio ]
@@ -234,8 +234,8 @@ while {  $Pmax > 0.0 } {
   set violations [llength $vioPins]
   if {violations > 1} {
     size_cell $cellName $libcellName
-    set G_cells [ remove_from_collection $G_cells $cell ]
-    set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
+    set G_cells [ remove_from_collection $S_cells $cell ]
+    set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
     continue
   }
   #location for incrementing vt swaps
