@@ -41,8 +41,8 @@ proc GetCapVPins { } {
   set capVioPins ""
   while {[gets $REPORT_FILE line] >= 0} {
     switch -regexp $line {
-      {(^.*\/[a-zA-Z]) .* +\(VIOLATED)} {
-          regexp {(^.*\/[a-zA-Z]) .* +\(VIOLATED)} $line full pin
+      {(^.*\/[a-zA-Z]) .* +\(VIOLATED} {
+          regexp {(^.*\/[a-zA-Z]) .* +\(VIOLATED} $line full pin
               lappend capVioPins $pin
               continue
       }
@@ -200,32 +200,92 @@ while {  $Pmax > 0.0 } {
   set Pcell [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
   if {$Pcell == 0} {
     set S_cells [ remove_from_collection $S_cells $cell ]
+    set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
     continue
   }
-  set newlibcellName1 [ getNextVtDown $libcellName ]
-  set newlibcellName2 [ getNextVtDown $newlibcellName1 ]
   #check if sizeable, if not remove from list
-  if { {$newlibcellName2} != "skip"} {
-  set sizeable [size_cell $cellName $newlibcellName2 ]
-  # doing incremental timing of all cell paths to ensure no faults
-  update_timing
-  set new_wns [ PtWorstSlack clk ]
-  } else {
+  set newlibcellName1 [ getNextVtDown $libcellName ]
+  #check if sizeable, if not remove from list
+  if { {$newlibcellName1} != "skip"} {
   set sizeable [size_cell $cellName $newlibcellName1 ]
   # doing incremental timing of all cell paths to ensure no faults
   update_timing
   set new_wns [ PtWorstSlack clk ]
   }
-  if {$new_wns < 1 && {$newlibcellName2} != "skip"} {
-    set sizeable [size_cell $cellName $newlibcellName1 ]
-    update_timing
-    set new_wns [ PtWorstSlack clk ]
+  if { $new_wns < 1 } {
+  # doing incremental timing of all cell paths to ensure no faults
+  set sizeable [size_cell $cellName $libcellName ]
+  set VtswapCnt [ expr $VtswapCnt - 1 ]
   }
+  #location for incrementing vt swaps
+    #set cellPins [get_pins -of_objects $cellName]
+    #set fan_in_gates [all_fanin -to $cellPins -only_cells]
+    #set fan_out_gates [all_fanout -from $cellPins -only_cells]
+    #set gate_list $fan_in_gates
+    #add_to_collection $gate_list $fan_out_gates
+    #add_to_collection $gate_list $cellName
+    #foreach_in_collection gate $gate_list {
+    #  	set_user_attribute [get_cells $gate] P_Vt [computeSensitivityVT $gate]
+    #}
+    incr VtswapCnt
+    set S_cells [ remove_from_collection $S_cells $cell]
+  # Find Pmax by sorting cells and looping again
 
-  if {$new_wns < 1 || $sizeable == 0} {
-    size_cell $cellName $libcellName
+  set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
+  if { $Pmax < 0 } {
+    break
+  }
+}
+
+set S_cells [ sort_collection -descending [get_cells *] P_Vt ]
+# remove registers for both the lists
+foreach_in_collection cell $cellList {
+    set cellName [get_attri $cell base_name]
+    set libcell [get_lib_cells -of_objects $cellName]
+    set libcellName [get_attri $libcell base_name]
+    if {$libcellName == "ms00f80"} {
+      set S_cells [remove_from_collection $S_cells $cell]
+    }
+    #Vt cell swap example (convert all fast cells (i.e. LVT) to medium cells (i.e. NVT)...
+}
+set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
+# Pmax
+while {  $Pmax > 0.0 } {
+  # get max value and iterator to get cell from collection
+  set cell [ index_collection $S_cells 0 ]
+  set cellName [get_attri $cell base_name]
+  set libcell [get_lib_cells -of_objects $cellName]
+  set libcellName [get_attri $libcell base_name]
+  set size [sizeof_collection $S_cells]
+  if { $size == 0} {
+    break
+  } else {
+    puts "Second loop: $size cells left in collection"
+  }
+  # removing value Pmax from List
+  #set S_cells [remove_from_collection $S_cells $cellName]
+  if {$libcellName == "ms00f80"} {
+      continue
+  }
+  set Pcell [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
+  if {$Pcell == 0} {
     set S_cells [ remove_from_collection $S_cells $cell ]
+    set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
     continue
+  }
+  #check if sizeable, if not remove from list
+  set newlibcellName1 [ getNextVtDown $libcellName ]
+  #check if sizeable, if not remove from list
+  if { {$newlibcellName1} != "skip"} {
+  set sizeable [size_cell $cellName $newlibcellName1 ]
+  # doing incremental timing of all cell paths to ensure no faults
+  update_timing
+  set new_wns [ PtWorstSlack clk ]
+  }
+  if { $new_wns < 1 } {
+  # doing incremental timing of all cell paths to ensure no faults
+  set sizeable [size_cell $cellName $libcellName ]
+  set VtswapCnt [ expr $VtswapCnt - 1 ]
   }
   #location for incrementing vt swaps
     #set cellPins [get_pins -of_objects $cellName]
@@ -287,40 +347,27 @@ while {  $Pmax > 0.0 } {
     continue
   }
   set newlibcellName1 [ getNextSizeDown $libcellName ]
-  set newlibcellName2 [ getNextSizeDown $newlibcellName1 ]
   #check if sizeable, if not remove from list
-  if { {$newlibcellName2} != "skip"} {
-  set sizeable [size_cell $cellName $newlibcellName2 ]
-  # doing incremental timing of all cell paths to ensure no faults
-  update_timing
-  set new_wns [ PtWorstSlack clk ]
-  } else {
+  if { {$newlibcellName1} != "skip"} {
   set sizeable [size_cell $cellName $newlibcellName1 ]
   # doing incremental timing of all cell paths to ensure no faults
   update_timing
   set new_wns [ PtWorstSlack clk ]
   }
-  if {$new_wns < 0.5 && {$newlibcellName2} != "skip"} {
-    set sizeable [size_cell $cellName $newlibcellName1 ]
-    update_timing
-    set new_wns [ PtWorstSlack clk ]
-  }
-
-  if {$new_wns < 0.5 || $sizeable == 0} {
-    size_cell $cellName $libcellName
-    set G_cells [ remove_from_collection $G_cells $cell ]
-    continue
+  if { $new_wns < 1 } {
+  # doing incremental timing of all cell paths to ensure no faults
+  set sizeable [size_cell $cellName $libcellName ]
+  set SizeswapCnt [ expr $SizeswapCnt - 1 ]
   }
   #location for incrementing gate swaps
-
     #set gate_list $fan_in_gates
     #add_to_collection $gate_list $fan_out_gates
     #add_to_collection $gate_list $cellName
     #foreach_in_collection gate $gate_list {
     #  	set_user_attribute [get_cells $gate] P_Vt [computeSensitivityVT $gate]
     #}
-    incr SizeswapCnt
-    set G_cells [ remove_from_collection $G_cells $cell ]
+  incr SizeswapCnt
+  set G_cells [ remove_from_collection $G_cells $cell ]
   set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
   if { $Pmax < 0 } {
     break
@@ -334,35 +381,13 @@ set violations [llength $vioPins]
 foreach pin $vioPins {
   set source_cell [get_cells -of_objects [get_pins $pin]]
   set fan_out_gates [all_fanout -from [get_pins $pin] -only_cells]
-  foreach_in_collection fcell $fan_out_gates {
-    set cellName [get_attri $fcell base_name]
-    set libcell [get_lib_cells -of_objects $cellName]
-    set libcellName [get_attri $libcell base_name]
 
-    set newlibcellName [getNextSizeDown $libcellName]
-    if {$newlibcellName != "skip"} {
-      size_cell $cellName $newlibcellName
-      update_timing
-      set wns [PtWorstSlack clk]
-      if {$wns<0} {
-        size_cell $cellName $libcellName
-        continue
-      }
-    }
-  }
-  set val [ PtGetCapVio ]
-  set check_pins [ GetCapVPins ]
-  set no_of_pins [ llength $check_pins ]
-  if { $no_of_pins < $vioPins } {
-    set vioPins $no_of_pins
-  } else {
   set source_cell [get_cells -of_objects [get_pins $pin]]
   set cellName [get_attri $source_cell base_name]
   set libcell [get_lib_cells -of_objects $cellName]
   set libcellName [get_attri $libcell base_name]
   set newlibcellName [getNextSizeUp $libcellName]
   size_cell $cellName $newlibcellName
-  }
 }
 #set S_cells []
 #set S_cells [ sort_collection -descending [get_cells *] P_Gate ]
