@@ -232,7 +232,7 @@ while {  $Pmax > 0.0 } {
   set val [ PtGetCapVio ]
   set vioPins [GetCapVPins]
   set violations [llength $vioPins]
-  if {violations > 1} {
+  if {$violations > 1} {
     size_cell $cellName $libcellName
     set G_cells [ remove_from_collection $S_cells $cell ]
     set Pmax [ get_attri [ index_collection $S_cells 0 ] P_Vt ]
@@ -327,7 +327,7 @@ while {  $Pmax > 0.0 } {
   set val [ PtGetCapVio ]
   set vioPins [GetCapVPins]
   set violations [llength $vioPins]
-  if {violations > 1} {
+  if {$violations > 1} {
     size_cell $cellName $libcellName
     set G_cells [ remove_from_collection $G_cells $cell ]
     set Pmax [ get_attri [ index_collection $G_cells 0 ] P_Gate ]
